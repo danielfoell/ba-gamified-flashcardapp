@@ -1,0 +1,226 @@
+[gd_scene load_steps=75 format=3 uid="uid://b31peysw5icvr"]
+
+[ext_resource type="PackedScene" uid="uid://8oweu4b2t0so" path="res://Assets/Models/gltf/armchair.gltf" id="1_udpjl"]
+[ext_resource type="PackedScene" uid="uid://ciijukkukp2c3" path="res://Assets/Models/gltf/armchair_pillows.gltf" id="2_ds8j6"]
+[ext_resource type="PackedScene" uid="uid://ddbmqmq81ecvy" path="res://Assets/Models/gltf/bed_double_A.gltf" id="3_5og55"]
+[ext_resource type="PackedScene" uid="uid://b45dq303kotbs" path="res://Assets/Models/gltf/bed_double_B.gltf" id="4_pkl0t"]
+[ext_resource type="PackedScene" uid="uid://dybv7dgk0qcsa" path="res://Assets/Models/gltf/bed_single_A.gltf" id="5_gw7su"]
+[ext_resource type="PackedScene" uid="uid://p662nrmjw2ro" path="res://Assets/Models/gltf/bed_single_B.gltf" id="6_kw6ex"]
+[ext_resource type="PackedScene" uid="uid://bskx4yt32km2k" path="res://Assets/Models/gltf/book_set.gltf" id="7_kpbk6"]
+[ext_resource type="PackedScene" uid="uid://bsnf77rjwy48g" path="res://Assets/Models/gltf/book_single.gltf" id="8_c3xbx"]
+[ext_resource type="PackedScene" uid="uid://cqnuvrqq8bry5" path="res://Assets/Models/gltf/cabinet_medium.gltf" id="9_i4ssf"]
+[ext_resource type="PackedScene" uid="uid://c4ma832vsw1ae" path="res://Assets/Models/gltf/cabinet_medium_decorated.gltf" id="10_dr55e"]
+[ext_resource type="PackedScene" uid="uid://j3vdrvxipava" path="res://Assets/Models/gltf/cabinet_small.gltf" id="11_cs11a"]
+[ext_resource type="PackedScene" uid="uid://cfonnymfvukww" path="res://Assets/Models/gltf/cabinet_small_decorated.gltf" id="12_shqld"]
+[ext_resource type="PackedScene" uid="uid://dnpwufeukdmp3" path="res://Assets/Models/gltf/cactus_medium_A.gltf" id="13_ar7vq"]
+[ext_resource type="PackedScene" uid="uid://d11w6sfhvusgl" path="res://Assets/Models/gltf/cactus_medium_B.gltf" id="14_m00v2"]
+[ext_resource type="PackedScene" uid="uid://c0vexswb7g1gk" path="res://Assets/Models/gltf/cactus_small_A.gltf" id="15_wd0rk"]
+[ext_resource type="PackedScene" uid="uid://b7648ficitl1v" path="res://Assets/Models/gltf/cactus_small_B.gltf" id="16_2x76r"]
+[ext_resource type="PackedScene" uid="uid://cxtjq0eqcx6kp" path="res://Assets/Models/gltf/chair_A.gltf" id="17_jlfo8"]
+[ext_resource type="PackedScene" uid="uid://td65pl2ufdnu" path="res://Assets/Models/gltf/chair_A_wood.gltf" id="18_acnm7"]
+[ext_resource type="PackedScene" uid="uid://bj2ufxev3cwc" path="res://Assets/Models/gltf/chair_B.gltf" id="19_h6w7c"]
+[ext_resource type="PackedScene" uid="uid://3u6pfc57mpu" path="res://Assets/Models/gltf/chair_B_wood.gltf" id="20_2gtvm"]
+[ext_resource type="PackedScene" uid="uid://dpdu5bfgxylkh" path="res://Assets/Models/gltf/chair_C.gltf" id="21_pycl1"]
+[ext_resource type="PackedScene" uid="uid://0fmjrvh7glo8" path="res://Assets/Models/gltf/chair_desk_A.gltf" id="22_fom8b"]
+[ext_resource type="PackedScene" uid="uid://bp2j2r1oo5qnn" path="res://Assets/Models/gltf/chair_desk_B.gltf" id="23_6awho"]
+[ext_resource type="PackedScene" uid="uid://cklc16gyv1qun" path="res://Assets/Models/gltf/chair_stool.gltf" id="24_yw4yo"]
+[ext_resource type="PackedScene" uid="uid://7tfv0k23dsl6" path="res://Assets/Models/gltf/chair_stool_wood.gltf" id="25_jsxok"]
+[ext_resource type="PackedScene" uid="uid://bqosnaiam87fh" path="res://Assets/Models/gltf/couch.gltf" id="26_ca0l5"]
+[ext_resource type="PackedScene" uid="uid://ckroxpbnnpp1i" path="res://Assets/Models/gltf/couch_pillows.gltf" id="27_bvhxl"]
+[ext_resource type="PackedScene" uid="uid://bpjm3ad7vuir1" path="res://Assets/Models/gltf/cup.gltf" id="28_5f0ob"]
+[ext_resource type="PackedScene" uid="uid://dcjh75l0eaqy4" path="res://Assets/Models/gltf/cup_pencils.gltf" id="29_hpibd"]
+[ext_resource type="PackedScene" uid="uid://bto5get3veqkc" path="res://Assets/Models/gltf/desk.gltf" id="30_ver75"]
+[ext_resource type="PackedScene" uid="uid://fpt23lw48osj" path="res://Assets/Models/gltf/desk_decorated.gltf" id="31_rbxtb"]
+[ext_resource type="PackedScene" uid="uid://1h6w6ugtm7ma" path="res://Assets/Models/gltf/desk_large.gltf" id="32_08i3q"]
+[ext_resource type="PackedScene" uid="uid://bt7mnpygxoloc" path="res://Assets/Models/gltf/desk_large_decorated.gltf" id="33_4651p"]
+[ext_resource type="PackedScene" uid="uid://sw3eq5n6qy8i" path="res://Assets/Models/gltf/gameconsole_handheld.gltf" id="34_rvmns"]
+[ext_resource type="PackedScene" uid="uid://fjwdugymxydi" path="res://Assets/Models/gltf/keyboard.gltf" id="35_rga7m"]
+[ext_resource type="PackedScene" uid="uid://runs5md063el" path="res://Assets/Models/gltf/lamp_desk.gltf" id="36_214i7"]
+[ext_resource type="PackedScene" uid="uid://nkqwqv0myfyh" path="res://Assets/Models/gltf/lamp_desk_headphones.gltf" id="37_dfrse"]
+[ext_resource type="PackedScene" uid="uid://c7lvf2cpy363c" path="res://Assets/Models/gltf/lamp_standing.gltf" id="38_5qtd8"]
+[ext_resource type="PackedScene" uid="uid://b52tnah1vyr84" path="res://Assets/Models/gltf/lamp_table.gltf" id="39_2ovom"]
+[ext_resource type="PackedScene" uid="uid://btmumoukulfno" path="res://Assets/Models/gltf/monitor.gltf" id="40_ii408"]
+[ext_resource type="PackedScene" uid="uid://cvp8laouuibwa" path="res://Assets/Models/gltf/mouse.gltf" id="41_xojw5"]
+[ext_resource type="PackedScene" uid="uid://csonuc03udq11" path="res://Assets/Models/gltf/mousepad_A.gltf" id="42_vnxse"]
+[ext_resource type="PackedScene" uid="uid://pg40mu5nbly1" path="res://Assets/Models/gltf/mousepad_B.gltf" id="43_if6ah"]
+[ext_resource type="PackedScene" uid="uid://dgykfu54mkl0x" path="res://Assets/Models/gltf/mousepad_large_A.gltf" id="44_x2gh6"]
+[ext_resource type="PackedScene" uid="uid://dontwvv5v6ph7" path="res://Assets/Models/gltf/mousepad_large_B.gltf" id="45_hx1l1"]
+[ext_resource type="PackedScene" uid="uid://bg38jf3m1kwo8" path="res://Assets/Models/gltf/mug_A.gltf" id="46_qenld"]
+[ext_resource type="PackedScene" uid="uid://bo36ihq8dvti7" path="res://Assets/Models/gltf/mug_B.gltf" id="47_x10d3"]
+[ext_resource type="PackedScene" uid="uid://bonvmn7w6o4tn" path="res://Assets/Models/gltf/pictureframe_large_A.gltf" id="48_ovrws"]
+[ext_resource type="PackedScene" uid="uid://cxp2360vcj8yp" path="res://Assets/Models/gltf/pictureframe_large_B.gltf" id="49_slxw3"]
+[ext_resource type="PackedScene" uid="uid://bwcioi7nhcyxt" path="res://Assets/Models/gltf/pictureframe_medium.gltf" id="50_tmvmv"]
+[ext_resource type="PackedScene" uid="uid://damsx1enho5ji" path="res://Assets/Models/gltf/pictureframe_small_A.gltf" id="51_n2drk"]
+[ext_resource type="PackedScene" uid="uid://8bixtj2m1u21" path="res://Assets/Models/gltf/pictureframe_small_B.gltf" id="52_w6048"]
+[ext_resource type="PackedScene" uid="uid://b7xuadsxr72eg" path="res://Assets/Models/gltf/pictureframe_small_C.gltf" id="53_j31fg"]
+[ext_resource type="PackedScene" uid="uid://mw38nvxud5i2" path="res://Assets/Models/gltf/pictureframe_standing_A.gltf" id="54_p3esr"]
+[ext_resource type="PackedScene" uid="uid://b5uh8jl4gpk2j" path="res://Assets/Models/gltf/pictureframe_standing_B.gltf" id="55_momly"]
+[ext_resource type="PackedScene" uid="uid://cwhxxlqkd0nsk" path="res://Assets/Models/gltf/pillow_A.gltf" id="56_plkc4"]
+[ext_resource type="PackedScene" uid="uid://cruln7l70mmpp" path="res://Assets/Models/gltf/pillow_B.gltf" id="57_1rtco"]
+[ext_resource type="PackedScene" uid="uid://sdnlm7v4dqpp" path="res://Assets/Models/gltf/rug_oval_A.gltf" id="58_8k3xf"]
+[ext_resource type="PackedScene" uid="uid://cwbco8sgdiic2" path="res://Assets/Models/gltf/rug_oval_B.gltf" id="59_605ge"]
+[ext_resource type="PackedScene" uid="uid://cpvon27x05ix1" path="res://Assets/Models/gltf/rug_rectangle_A.gltf" id="60_yfr0q"]
+[ext_resource type="PackedScene" uid="uid://cb3qr3ksl7rmp" path="res://Assets/Models/gltf/rug_rectangle_B.gltf" id="61_x4iw2"]
+[ext_resource type="PackedScene" uid="uid://btrmbckus35xw" path="res://Assets/Models/gltf/rug_rectangle_stripes_A.gltf" id="62_qdex8"]
+[ext_resource type="PackedScene" uid="uid://eqt5bvurn1jx" path="res://Assets/Models/gltf/rug_rectangle_stripes_B.gltf" id="63_dardf"]
+[ext_resource type="PackedScene" uid="uid://ve5myk7ljckt" path="res://Assets/Models/gltf/shelf_A_big.gltf" id="64_u23tg"]
+[ext_resource type="PackedScene" uid="uid://cnx8kslisqw0x" path="res://Assets/Models/gltf/shelf_A_small.gltf" id="65_jjrad"]
+[ext_resource type="PackedScene" uid="uid://dpod3cq26g23f" path="res://Assets/Models/gltf/shelf_B_large.gltf" id="66_j5hwx"]
+[ext_resource type="PackedScene" uid="uid://c03exweop5pjc" path="res://Assets/Models/gltf/shelf_B_large_decorated.gltf" id="67_1uy2c"]
+[ext_resource type="PackedScene" uid="uid://1oisf8mkjn1x" path="res://Assets/Models/gltf/shelf_B_small.gltf" id="68_52y30"]
+[ext_resource type="PackedScene" uid="uid://dl2fbk0owncge" path="res://Assets/Models/gltf/shelf_B_small_decorated.gltf" id="69_by2qu"]
+[ext_resource type="PackedScene" uid="uid://dvgeubckpt8nd" path="res://Assets/Models/gltf/table_low.gltf" id="70_0o6am"]
+[ext_resource type="PackedScene" uid="uid://bx0gfs6vajn0w" path="res://Assets/Models/gltf/table_low_decorated.gltf" id="71_voied"]
+[ext_resource type="PackedScene" uid="uid://btsmqvw134sct" path="res://Assets/Models/gltf/table_medium.gltf" id="72_y2pyr"]
+[ext_resource type="PackedScene" uid="uid://h3kayfkmvior" path="res://Assets/Models/gltf/table_medium_long.gltf" id="73_lj7g6"]
+[ext_resource type="PackedScene" uid="uid://boo3ecga8aipn" path="res://Assets/Models/gltf/table_small.gltf" id="74_3hwpb"]
+
+[node name="Tiles" type="Node3D"]
+
+[node name="armchair2" parent="." instance=ExtResource("1_udpjl")]
+
+[node name="armchair_pillows2" parent="." instance=ExtResource("2_ds8j6")]
+
+[node name="bed_double_A2" parent="." instance=ExtResource("3_5og55")]
+
+[node name="bed_double_B2" parent="." instance=ExtResource("4_pkl0t")]
+
+[node name="bed_single_A2" parent="." instance=ExtResource("5_gw7su")]
+
+[node name="bed_single_B2" parent="." instance=ExtResource("6_kw6ex")]
+
+[node name="book_set2" parent="." instance=ExtResource("7_kpbk6")]
+
+[node name="book_single2" parent="." instance=ExtResource("8_c3xbx")]
+
+[node name="cabinet_medium2" parent="." instance=ExtResource("9_i4ssf")]
+
+[node name="cabinet_medium_decorated2" parent="." instance=ExtResource("10_dr55e")]
+
+[node name="cabinet_small2" parent="." instance=ExtResource("11_cs11a")]
+
+[node name="cabinet_small_decorated2" parent="." instance=ExtResource("12_shqld")]
+
+[node name="cactus_medium_A2" parent="." instance=ExtResource("13_ar7vq")]
+
+[node name="cactus_medium_B2" parent="." instance=ExtResource("14_m00v2")]
+
+[node name="cactus_small_A2" parent="." instance=ExtResource("15_wd0rk")]
+
+[node name="cactus_small_B2" parent="." instance=ExtResource("16_2x76r")]
+
+[node name="chair_A2" parent="." instance=ExtResource("17_jlfo8")]
+
+[node name="chair_A_wood2" parent="." instance=ExtResource("18_acnm7")]
+
+[node name="chair_B2" parent="." instance=ExtResource("19_h6w7c")]
+
+[node name="chair_B_wood2" parent="." instance=ExtResource("20_2gtvm")]
+
+[node name="chair_C2" parent="." instance=ExtResource("21_pycl1")]
+
+[node name="chair_desk_A2" parent="." instance=ExtResource("22_fom8b")]
+
+[node name="chair_desk_B2" parent="." instance=ExtResource("23_6awho")]
+
+[node name="chair_stool2" parent="." instance=ExtResource("24_yw4yo")]
+
+[node name="chair_stool_wood2" parent="." instance=ExtResource("25_jsxok")]
+
+[node name="couch2" parent="." instance=ExtResource("26_ca0l5")]
+
+[node name="couch_pillows2" parent="." instance=ExtResource("27_bvhxl")]
+
+[node name="cup2" parent="." instance=ExtResource("28_5f0ob")]
+
+[node name="cup_pencils2" parent="." instance=ExtResource("29_hpibd")]
+
+[node name="desk2" parent="." instance=ExtResource("30_ver75")]
+
+[node name="desk_decorated2" parent="." instance=ExtResource("31_rbxtb")]
+
+[node name="desk_large2" parent="." instance=ExtResource("32_08i3q")]
+
+[node name="desk_large_decorated2" parent="." instance=ExtResource("33_4651p")]
+
+[node name="gameconsole_handheld2" parent="." instance=ExtResource("34_rvmns")]
+
+[node name="keyboard2" parent="." instance=ExtResource("35_rga7m")]
+
+[node name="lamp_desk2" parent="." instance=ExtResource("36_214i7")]
+
+[node name="lamp_desk_headphones2" parent="." instance=ExtResource("37_dfrse")]
+
+[node name="lamp_standing2" parent="." instance=ExtResource("38_5qtd8")]
+
+[node name="lamp_table2" parent="." instance=ExtResource("39_2ovom")]
+
+[node name="monitor2" parent="." instance=ExtResource("40_ii408")]
+
+[node name="mouse2" parent="." instance=ExtResource("41_xojw5")]
+
+[node name="mousepad_A2" parent="." instance=ExtResource("42_vnxse")]
+
+[node name="mousepad_B2" parent="." instance=ExtResource("43_if6ah")]
+
+[node name="mousepad_large_A2" parent="." instance=ExtResource("44_x2gh6")]
+
+[node name="mousepad_large_B2" parent="." instance=ExtResource("45_hx1l1")]
+
+[node name="mug_A2" parent="." instance=ExtResource("46_qenld")]
+
+[node name="mug_B2" parent="." instance=ExtResource("47_x10d3")]
+
+[node name="pictureframe_large_A2" parent="." instance=ExtResource("48_ovrws")]
+
+[node name="pictureframe_large_B2" parent="." instance=ExtResource("49_slxw3")]
+
+[node name="pictureframe_medium2" parent="." instance=ExtResource("50_tmvmv")]
+
+[node name="pictureframe_small_A2" parent="." instance=ExtResource("51_n2drk")]
+
+[node name="pictureframe_small_B2" parent="." instance=ExtResource("52_w6048")]
+
+[node name="pictureframe_small_C2" parent="." instance=ExtResource("53_j31fg")]
+
+[node name="pictureframe_standing_A2" parent="." instance=ExtResource("54_p3esr")]
+
+[node name="pictureframe_standing_B2" parent="." instance=ExtResource("55_momly")]
+
+[node name="pillow_A2" parent="." instance=ExtResource("56_plkc4")]
+
+[node name="pillow_B2" parent="." instance=ExtResource("57_1rtco")]
+
+[node name="rug_oval_A2" parent="." instance=ExtResource("58_8k3xf")]
+
+[node name="rug_oval_B2" parent="." instance=ExtResource("59_605ge")]
+
+[node name="rug_rectangle_A2" parent="." instance=ExtResource("60_yfr0q")]
+
+[node name="rug_rectangle_B2" parent="." instance=ExtResource("61_x4iw2")]
+
+[node name="rug_rectangle_stripes_A2" parent="." instance=ExtResource("62_qdex8")]
+
+[node name="rug_rectangle_stripes_B2" parent="." instance=ExtResource("63_dardf")]
+
+[node name="shelf_A_big2" parent="." instance=ExtResource("64_u23tg")]
+
+[node name="shelf_A_small2" parent="." instance=ExtResource("65_jjrad")]
+
+[node name="shelf_B_large2" parent="." instance=ExtResource("66_j5hwx")]
+
+[node name="shelf_B_large_decorated2" parent="." instance=ExtResource("67_1uy2c")]
+
+[node name="shelf_B_small2" parent="." instance=ExtResource("68_52y30")]
+
+[node name="shelf_B_small_decorated2" parent="." instance=ExtResource("69_by2qu")]
+
+[node name="table_low2" parent="." instance=ExtResource("70_0o6am")]
+
+[node name="table_low_decorated2" parent="." instance=ExtResource("71_voied")]
+
+[node name="table_medium2" parent="." instance=ExtResource("72_y2pyr")]
+
+[node name="table_medium_long2" parent="." instance=ExtResource("73_lj7g6")]
+
+[node name="table_small2" parent="." instance=ExtResource("74_3hwpb")]

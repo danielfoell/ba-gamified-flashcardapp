@@ -14,10 +14,10 @@ func _on_button_pressed():
 	file_dialog.show()
 
 func _on_btn_add_card_pressed():
-	#var flashcard: FlashcardData = FlashcardData.new()
-	#flashcard.question = question.text
-	#flashcard.answer = answer.text
+	var flashcard: FlashcardData = FlashcardData.new()
+	flashcard.question = question.text
+	flashcard.answer = answer.text
 	#ResourceSaver.save(flashcard, "user://test.res")
 	#print("es")
-	StorageService.flashcards.append({"question": question.text, "answer": answer.text})
+	StorageService.flashcards.append(flashcard)
 	StorageService.saveFlashcards()

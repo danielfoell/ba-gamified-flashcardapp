@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmvl0uuhhsg8r"]
 
-[ext_resource type="Script" path="res://CreateFlashcard.gd" id="1_ectur"]
-[ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_ikhkg"]
-[ext_resource type="Texture2D" uid="uid://cfpp6wdi5q5k5" path="res://Assets/Icons/paperclip.png" id="2_sk61l"]
+[ext_resource type="Script" path="res://Flashcards/CreateFlashcardInterface.gd" id="1_7scd4"]
+[ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_d1sd6"]
+[ext_resource type="Texture2D" uid="uid://cfpp6wdi5q5k5" path="res://Assets/Icons/paperclip.png" id="3_ipm32"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lldi3"]
 bg_color = Color(0.24807, 0.694112, 0.499273, 1)
@@ -11,12 +11,12 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="CreateFlashcard" type="Control"]
+[node name="CreateFlashcardInterface" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_ectur")
+script = ExtResource("1_7scd4")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -33,29 +33,29 @@ grow_vertical = 2
 
 [node name="QuestionTitle" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ikhkg")
+theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_font_sizes/font_size = 0
 text = "Frage"
 
 [node name="Question" type="TextEdit" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_ikhkg")
+theme_override_fonts/font = ExtResource("2_d1sd6")
 
 [node name="AnswerTitle" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ikhkg")
+theme_override_fonts/font = ExtResource("2_d1sd6")
 text = "Antwort"
 
 [node name="Answer" type="TextEdit" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_ikhkg")
+theme_override_fonts/font = ExtResource("2_d1sd6")
 
 [node name="Button" type="Button" parent="Panel/VBoxContainer"]
 visible = false
 layout_mode = 2
-icon = ExtResource("2_sk61l")
+icon = ExtResource("3_ipm32")
 flat = true
 
 [node name="NativeFileDialog" type="NativeFileDialog" parent="Panel/VBoxContainer/Button"]
@@ -65,7 +65,7 @@ filters = PackedStringArray(".png")
 
 [node name="Btn_AddCard" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ikhkg")
+theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lldi3")
 text = "Hinzufügen"
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7x8ge2fi4wln"]
+[gd_scene load_steps=19 format=3 uid="uid://c7x8ge2fi4wln"]
 
-[ext_resource type="Script" path="res://Flashcards/FlashcardsMainInterface.gd" id="1_2sxhf"]
+[ext_resource type="Script" path="res://FolderContainer.gd" id="1_rv3ei"]
+[ext_resource type="Script" path="res://FlashcardsMain.gd" id="1_uxtuh"]
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_c5pjr"]
+[ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="3_osu7m"]
 [ext_resource type="Texture2D" uid="uid://rt1ps7h7r2yp" path="res://Assets/Icons/other-x-icon-2048x2043-ueafpzlh-removebg-preview.png" id="4_vx7ms"]
-[ext_resource type="Script" path="res://Flashcards/FolderContainer.gd" id="4_wspae"]
+[ext_resource type="Texture2D" uid="uid://dkb6rt35qtp4r" path="res://Assets/Icons/tumbleweed.png" id="5_3csxa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uua8"]
 bg_color = Color(0.83, 0.83, 0.83, 1)
@@ -12,6 +14,13 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8o30"]
+bg_color = Color(0.35198, 0.679509, 0.496958, 1)
+corner_radius_top_left = 235
+corner_radius_top_right = 450
+corner_radius_bottom_right = 235
+corner_radius_bottom_left = 450
 
 [sub_resource type="LabelSettings" id="LabelSettings_xv5cf"]
 font = ExtResource("2_c5pjr")
@@ -48,10 +57,58 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-470.5, 661)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.344571]
+}
 
 [sub_resource type="Animation" id="Animation_ff7yq"]
 resource_name = "Tumbleweed"
 length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.6, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-439.5, 510), Vector2(215.5, 510), Vector2(1185.5, 510), Vector2(1729.5, 510)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.6, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.8675, 4.24464, 6.28319]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0mboo"]
 _data = {
@@ -119,9 +176,9 @@ offset_bottom = 387.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4uua8")
-script = ExtResource("1_2sxhf")
+script = ExtResource("1_uxtuh")
 
-[node name="DeckOverviewContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,63 +191,52 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DeckOverviewContainer"]
-layout_mode = 2
-
-[node name="FolderContainer" type="VBoxContainer" parent="DeckOverviewContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-script = ExtResource("4_wspae")
-
-[node name="Label" type="Label" parent="DeckOverviewContainer/HBoxContainer/FolderContainer"]
-layout_mode = 2
-text = "Meine Themen"
-label_settings = SubResource("LabelSettings_xv5cf")
-vertical_alignment = 1
-justification_flags = 0
-
-[node name="DeckContainer" type="GridContainer" parent="DeckOverviewContainer/HBoxContainer/FolderContainer"]
-layout_mode = 2
-columns = 5
-
-[node name="Btn_NewFolder" type="Button" parent="DeckOverviewContainer/HBoxContainer/FolderContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "+"
-
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+layout_mode = 2
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_c5pjr")
+theme_override_font_sizes/normal_font_size = 90
+bbcode_enabled = true
+text = "[center]Erstelle dein erstes Deck[/center]"
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 670
+theme_override_constants/margin_right = 670
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_osu7m")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxFlat_i8o30")
+text = "+ "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="FolderContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+[node name="FolderContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+script = ExtResource("1_rv3ei")
 
-[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/FolderContainer"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/FolderContainer"]
 layout_mode = 2
 text = "Meine Themen"
 label_settings = SubResource("LabelSettings_xv5cf")
 vertical_alignment = 1
 justification_flags = 0
 
-[node name="DeckContainer" type="GridContainer" parent="MarginContainer2/HBoxContainer/FolderContainer"]
+[node name="DeckContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/FolderContainer"]
 layout_mode = 2
 columns = 5
 
-[node name="Btn_NewFolder" type="Button" parent="MarginContainer2/HBoxContainer/FolderContainer"]
+[node name="Btn_NewFolder" type="Button" parent="MarginContainer/HBoxContainer/FolderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+"
@@ -215,6 +261,23 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
 icon = ExtResource("4_vx7ms")
 icon_alignment = 1
 
-[connection signal="pressed" from="DeckOverviewContainer/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/FolderContainer/Btn_NewFolder" to="MarginContainer2/HBoxContainer/FolderContainer" method="_on_btn_new_folder_pressed"]
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -470.5
+offset_top = 661.0
+offset_right = -240.5
+offset_bottom = 891.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.344571
+pivot_offset = Vector2(115, 115)
+texture = ExtResource("5_3csxa")
+expand_mode = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/FolderContainer/Btn_NewFolder" to="MarginContainer/HBoxContainer/FolderContainer" method="_on_btn_new_folder_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

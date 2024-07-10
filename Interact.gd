@@ -1,7 +1,8 @@
 extends StaticBody3D
 
 @onready var animation_player = $AnimationPlayer
-const NEWDECK = preload("res://NewDeck.tscn")
+
+const NEWDECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
 const MAIN = preload("res://Main.tscn")
 
 func _ready():

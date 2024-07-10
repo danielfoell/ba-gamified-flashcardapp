@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0cq3mbq412u0"]
 
-[ext_resource type="Script" path="res://NewDeck.gd" id="1_c507v"]
-[ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="2_r1x1k"]
+[ext_resource type="Script" path="res://Flashcards/CreateNewDeckInterface.gd" id="1_v1qpp"]
+[ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="2_k1l1r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uua8"]
 bg_color = Color(0.83, 0.83, 0.83, 1)
@@ -37,7 +37,7 @@ expand_margin_top = 10.0
 expand_margin_right = 15.0
 expand_margin_bottom = 10.0
 
-[node name="NewDeck" type="Panel"]
+[node name="NewDeckInterface" type="Panel"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(265, 100)
 theme_override_styles/panel = SubResource("StyleBoxFlat_4uua8")
-script = ExtResource("1_c507v")
+script = ExtResource("1_v1qpp")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -91,7 +91,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="TextEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_r1x1k")
+theme_override_fonts/font = ExtResource("2_k1l1r")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_6rae2")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ur73q")
