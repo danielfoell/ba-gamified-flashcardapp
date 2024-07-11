@@ -1,12 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7x8ge2fi4wln"]
+[gd_scene load_steps=22 format=3 uid="uid://c7x8ge2fi4wln"]
 
 [ext_resource type="Script" path="res://Flashcards/FlashcardsMainInterface.gd" id="1_2sxhf"]
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_c5pjr"]
+[ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="4_dnsbm"]
 [ext_resource type="Texture2D" uid="uid://rt1ps7h7r2yp" path="res://Assets/Icons/other-x-icon-2048x2043-ueafpzlh-removebg-preview.png" id="4_vx7ms"]
 [ext_resource type="Script" path="res://Flashcards/FolderContainer.gd" id="4_wspae"]
+[ext_resource type="Texture2D" uid="uid://bb7bn1fy210so" path="res://Assets/circle.png" id="5_u42ga"]
+[ext_resource type="Texture2D" uid="uid://yl16riv2hnb" path="res://Assets/circle_filled.png" id="6_rsr5g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uua8"]
-bg_color = Color(0.83, 0.83, 0.83, 1)
+bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
 border_blend = true
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -18,47 +21,25 @@ font = ExtResource("2_c5pjr")
 font_size = 46
 font_color = Color(0.10748, 0.10748, 0.10748, 1)
 
-[sub_resource type="Animation" id="Animation_3yrcd"]
-resource_name = "Open"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1.68178),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agxp5"]
+bg_color = Color(0.760784, 0.745098, 0.729412, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[sub_resource type="Animation" id="Animation_61oy2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaprd"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="Animation" id="Animation_ff7yq"]
-resource_name = "Tumbleweed"
-length = 2.5
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0mboo"]
-_data = {
-"Open": SubResource("Animation_3yrcd"),
-"RESET": SubResource("Animation_61oy2"),
-"Tumbleweed": SubResource("Animation_ff7yq")
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvesa"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_345v2"]
 content_margin_left = 139.0
@@ -105,6 +86,48 @@ bg_color = Color(0.785903, 0.732844, 0.806968, 1)
 corner_radius_top_right = 110
 corner_radius_bottom_left = 110
 
+[sub_resource type="Animation" id="Animation_3yrcd"]
+resource_name = "Open"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1.68178),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_61oy2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ff7yq"]
+resource_name = "Tumbleweed"
+length = 2.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0mboo"]
+_data = {
+"Open": SubResource("Animation_3yrcd"),
+"RESET": SubResource("Animation_61oy2"),
+"Tumbleweed": SubResource("Animation_ff7yq")
+}
+
 [node name="Panel" type="Panel"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
@@ -121,44 +144,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4uua8")
 script = ExtResource("1_2sxhf")
 
-[node name="DeckOverviewContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DeckOverviewContainer"]
-layout_mode = 2
-
-[node name="FolderContainer" type="VBoxContainer" parent="DeckOverviewContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-script = ExtResource("4_wspae")
-
-[node name="Label" type="Label" parent="DeckOverviewContainer/HBoxContainer/FolderContainer"]
-layout_mode = 2
-text = "Meine Themen"
-label_settings = SubResource("LabelSettings_xv5cf")
-vertical_alignment = 1
-justification_flags = 0
-
-[node name="DeckContainer" type="GridContainer" parent="DeckOverviewContainer/HBoxContainer/FolderContainer"]
-layout_mode = 2
-columns = 5
-
-[node name="Btn_NewFolder" type="Button" parent="DeckOverviewContainer/HBoxContainer/FolderContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "+"
-
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MainView" type="MarginContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -172,34 +158,235 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainView"]
 layout_mode = 2
 
-[node name="FolderContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+[node name="FolderContainer" type="VBoxContainer" parent="MainView/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+script = ExtResource("4_wspae")
 
-[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/FolderContainer"]
+[node name="Label" type="Label" parent="MainView/HBoxContainer/FolderContainer"]
 layout_mode = 2
 text = "Meine Themen"
 label_settings = SubResource("LabelSettings_xv5cf")
 vertical_alignment = 1
 justification_flags = 0
 
-[node name="DeckContainer" type="GridContainer" parent="MarginContainer2/HBoxContainer/FolderContainer"]
+[node name="DeckContainer" type="GridContainer" parent="MainView/HBoxContainer/FolderContainer"]
 layout_mode = 2
 columns = 5
 
-[node name="Btn_NewFolder" type="Button" parent="MarginContainer2/HBoxContainer/FolderContainer"]
+[node name="Btn_NewFolder" type="Button" parent="MainView/HBoxContainer/FolderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_0mboo")
-}
-autoplay = "Tumbleweed"
+[node name="DeckView" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeckView"]
+layout_mode = 2
+
+[node name="Header" type="VBoxContainer" parent="DeckView/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeckView/HBoxContainer/Header"]
+layout_mode = 2
+
+[node name="DeckTitle" type="Label" parent="DeckView/HBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 55
+text = "Thema1"
+
+[node name="Algorithm" type="Label" parent="DeckView/HBoxContainer/Header"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 35
+text = "Algorithmus: "
+
+[node name="HSeparator" type="HSeparator" parent="DeckView/HBoxContainer/Header"]
+layout_mode = 2
+
+[node name="Algorithm2" type="Label" parent="DeckView/HBoxContainer/Header"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_dnsbm")
+theme_override_font_sizes/font_size = 46
+text = "Karten für heute"
+
+[node name="Panel" type="Panel" parent="DeckView/HBoxContainer/Header"]
+custom_minimum_size = Vector2(0, 156.555)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_agxp5")
+
+[node name="MarginContainer" type="MarginContainer" parent="DeckView/HBoxContainer/Header/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 90
+alignment = 1
+
+[node name="Control" type="Control" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Progress" type="TextureProgressBar" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -532.0
+offset_top = -532.0
+offset_right = 532.0
+offset_bottom = 532.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.12, 0.12)
+pivot_offset = Vector2(532, 532)
+fill_mode = 4
+texture_under = ExtResource("5_u42ga")
+texture_progress = ExtResource("6_rsr5g")
+
+[node name="ProgressCards" type="Label" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_dnsbm")
+theme_override_font_sizes/font_size = 60
+text = "5"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gelernt"
+
+[node name="MarginContainer2" type="MarginContainer" parent="DeckView/HBoxContainer/Header/Panel"]
+visible = false
+layout_mode = 2
+offset_right = 1064.0
+offset_bottom = 1064.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.13, 0.13)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer2"]
+clip_contents = true
+layout_mode = 2
+fill_mode = 4
+texture_under = ExtResource("5_u42ga")
+texture_progress = ExtResource("6_rsr5g")
+
+[node name="MarginContainer" type="MarginContainer" parent="DeckView/HBoxContainer/Header"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="DeckView/HBoxContainer/Header/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_dnsbm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_yaprd")
+text = "Lernen"
+
+[node name="Algorithm" type="Label" parent="DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 35
+text = "|"
+
+[node name="Button2" type="Button" parent="DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_dnsbm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_yaprd")
+text = "Prüfen"
+
+[node name="VSeparator" type="VSeparator" parent="DeckView/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeckView/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FlashcardsCount" type="Label" parent="DeckView/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_dnsbm")
+theme_override_font_sizes/font_size = 46
+text = "Karten(1)"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DeckView/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="DeckView/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="FlashcardsContainer" type="VBoxContainer" parent="DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Button3" type="Button" parent="DeckView/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_dnsbm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_cvesa")
+text = "Karten hinzufügen"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -215,6 +402,10 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
 icon = ExtResource("4_vx7ms")
 icon_alignment = 1
 
-[connection signal="pressed" from="DeckOverviewContainer/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/FolderContainer/Btn_NewFolder" to="MarginContainer2/HBoxContainer/FolderContainer" method="_on_btn_new_folder_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0mboo")
+}
+
+[connection signal="pressed" from="MainView/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

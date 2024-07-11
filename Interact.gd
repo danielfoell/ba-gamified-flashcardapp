@@ -6,6 +6,7 @@ const NEWDECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
 const MAIN = preload("res://Main.tscn")
 
 func _ready():
+	StorageService.loadFlashcards()
 	animation_player.play("RESET")
 
 func _on_input_event(camera, event, position, normal, shape_idx):
