@@ -4,7 +4,6 @@
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_c5pjr"]
 [ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="4_dnsbm"]
 [ext_resource type="Texture2D" uid="uid://rt1ps7h7r2yp" path="res://Assets/Icons/other-x-icon-2048x2043-ueafpzlh-removebg-preview.png" id="4_vx7ms"]
-[ext_resource type="Script" path="res://Flashcards/FolderContainer.gd" id="4_wspae"]
 [ext_resource type="Texture2D" uid="uid://bb7bn1fy210so" path="res://Assets/circle.png" id="5_u42ga"]
 [ext_resource type="Texture2D" uid="uid://yl16riv2hnb" path="res://Assets/circle_filled.png" id="6_rsr5g"]
 
@@ -34,6 +33,16 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vi50"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvesa"]
 corner_radius_top_left = 10
@@ -164,7 +173,6 @@ layout_mode = 2
 [node name="FolderContainer" type="VBoxContainer" parent="MainView/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-script = ExtResource("4_wspae")
 
 [node name="Label" type="Label" parent="MainView/HBoxContainer/FolderContainer"]
 layout_mode = 2
@@ -260,9 +268,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -532.0
+offset_left = -531.5
 offset_top = -532.0
-offset_right = 532.0
+offset_right = 532.5
 offset_bottom = 532.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -357,11 +365,23 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FlashcardsCount" type="Label" parent="DeckView/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DeckView/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FlashcardsCount" type="Label" parent="DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
 theme_override_font_sizes/font_size = 46
 text = "Karten(1)"
+
+[node name="TextEdit" type="TextEdit" parent="DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5vi50")
+placeholder_text = "Suchen..."
+caret_blink = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DeckView/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -380,12 +400,46 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Button3" type="Button" parent="DeckView/HBoxContainer/VBoxContainer"]
+[node name="BtnAddCards" type="Button" parent="DeckView/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_cvesa")
+text = "Karten hinzufügen"
+
+[node name="NoCardsView" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NoCardsView"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="NoCardsView/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 35
+text = "Füge deine ersten Karten hinzu"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NoCardsView/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 650
+theme_override_constants/margin_right = 650
+
+[node name="BtnCreateNewFlashcards" type="Button" parent="NoCardsView/VBoxContainer/MarginContainer"]
+layout_mode = 2
 text = "Karten hinzufügen"
 
 [node name="Button" type="Button" parent="."]
@@ -402,10 +456,27 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
 icon = ExtResource("4_vx7ms")
 icon_alignment = 1
 
+[node name="BtnBack" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1331.5
+offset_right = 2215.5
+offset_bottom = 619.0
+scale = Vector2(0.105, 0.105)
+theme_override_styles/normal = SubResource("StyleBoxFlat_345v2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jxejt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c6218")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_dxrxj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
+icon = ExtResource("4_vx7ms")
+icon_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_0mboo")
 }
 
 [connection signal="pressed" from="MainView/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
+[connection signal="pressed" from="DeckView/HBoxContainer/VBoxContainer/BtnAddCards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
+[connection signal="pressed" from="NoCardsView/VBoxContainer/MarginContainer/BtnCreateNewFlashcards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BtnBack" to="." method="_on_btn_back_pressed"]

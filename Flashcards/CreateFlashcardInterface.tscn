@@ -1,8 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmvl0uuhhsg8r"]
+[gd_scene load_steps=11 format=3 uid="uid://dmvl0uuhhsg8r"]
 
 [ext_resource type="Script" path="res://Flashcards/CreateFlashcardInterface.gd" id="1_7scd4"]
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_d1sd6"]
+[ext_resource type="Script" path="res://Flashcards/Test.gd" id="3_b0v0a"]
 [ext_resource type="Texture2D" uid="uid://cfpp6wdi5q5k5" path="res://Assets/Icons/paperclip.png" id="3_ipm32"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xje4l"]
+bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_mxgpa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gus8j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1jto"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcwrl"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lldi3"]
 bg_color = Color(0.24807, 0.694112, 0.499273, 1)
@@ -13,17 +33,76 @@ corner_radius_bottom_left = 10
 
 [node name="CreateFlashcardInterface" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_7scd4")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 300.0
-offset_bottom = 331.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.0
+offset_top = -335.5
+offset_right = 342.0
+offset_bottom = 335.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xje4l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="Caret" type="TextureRect" parent="Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+offset_left = 27.0
+offset_top = 62.5
+offset_right = 29.0
+offset_bottom = 87.5
+scale = Vector2(0.64, 0.6)
+texture = SubResource("CanvasTexture_mxgpa")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="QuestionTitle" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d1sd6")
+theme_override_font_sizes/font_size = 25
+text = "Vorderseite"
+
+[node name="Question" type="TextEdit" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_d1sd6")
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_gus8j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,43 +110,97 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="QuestionTitle" type="Label" parent="Panel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer"]
+visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_d1sd6")
-theme_override_font_sizes/font_size = 0
-text = "Frage"
+size_flags_vertical = 3
+script = ExtResource("3_b0v0a")
 
-[node name="Question" type="TextEdit" parent="Panel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 2
+mouse_filter = 1
+theme_override_constants/line_separation = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1jto")
+bbcode_enabled = true
+text = "Test"
+selection_enabled = true
+
+[node name="TextEdit" type="TextEdit" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer/MarginContainer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/background_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 0.141176)
+theme_override_colors/font_readonly_color = Color(0, 0, 0, 0)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/selection_color = Color(0, 0, 0, 0)
+theme_override_colors/current_line_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_background_color = Color(0, 0, 0, 0)
+theme_override_colors/word_highlighted_color = Color(0, 0, 0, 0)
+theme_override_colors/search_result_color = Color(0, 0, 0, 0)
+theme_override_colors/search_result_border_color = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dcwrl")
+text = "Testttest"
+
+[node name="Answer2" type="TextEdit" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_d1sd6")
 
-[node name="AnswerTitle" type="Label" parent="Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Make Bold"
+
+[node name="AnswerTitle" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d1sd6")
-text = "Antwort"
+theme_override_font_sizes/font_size = 25
+text = "Rückseite"
 
-[node name="Answer" type="TextEdit" parent="Panel/VBoxContainer"]
+[node name="Answer" type="TextEdit" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_d1sd6")
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 icon = ExtResource("3_ipm32")
 flat = true
 
-[node name="NativeFileDialog" type="NativeFileDialog" parent="Panel/VBoxContainer/Button"]
+[node name="NativeFileDialog" type="NativeFileDialog" parent="Panel/MarginContainer/VBoxContainer/Button"]
 title = "Open File(s)"
 file_mode = 1
 filters = PackedStringArray(".png")
 
-[node name="Btn_AddCard" type="Button" parent="Panel/VBoxContainer"]
+[node name="Btn_AddCard" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lldi3")
 text = "Hinzufügen"
 
-[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/Btn_AddCard" to="." method="_on_btn_add_card_pressed"]
+[connection signal="caret_changed" from="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer/MarginContainer/TextEdit" to="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer" method="_on_text_edit_caret_changed"]
+[connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer/MarginContainer/TextEdit" to="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer" method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Button" to="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Btn_AddCard" to="." method="_on_btn_add_card_pressed"]

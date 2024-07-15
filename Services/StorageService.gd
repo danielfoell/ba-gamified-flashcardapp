@@ -7,6 +7,8 @@ var deck_save_path = "user://Decks/%s.deck"
 var flashcards: Array = []
 var decks: Dictionary = {}
 
+var currentDeck
+
 func loadFlashcards():
 	if not DirAccess.dir_exists_absolute(base_save_path): return
 	var dir = DirAccess.open(base_save_path)

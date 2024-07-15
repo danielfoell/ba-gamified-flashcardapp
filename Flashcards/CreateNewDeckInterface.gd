@@ -11,8 +11,7 @@ func _on_button_pressed():
 	elif StorageService.decks.has(Deckname.text):
 		print("Deck existiert bereits")
 	else:
-		StorageService.decks[Deckname.text] = {"question": "lol", "question2": "biglol"}
-		print(StorageService.decks)
+		StorageService.decks[Deckname.text] = {}
 		StorageService.saveFlashcards()
 		queue_free()
 		DeckCreated.emit()

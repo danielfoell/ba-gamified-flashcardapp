@@ -4,14 +4,16 @@ extends Panel
 @onready var DeckContainer = $MainView/HBoxContainer/FolderContainer/DeckContainer
 @onready var MainView = $MainView
 @onready var DeckView = $DeckView
+@onready var NoCardsView = $NoCardsView
 @onready var DeckTitle = $DeckView/HBoxContainer/Header/HBoxContainer/DeckTitle
 @onready var Progress = $DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/Progress
 @onready var ProgressCards = $DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/ProgressCards
-@onready var FlashcardsCount = $DeckView/HBoxContainer/VBoxContainer/FlashcardsCount
+@onready var FlashcardsCount = $DeckView/HBoxContainer/VBoxContainer/HBoxContainer/FlashcardsCount
 @onready var FlashcardsContainer = $DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/FlashcardsContainer
 
 const NEW_DECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
 const DECK = preload("res://Flashcards/DeckInterface.tscn")
+const CREATE_FLASHCARD = preload("res://Flashcards/CreateFlashcardInterface.tscn")
 const FLASHCARD = preload("res://Flashcards/FlashcardInterface.tscn")
 
 func _ready():
@@ -31,18 +33,23 @@ func _on_button_pressed():
 
 func _On_DeckSelected(deck):
 	MainView.hide()
-	DeckView.show()
-	DeckTitle.set_text(deck)
-	var deckFlashcards = StorageService.decks[deck]
-	ProgressCards.set_text(str(deckFlashcards.size()))
-	FlashcardsCount.set_text("Karten(%s)" % (str(deckFlashcards.size())))
-	for question in deckFlashcards:
-		var Flashcard = FLASHCARD.instantiate()
-		var answer = StorageService.decks[deck].get(question)
-		FlashcardsContainer.add_child(Flashcard)
-		Flashcard.init(question, answer)
-		
-		
+	var deckData: Dictionary = StorageService.decks[deck]
+	StorageService.currentDeck = deck
+	if deckData.is_empty():
+		NoCardsView.show()
+	else:
+		if FlashcardsContainer.get_child_count() > 0:
+			for child in FlashcardsContainer.get_children():
+				child.queue_free()
+		DeckView.show()
+		DeckTitle.set_text(deck)
+		ProgressCards.set_text(str(deckData.size()))
+		FlashcardsCount.set_text("Karten(%s)" % (str(deckData.size())))
+		for question in deckData:
+			var Flashcard = FLASHCARD.instantiate()
+			var answer = StorageService.decks[deck].get(question)
+			FlashcardsContainer.add_child(Flashcard)
+			Flashcard.init(question, answer)
 
 func _On_Btn_New_Folder_Pressed():
 	var CreateNewDeck = NEW_DECK.instantiate()
@@ -53,3 +60,20 @@ func _On_Btn_New_Folder_Pressed():
 	var deck = StorageService.decks.keys().back()
 	Deck.init(deck)
 	Deck.DeckSelected.connect(_On_DeckSelected.bind(deck))
+
+
+func _On_Btn_Create_New_Flashcards_pressed():
+	var CreateFlashcard = CREATE_FLASHCARD.instantiate()
+	CreateFlashcard.FlashcardCreated.connect(_On_FlashcardCreated)
+	get_tree().get_root().add_child(CreateFlashcard)
+	
+func _On_FlashcardCreated():
+	NoCardsView.hide()
+	DeckView.show()
+	_On_DeckSelected(StorageService.currentDeck)
+
+
+func _on_btn_back_pressed():
+	DeckView.hide()
+	NoCardsView.hide()
+	MainView.show()
