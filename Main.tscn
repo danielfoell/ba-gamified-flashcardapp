@@ -20,6 +20,16 @@ font = ExtResource("2_c5pjr")
 font_size = 46
 font_color = Color(0.10748, 0.10748, 0.10748, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vi50"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 0.0
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agxp5"]
 bg_color = Color(0.760784, 0.745098, 0.729412, 1)
 border_blend = true
@@ -33,16 +43,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vi50"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 0.0
-corner_radius_top_left = 100
-corner_radius_top_right = 100
-corner_radius_bottom_right = 100
-corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvesa"]
 corner_radius_top_left = 10
@@ -154,7 +154,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4uua8")
 script = ExtResource("1_2sxhf")
 
 [node name="MainView" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,16 +171,35 @@ layout_mode = 2
 
 [node name="FolderContainer" type="VBoxContainer" parent="MainView/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MainView/HBoxContainer/FolderContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainView/HBoxContainer/FolderContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainView/HBoxContainer/FolderContainer/HBoxContainer"]
 layout_mode = 2
 text = "Meine Themen"
 label_settings = SubResource("LabelSettings_xv5cf")
 vertical_alignment = 1
 justification_flags = 0
 
-[node name="DeckContainer" type="GridContainer" parent="MainView/HBoxContainer/FolderContainer"]
+[node name="TE_SearchDeck" type="TextEdit" parent="MainView/HBoxContainer/FolderContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_5vi50")
+placeholder_text = "Suchen..."
+caret_blink = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainView/HBoxContainer/FolderContainer"]
+custom_minimum_size = Vector2(0, 605)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="DeckContainer" type="GridContainer" parent="MainView/HBoxContainer/FolderContainer/ScrollContainer"]
 layout_mode = 2
 columns = 5
 
@@ -191,6 +209,7 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="DeckView" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -475,6 +494,7 @@ libraries = {
 "": SubResource("AnimationLibrary_0mboo")
 }
 
+[connection signal="text_changed" from="MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck" to="." method="_On_Search_Deck_Text_Changed"]
 [connection signal="pressed" from="MainView/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
 [connection signal="pressed" from="DeckView/HBoxContainer/VBoxContainer/BtnAddCards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
 [connection signal="pressed" from="NoCardsView/VBoxContainer/MarginContainer/BtnCreateNewFlashcards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]

@@ -1,7 +1,7 @@
 extends Panel
 
 @onready var animation_player = $AnimationPlayer
-@onready var DeckContainer = $MainView/HBoxContainer/FolderContainer/DeckContainer
+@onready var DeckContainer = $MainView/HBoxContainer/FolderContainer/ScrollContainer/DeckContainer
 @onready var MainView = $MainView
 @onready var DeckView = $DeckView
 @onready var NoCardsView = $NoCardsView
@@ -10,6 +10,7 @@ extends Panel
 @onready var ProgressCards = $DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/ProgressCards
 @onready var FlashcardsCount = $DeckView/HBoxContainer/VBoxContainer/HBoxContainer/FlashcardsCount
 @onready var FlashcardsContainer = $DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/FlashcardsContainer
+@onready var SearchDeck = $MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck
 
 const NEW_DECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
 const DECK = preload("res://Flashcards/DeckInterface.tscn")
@@ -77,3 +78,11 @@ func _on_btn_back_pressed():
 	DeckView.hide()
 	NoCardsView.hide()
 	MainView.show()
+
+
+func _On_Search_Deck_Text_Changed():
+	for deck in DeckContainer.get_children():
+		if deck.DeckTitle.text.contains(SearchDeck.text) or SearchDeck.text.is_empty():
+			deck.show()
+		else:
+			deck.hide()

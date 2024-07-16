@@ -1,0 +1,11 @@
+Model Information:
+* title:	Room aquarium (Now Animated)
+* source:	https://sketchfab.com/3d-models/room-aquarium-now-animated-3d2177c3e90a4379b3484d811c013284
+* author:	NeoT1 (https://sketchfab.com/Neot1)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Room aquarium (Now Animated)" (https://sketchfab.com/3d-models/room-aquarium-now-animated-3d2177c3e90a4379b3484d811c013284) by NeoT1 (https://sketchfab.com/Neot1) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

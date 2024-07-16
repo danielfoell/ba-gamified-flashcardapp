@@ -100,8 +100,28 @@ max_length = 150
 context_menu_enabled = false
 caret_blink = true
 
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Deckcolor"
+edit_alpha = false
+
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Loslegen"
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+layout_mode = 2
+offset_left = 725.0
+offset_top = -127.0
+offset_right = 1023.0
+offset_bottom = 215.0
+alignment = 1
+edit_alpha = false
+picker_shape = 2
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
