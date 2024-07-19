@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://1emeed8bvn7h"]
+[gd_scene load_steps=7 format=3 uid="uid://1emeed8bvn7h"]
 
 [ext_resource type="Script" path="res://Flashcards/FlashcardInterface.gd" id="1_0qoyt"]
 [ext_resource type="Texture2D" uid="uid://bkwpb3ssclhhm" path="res://Assets/Icons/three-dots-vertical.svg" id="1_xfgxu"]
+[ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="3_egmqa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45ljg"]
 corner_radius_top_left = 10
@@ -9,45 +10,69 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gm4s"]
+bg_color = Color(0.82606, 0.82606, 0.82606, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 4
+border_color = Color(0.415402, 0.29711, 0.34882, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7bxqw"]
+bg_color = Color(0.379334, 0.357163, 0.355768, 0.235294)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Flashcard" type="Button"]
 custom_minimum_size = Vector2(0, 80)
 theme_override_styles/normal = SubResource("StyleBoxFlat_45ljg")
 script = ExtResource("1_0qoyt")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 38.2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 20.0
 alignment = 1
 
-[node name="Question" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Question" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Test1"
 
-[node name="Answer" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Answer" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Test2"
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BtnCardOptions" type="TextureButton" parent="MarginContainer/HBoxContainer/Control"]
+[node name="BtnCardOptions" type="TextureButton" parent="HBoxContainer/MarginContainer/HBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -63,3 +88,61 @@ grow_vertical = 2
 scale = Vector2(0.06, 0.06)
 pivot_offset = Vector2(400, 400)
 texture_normal = ExtResource("1_xfgxu")
+
+[node name="Options" type="Panel" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(183.005, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6gm4s")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Options/MarginContainer"]
+layout_mode = 2
+
+[node name="BtnDeleteCard" type="Button" parent="HBoxContainer/Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_egmqa")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_7bxqw")
+text = "Löschen"
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="BtnEditCard" type="Button" parent="HBoxContainer/Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_egmqa")
+text = "Bearbeiten"
+flat = true
+
+[connection signal="mouse_entered" from="." to="." method="_On_Mouse_Entered"]
+[connection signal="mouse_exited" from="." to="." method="_On_Mouse_Exited"]
+[connection signal="mouse_entered" from="HBoxContainer/MarginContainer/HBoxContainer/Control/BtnCardOptions" to="." method="_On_BtnCardOptions_Mouse_Entered"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/HBoxContainer/Control/BtnCardOptions" to="." method="_On_BtnCardOptions_pressed"]
+[connection signal="mouse_exited" from="HBoxContainer/Options" to="." method="_On_Options_Mouse_Exited"]
+[connection signal="pressed" from="HBoxContainer/Options/MarginContainer/VBoxContainer/BtnDeleteCard" to="." method="_On_BtnDeleteCard_pressed"]
+[connection signal="pressed" from="HBoxContainer/Options/MarginContainer/VBoxContainer/BtnEditCard" to="." method="_On_BtnEditCard_Pressed"]

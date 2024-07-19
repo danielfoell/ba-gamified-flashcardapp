@@ -199,8 +199,15 @@ theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lldi3")
 text = "Hinzufügen"
 
+[node name="Btn_EditCard" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d1sd6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lldi3")
+text = "Speichern"
+
 [connection signal="caret_changed" from="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer/MarginContainer/TextEdit" to="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer" method="_on_text_edit_caret_changed"]
 [connection signal="text_changed" from="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer/MarginContainer/TextEdit" to="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer" method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer/Button" to="Panel/MarginContainer/VBoxContainer/Panel/VBoxContainer/MarginContainer" method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Btn_AddCard" to="." method="_on_btn_add_card_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Btn_EditCard" to="." method="_On_BtnEditCard_Pressed"]

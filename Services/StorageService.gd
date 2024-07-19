@@ -19,7 +19,7 @@ func loadFlashcards():
 			file.close
 			print("Loaded")
 		else:
-			print("Failed")
+			print("Failed loading")
 
 func saveFlashcards():
 	if not DirAccess.dir_exists_absolute(base_save_path):
@@ -30,6 +30,5 @@ func saveFlashcards():
 		if file:
 			file.store_var(flashcards)
 			file.close()
-			print("Saved")
 		else:
-			print("Fail")
+			print("Failed saving")

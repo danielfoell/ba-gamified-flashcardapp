@@ -37,17 +37,21 @@ func _On_DeckSelected(deck):
 	var deckData: Dictionary = StorageService.decks[deck]
 	StorageService.currentDeck = deck
 	if deckData.is_empty():
+		DeckView.hide()
 		NoCardsView.show()
 	else:
 		if FlashcardsContainer.get_child_count() > 0:
 			for child in FlashcardsContainer.get_children():
 				child.queue_free()
+		NoCardsView.hide()
 		DeckView.show()
 		DeckTitle.set_text(deck)
 		ProgressCards.set_text(str(deckData.size()))
 		FlashcardsCount.set_text("Karten(%s)" % (str(deckData.size())))
 		for question in deckData:
 			var Flashcard = FLASHCARD.instantiate()
+			Flashcard.FlashcardDeleted.connect(_On_DeckSelected.bind(StorageService.currentDeck))
+			Flashcard.FlashcardEditPressed.connect(_On_EditFlashcard)
 			var answer = StorageService.decks[deck].get(question)
 			FlashcardsContainer.add_child(Flashcard)
 			Flashcard.init(question, answer)
@@ -62,23 +66,21 @@ func _On_Btn_New_Folder_Pressed():
 	Deck.init(deck)
 	Deck.DeckSelected.connect(_On_DeckSelected.bind(deck))
 
+func _On_EditFlashcard(flashcard):
+	var CreateFlashcard = CREATE_FLASHCARD.instantiate()
+	CreateFlashcard.FlashcardCreated.connect(_On_DeckSelected.bind(StorageService.currentDeck))
+	get_tree().get_root().add_child(CreateFlashcard)
+	CreateFlashcard.Edit(flashcard)
 
 func _On_Btn_Create_New_Flashcards_pressed():
 	var CreateFlashcard = CREATE_FLASHCARD.instantiate()
-	CreateFlashcard.FlashcardCreated.connect(_On_FlashcardCreated)
+	CreateFlashcard.FlashcardCreated.connect(_On_DeckSelected.bind(StorageService.currentDeck))
 	get_tree().get_root().add_child(CreateFlashcard)
-	
-func _On_FlashcardCreated():
-	NoCardsView.hide()
-	DeckView.show()
-	_On_DeckSelected(StorageService.currentDeck)
-
 
 func _on_btn_back_pressed():
 	DeckView.hide()
 	NoCardsView.hide()
 	MainView.show()
-
 
 func _On_Search_Deck_Text_Changed():
 	for deck in DeckContainer.get_children():
