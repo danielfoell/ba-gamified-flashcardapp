@@ -8,6 +8,7 @@ extends Button
 
 signal FlashcardDeleted
 signal FlashcardEditPressed
+signal FlashcardSelected
 
 func init(question, answer):
 	Question.set_text(question)
@@ -28,6 +29,7 @@ func _On_BtnCardOptions_pressed():
 
 func _On_BtnDeleteCard_pressed():
 	StorageService.decks[StorageService.currentDeck].erase(Question.get_text())
+	StorageService.saveFlashcards()
 	FlashcardDeleted.emit()
 
 
@@ -51,3 +53,7 @@ func _On_BtnCardOptions_Mouse_Entered():
 func _On_Options_Mouse_Exited():
 	BtnCardOptions.show()
 	Options.hide()
+
+
+func _On_Flashcard_Pressed():
+	FlashcardSelected.emit(self)

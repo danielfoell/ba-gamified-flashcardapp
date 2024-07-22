@@ -141,6 +141,7 @@ flat = true
 
 [connection signal="mouse_entered" from="." to="." method="_On_Mouse_Entered"]
 [connection signal="mouse_exited" from="." to="." method="_On_Mouse_Exited"]
+[connection signal="pressed" from="." to="." method="_On_Flashcard_Pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/MarginContainer/HBoxContainer/Control/BtnCardOptions" to="." method="_On_BtnCardOptions_Mouse_Entered"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/HBoxContainer/Control/BtnCardOptions" to="." method="_On_BtnCardOptions_pressed"]
 [connection signal="mouse_exited" from="HBoxContainer/Options" to="." method="_On_Options_Mouse_Exited"]

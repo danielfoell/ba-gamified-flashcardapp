@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7x8ge2fi4wln"]
+[gd_scene load_steps=26 format=3 uid="uid://c7x8ge2fi4wln"]
 
 [ext_resource type="Script" path="res://Flashcards/FlashcardsMainInterface.gd" id="1_2sxhf"]
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_c5pjr"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://rt1ps7h7r2yp" path="res://Assets/Icons/other-x-icon-2048x2043-ueafpzlh-removebg-preview.png" id="4_vx7ms"]
 [ext_resource type="Texture2D" uid="uid://bb7bn1fy210so" path="res://Assets/circle.png" id="5_u42ga"]
 [ext_resource type="Texture2D" uid="uid://yl16riv2hnb" path="res://Assets/circle_filled.png" id="6_rsr5g"]
+[ext_resource type="Script" path="res://Flashcards/FlashcardsView.gd" id="7_prmld"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uua8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m6bi"]
 bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
 border_blend = true
 corner_radius_top_left = 20
@@ -137,8 +138,48 @@ _data = {
 "Tumbleweed": SubResource("Animation_ff7yq")
 }
 
-[node name="Panel" type="Panel"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on6l1"]
+bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14f6u"]
+bg_color = Color(0.807843, 0.807843, 0.807843, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8ttc"]
+bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2sxhf")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -150,10 +191,9 @@ offset_right = 758.5
 offset_bottom = 387.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4uua8")
-script = ExtResource("1_2sxhf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2m6bi")
 
-[node name="MainView" type="MarginContainer" parent="."]
+[node name="MainView" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,24 +206,24 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainView"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainView"]
 layout_mode = 2
 
-[node name="FolderContainer" type="VBoxContainer" parent="MainView/HBoxContainer"]
+[node name="FolderContainer" type="VBoxContainer" parent="Panel/MainView/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainView/HBoxContainer/FolderContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainView/HBoxContainer/FolderContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainView/HBoxContainer/FolderContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer"]
 layout_mode = 2
 text = "Meine Themen"
 label_settings = SubResource("LabelSettings_xv5cf")
 vertical_alignment = 1
 justification_flags = 0
 
-[node name="TE_SearchDeck" type="TextEdit" parent="MainView/HBoxContainer/FolderContainer/HBoxContainer"]
+[node name="TE_SearchDeck" type="TextEdit" parent="Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
@@ -192,23 +232,24 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_5vi50")
 placeholder_text = "Suchen..."
 caret_blink = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MainView/HBoxContainer/FolderContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainView/HBoxContainer/FolderContainer"]
 custom_minimum_size = Vector2(0, 605)
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="DeckContainer" type="GridContainer" parent="MainView/HBoxContainer/FolderContainer/ScrollContainer"]
+[node name="DeckContainer" type="GridContainer" parent="Panel/MainView/HBoxContainer/FolderContainer/ScrollContainer"]
 layout_mode = 2
 columns = 5
 
-[node name="Btn_NewFolder" type="Button" parent="MainView/HBoxContainer/FolderContainer"]
+[node name="Btn_NewFolder" type="Button" parent="Panel/MainView/HBoxContainer/FolderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "+"
 
-[node name="DeckView" type="MarginContainer" parent="."]
+[node name="DeckView" type="MarginContainer" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -221,44 +262,44 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DeckView"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/DeckView"]
 layout_mode = 2
 
-[node name="Header" type="VBoxContainer" parent="DeckView/HBoxContainer"]
+[node name="Header" type="VBoxContainer" parent="Panel/DeckView/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DeckView/HBoxContainer/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/DeckView/HBoxContainer/Header"]
 layout_mode = 2
 
-[node name="DeckTitle" type="Label" parent="DeckView/HBoxContainer/Header/HBoxContainer"]
+[node name="DeckTitle" type="Label" parent="Panel/DeckView/HBoxContainer/Header/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
 theme_override_font_sizes/font_size = 55
 text = "Thema1"
 
-[node name="Algorithm" type="Label" parent="DeckView/HBoxContainer/Header"]
+[node name="Algorithm" type="Label" parent="Panel/DeckView/HBoxContainer/Header"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
 theme_override_font_sizes/font_size = 35
 text = "Algorithmus: "
 
-[node name="HSeparator" type="HSeparator" parent="DeckView/HBoxContainer/Header"]
+[node name="HSeparator" type="HSeparator" parent="Panel/DeckView/HBoxContainer/Header"]
 layout_mode = 2
 
-[node name="Algorithm2" type="Label" parent="DeckView/HBoxContainer/Header"]
+[node name="Algorithm2" type="Label" parent="Panel/DeckView/HBoxContainer/Header"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
 theme_override_font_sizes/font_size = 46
 text = "Karten für heute"
 
-[node name="Panel" type="Panel" parent="DeckView/HBoxContainer/Header"]
+[node name="Panel" type="Panel" parent="Panel/DeckView/HBoxContainer/Header"]
 custom_minimum_size = Vector2(0, 156.555)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_agxp5")
 
-[node name="MarginContainer" type="MarginContainer" parent="DeckView/HBoxContainer/Header/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/DeckView/HBoxContainer/Header/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,17 +310,17 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 90
 alignment = 1
 
-[node name="Control" type="Control" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Progress" type="TextureProgressBar" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control"]
+[node name="Progress" type="TextureProgressBar" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -298,7 +339,7 @@ fill_mode = 4
 texture_under = ExtResource("5_u42ga")
 texture_progress = ExtResource("6_rsr5g")
 
-[node name="ProgressCards" type="Label" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control"]
+[node name="ProgressCards" type="Label" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -316,20 +357,20 @@ theme_override_font_sizes/font_size = 60
 text = "5"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Gelernt"
 
-[node name="MarginContainer2" type="MarginContainer" parent="DeckView/HBoxContainer/Header/Panel"]
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/DeckView/HBoxContainer/Header/Panel"]
 visible = false
 layout_mode = 2
 offset_right = 1064.0
@@ -338,23 +379,23 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.13, 0.13)
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="DeckView/HBoxContainer/Header/Panel/MarginContainer2"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer2"]
 clip_contents = true
 layout_mode = 2
 fill_mode = 4
 texture_under = ExtResource("5_u42ga")
 texture_progress = ExtResource("6_rsr5g")
 
-[node name="MarginContainer" type="MarginContainer" parent="DeckView/HBoxContainer/Header"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/DeckView/HBoxContainer/Header"]
 layout_mode = 2
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="DeckView/HBoxContainer/Header/MarginContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/DeckView/HBoxContainer/Header/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="Panel/DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
@@ -362,13 +403,13 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_yaprd")
 text = "Lernen"
 
-[node name="Algorithm" type="Label" parent="DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
+[node name="Algorithm" type="Label" parent="Panel/DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
 theme_override_font_sizes/font_size = 35
 text = "|"
 
-[node name="Button2" type="Button" parent="DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="Panel/DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
@@ -376,23 +417,23 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_yaprd")
 text = "Prüfen"
 
-[node name="VSeparator" type="VSeparator" parent="DeckView/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="Panel/DeckView/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DeckView/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/DeckView/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DeckView/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/DeckView/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="FlashcardsCount" type="Label" parent="DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="FlashcardsCount" type="Label" parent="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
 theme_override_font_sizes/font_size = 46
 text = "Karten(1)"
 
-[node name="TextEdit" type="TextEdit" parent="DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
@@ -401,24 +442,24 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_5vi50")
 placeholder_text = "Suchen..."
 caret_blink = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="DeckView/HBoxContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/DeckView/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="MarginContainer" type="MarginContainer" parent="DeckView/HBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/DeckView/HBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="FlashcardsContainer" type="VBoxContainer" parent="DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="FlashcardsContainer" type="VBoxContainer" parent="Panel/DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
 
-[node name="BtnAddCards" type="Button" parent="DeckView/HBoxContainer/VBoxContainer"]
+[node name="BtnAddCards" type="Button" parent="Panel/DeckView/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
@@ -426,7 +467,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_cvesa")
 text = "Karten hinzufügen"
 
-[node name="NoCardsView" type="MarginContainer" parent="."]
+[node name="NoCardsView" type="MarginContainer" parent="Panel"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -440,27 +481,27 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NoCardsView"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/NoCardsView"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="NoCardsView/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/NoCardsView/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
 theme_override_font_sizes/font_size = 35
 text = "Füge deine ersten Karten hinzu"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="NoCardsView/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/NoCardsView/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 650
 theme_override_constants/margin_right = 650
 
-[node name="BtnCreateNewFlashcards" type="Button" parent="NoCardsView/VBoxContainer/MarginContainer"]
+[node name="BtnCreateNewFlashcards" type="Button" parent="Panel/NoCardsView/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "Karten hinzufügen"
 
-[node name="Button" type="Button" parent="."]
+[node name="BtnExit" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 1423.5
 offset_right = 2307.5
@@ -474,7 +515,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
 icon = ExtResource("4_vx7ms")
 icon_alignment = 1
 
-[node name="BtnBack" type="Button" parent="."]
+[node name="BtnBack" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 1331.5
 offset_right = 2215.5
@@ -488,14 +529,161 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
 icon = ExtResource("4_vx7ms")
 icon_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
 libraries = {
 "": SubResource("AnimationLibrary_0mboo")
 }
 
-[connection signal="text_changed" from="MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck" to="." method="_On_Search_Deck_Text_Changed"]
-[connection signal="pressed" from="MainView/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
-[connection signal="pressed" from="DeckView/HBoxContainer/VBoxContainer/BtnAddCards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
-[connection signal="pressed" from="NoCardsView/VBoxContainer/MarginContainer/BtnCreateNewFlashcards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="BtnBack" to="." method="_on_btn_back_pressed"]
+[node name="FlashcardsView" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -613.5
+offset_top = -361.0
+offset_right = 613.5
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_on6l1")
+script = ExtResource("7_prmld")
+
+[node name="MouseArea" type="Control" parent="FlashcardsView"]
+anchors_preset = 0
+offset_left = -70.0
+offset_top = -54.0
+offset_right = 1295.0
+offset_bottom = 726.0
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="FlashcardsView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FlashcardsView/MarginContainer"]
+layout_mode = 2
+
+[node name="Question" type="RichTextLabel" parent="FlashcardsView/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_c5pjr")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Test"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="FlashcardsView/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Answer" type="RichTextLabel" parent="FlashcardsView/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_c5pjr")
+theme_override_font_sizes/normal_font_size = 35
+text = "Test"
+fit_content = true
+
+[node name="BtnRight" type="Button" parent="FlashcardsView"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 22.5
+offset_top = -21.0
+offset_right = 63.5
+offset_bottom = 21.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_14f6u")
+text = ">"
+
+[node name="BtnLeft" type="Button" parent="FlashcardsView"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -21.0
+offset_right = -21.5
+offset_bottom = 21.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_14f6u")
+text = "<"
+
+[node name="Panel" type="Panel" parent="FlashcardsView"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -81.0
+offset_top = -45.0
+offset_right = 81.0
+offset_bottom = -5.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s8ttc")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="FlashcardsView/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CardsCount" type="Label" parent="FlashcardsView/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 20
+text = "1/1 Karten"
+horizontal_alignment = 1
+
+[node name="BtnClose" type="Button" parent="FlashcardsView"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -83.5
+offset_top = -409.0
+offset_right = -21.5
+offset_bottom = -367.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+theme_override_fonts/font = ExtResource("2_c5pjr")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_14f6u")
+text = "x"
+
+[connection signal="text_changed" from="Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck" to="." method="_On_Search_Deck_Text_Changed"]
+[connection signal="pressed" from="Panel/MainView/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
+[connection signal="pressed" from="Panel/DeckView/HBoxContainer/VBoxContainer/BtnAddCards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
+[connection signal="pressed" from="Panel/NoCardsView/VBoxContainer/MarginContainer/BtnCreateNewFlashcards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
+[connection signal="pressed" from="Panel/BtnExit" to="." method="_On_BtnExit_Pressed"]
+[connection signal="pressed" from="Panel/BtnBack" to="." method="_On_BtnBack_Pressed"]
+[connection signal="pressed" from="FlashcardsView/BtnRight" to="FlashcardsView" method="_On_BtnRight_Pressed"]
+[connection signal="pressed" from="FlashcardsView/BtnLeft" to="FlashcardsView" method="_On_BtnLeft_Pressed"]
+[connection signal="pressed" from="FlashcardsView/BtnClose" to="." method="_On_BtnClose_Pressed"]

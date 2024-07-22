@@ -1,16 +1,18 @@
-extends Panel
+extends Control
 
-@onready var animation_player = $AnimationPlayer
-@onready var DeckContainer = $MainView/HBoxContainer/FolderContainer/ScrollContainer/DeckContainer
-@onready var MainView = $MainView
-@onready var DeckView = $DeckView
-@onready var NoCardsView = $NoCardsView
-@onready var DeckTitle = $DeckView/HBoxContainer/Header/HBoxContainer/DeckTitle
-@onready var Progress = $DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/Progress
-@onready var ProgressCards = $DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/ProgressCards
-@onready var FlashcardsCount = $DeckView/HBoxContainer/VBoxContainer/HBoxContainer/FlashcardsCount
-@onready var FlashcardsContainer = $DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/FlashcardsContainer
-@onready var SearchDeck = $MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck
+@onready var animation_player = $Panel/AnimationPlayer
+@onready var DeckContainer = $Panel/MainView/HBoxContainer/FolderContainer/ScrollContainer/DeckContainer
+@onready var MainView = $Panel/MainView
+@onready var DeckView = $Panel/DeckView
+@onready var NoCardsView = $Panel/NoCardsView
+@onready var DeckTitle = $Panel/DeckView/HBoxContainer/Header/HBoxContainer/DeckTitle
+@onready var Progress = $Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/Progress
+@onready var ProgressCards = $Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/ProgressCards
+@onready var FlashcardsCount = $Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/FlashcardsCount
+@onready var FlashcardsContainer = $Panel/DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/FlashcardsContainer
+@onready var SearchDeck = $Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck
+@onready var FlashcardsView = $FlashcardsView
+
 
 const NEW_DECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
 const DECK = preload("res://Flashcards/DeckInterface.tscn")
@@ -18,19 +20,26 @@ const CREATE_FLASHCARD = preload("res://Flashcards/CreateFlashcardInterface.tscn
 const FLASHCARD = preload("res://Flashcards/FlashcardInterface.tscn")
 
 func _ready():
+	$Panel.show()
 	MainView.show()
 	DeckView.hide()
+	FlashcardsView.hide()
 	animation_player.play("Open")
+	_LoadDecks()
+
+func _On_BtnExit_Pressed():
+	queue_free()
+
+func _LoadDecks():
+	if DeckContainer.get_child_count() > 0:
+		for child in DeckContainer.get_children():
+			child.queue_free()
 	for deck in StorageService.decks:
 		var Deck = DECK.instantiate()
 		DeckContainer.add_child(Deck)
 		Deck.init(deck)
 		Deck.DeckSelected.connect(_On_DeckSelected.bind(deck))
-
-
-func _on_button_pressed():
-	queue_free()
-
+		Deck.DeckDeleted.connect(_LoadDecks)
 
 func _On_DeckSelected(deck):
 	MainView.hide()
@@ -52,6 +61,7 @@ func _On_DeckSelected(deck):
 			var Flashcard = FLASHCARD.instantiate()
 			Flashcard.FlashcardDeleted.connect(_On_DeckSelected.bind(StorageService.currentDeck))
 			Flashcard.FlashcardEditPressed.connect(_On_EditFlashcard)
+			Flashcard.FlashcardSelected.connect(_On_FlashcardSelect)
 			var answer = StorageService.decks[deck].get(question)
 			FlashcardsContainer.add_child(Flashcard)
 			Flashcard.init(question, answer)
@@ -77,14 +87,24 @@ func _On_Btn_Create_New_Flashcards_pressed():
 	CreateFlashcard.FlashcardCreated.connect(_On_DeckSelected.bind(StorageService.currentDeck))
 	get_tree().get_root().add_child(CreateFlashcard)
 
-func _on_btn_back_pressed():
+func _On_BtnBack_Pressed():
 	DeckView.hide()
 	NoCardsView.hide()
 	MainView.show()
 
 func _On_Search_Deck_Text_Changed():
 	for deck in DeckContainer.get_children():
-		if deck.DeckTitle.text.contains(SearchDeck.text) or SearchDeck.text.is_empty():
+		if deck.DeckTitle.text.to_lower().contains(SearchDeck.text.to_lower()) or SearchDeck.text.is_empty():
 			deck.show()
 		else:
 			deck.hide()
+
+func _On_FlashcardSelect(flashcard):
+	FlashcardsView.init(flashcard)
+	$Panel.hide()
+	FlashcardsView.show()
+
+
+func _On_BtnClose_Pressed():
+	FlashcardsView.hide()
+	$Panel.show()

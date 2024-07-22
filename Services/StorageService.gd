@@ -32,3 +32,6 @@ func saveFlashcards():
 			file.close()
 		else:
 			print("Failed saving")
+
+func DeleteDeck(deck):
+	DirAccess.remove_absolute(deck_save_path % deck)

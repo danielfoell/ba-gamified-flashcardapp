@@ -1,23 +1,177 @@
-[gd_scene load_steps=2 format=3 uid="uid://glblcqj68bpp"]
+[gd_scene load_steps=8 format=3 uid="uid://glblcqj68bpp"]
 
 [ext_resource type="Script" path="res://Flashcards/DeckInterface.gd" id="1_evomv"]
+[ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_5duiv"]
+[ext_resource type="Texture2D" uid="uid://bkwpb3ssclhhm" path="res://Assets/Icons/three-dots-vertical.svg" id="3_q33lq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukomo"]
+bg_color = Color(0.741176, 0.529412, 0.501961, 1)
+border_color = Color(0.966117, 0.909408, 0.872845, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hidsh"]
+bg_color = Color(0.429788, 0.269775, 0.250185, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1su8"]
+bg_color = Color(0.82606, 0.82606, 0.82606, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 4
+border_color = Color(0.415402, 0.29711, 0.34882, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6v8ix"]
+bg_color = Color(0.379334, 0.357163, 0.355768, 0.235294)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="DeckInterface" type="Button"]
 custom_minimum_size = Vector2(280, 300)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ukomo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ukomo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ukomo")
 script = ExtResource("1_evomv")
 
-[node name="DeckTitle" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 15
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 47.195)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hidsh")
+
+[node name="DeckTitle" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.5
+offset_top = -15.5
+offset_right = 102.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_5duiv")
+theme_override_font_sizes/font_size = 25
+text = "Anatomie"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(21.895, 37.095)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BtnOptions" type="TextureButton" parent="MarginContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 800.0
+offset_bottom = 784.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.04, 0.04)
+pivot_offset = Vector2(-16.375, 0)
+texture_normal = ExtResource("3_q33lq")
+
+[node name="Options" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(183.005, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
+offset_left = -92.0
+offset_top = -78.0
+offset_right = 91.005
 grow_horizontal = 2
 grow_vertical = 0
-text = "Anatomie"
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_x1su8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer"]
+layout_mode = 2
+
+[node name="BtnDeleteCard" type="Button" parent="Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5duiv")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_6v8ix")
+text = "Löschen"
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="Options/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="BtnEditCard" type="Button" parent="Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5duiv")
+text = "Bearbeiten"
+flat = true
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/Control/BtnOptions" to="." method="_On_BtnOptions_Mouse_Entered"]
+[connection signal="mouse_exited" from="MarginContainer/HBoxContainer/Control/BtnOptions" to="." method="_On_BtnOptions_Mouse_Exited"]
+[connection signal="mouse_exited" from="Options" to="." method="_On_Options_Mouse_Exited"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BtnDeleteCard" to="." method="_On_BtnDeleteCard_Pressed"]
+[connection signal="mouse_entered" from="Options/MarginContainer/VBoxContainer/BtnEditCard" to="." method="_On_BtnOptions_Mouse_Entered"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BtnEditCard" to="." method="_On_BtnEditCard_Pressed"]
