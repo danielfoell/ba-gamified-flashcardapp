@@ -177,7 +177,6 @@ grow_vertical = 2
 script = ExtResource("1_2sxhf")
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -194,6 +193,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2m6bi")
 
 [node name="MainView" type="MarginContainer" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -249,7 +249,6 @@ size_flags_horizontal = 3
 text = "+"
 
 [node name="DeckView" type="MarginContainer" parent="Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -535,6 +534,7 @@ libraries = {
 }
 
 [node name="FlashcardsView" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -680,6 +680,7 @@ text = "x"
 
 [connection signal="text_changed" from="Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck" to="." method="_On_Search_Deck_Text_Changed"]
 [connection signal="pressed" from="Panel/MainView/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
+[connection signal="text_changed" from="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit" to="." method="_On_Search_Flashcard_Text_Changed"]
 [connection signal="pressed" from="Panel/DeckView/HBoxContainer/VBoxContainer/BtnAddCards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
 [connection signal="pressed" from="Panel/NoCardsView/VBoxContainer/MarginContainer/BtnCreateNewFlashcards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
 [connection signal="pressed" from="Panel/BtnExit" to="." method="_On_BtnExit_Pressed"]

@@ -12,6 +12,8 @@ extends Control
 @onready var FlashcardsContainer = $Panel/DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/FlashcardsContainer
 @onready var SearchDeck = $Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck
 @onready var FlashcardsView = $FlashcardsView
+@onready var SearchFlashcard = $Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit
+
 
 
 const NEW_DECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
@@ -98,6 +100,13 @@ func _On_Search_Deck_Text_Changed():
 			deck.show()
 		else:
 			deck.hide()
+
+func _On_Search_Flashcard_Text_Changed():
+	for card in FlashcardsContainer.get_children():
+		if card.Question.text.to_lower().contains(SearchFlashcard.text.to_lower()) or card.Answer.text.to_lower().contains(SearchFlashcard.text.to_lower()) or SearchFlashcard.text.is_empty():
+			card.show()
+		else:
+			card.hide()
 
 func _On_FlashcardSelect(flashcard):
 	FlashcardsView.init(flashcard)
