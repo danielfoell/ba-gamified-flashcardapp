@@ -8,10 +8,12 @@ signal DeckCreated
 func _on_button_pressed():
 	if Deckname.text.length() < 1:
 		print("Kein Deckname")
-	elif StorageService.decks.has(Deckname.text):
-		print("Deck existiert bereits")
+	#elif StorageService.decks.has(Deckname.text):
+		#print("Deck existiert bereits")
 	else:
-		StorageService.decks[Deckname.text] = {}
+		var deck = DeckData.new()
+		deck.name = Deckname.text
+		StorageService.decks.append(deck)
 		StorageService.saveFlashcards()
 		queue_free()
 		DeckCreated.emit()

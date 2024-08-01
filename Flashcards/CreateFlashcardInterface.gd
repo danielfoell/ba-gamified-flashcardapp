@@ -7,7 +7,7 @@ extends Control
 
 signal FlashcardCreated
 
-var oldQuestion
+var flashcard: FlashcardData
 
 func _ready():
 	BtnAddCard.show()
@@ -17,37 +17,40 @@ func _ready():
 	#file_dialog.show()
 
 func _on_btn_add_card_pressed():
-	StorageService.decks[StorageService.currentDeck][Question.text] = Answer.text
+	if Question.text.is_empty() or Answer.text.is_empty(): return
+	var currentDeck: DeckData = StorageService.currentDeck
+	for flashcard in currentDeck.flashcards:
+		if flashcard.question == Question.text:
+			print("Frage existiert bereits")
+			return
+		#if flashcard.question.similarity(Question.text) >= 0.9:
+			#print("Frage existiert bereits")
+			#return
+	flashcard = FlashcardData.new()
+	flashcard.question = Question.text
+	flashcard.answer = Answer.text
+	StorageService.currentDeck.flashcards.append(flashcard)
 	StorageService.saveFlashcards()
 	FlashcardCreated.emit()
 	queue_free()
 
 
 func _On_BtnEditCard_Pressed():
-	if oldQuestion != Question.text:
-		var deckArray = []
-		for key in StorageService.decks[StorageService.currentDeck].keys():
-			deckArray.append({key: StorageService.decks[StorageService.currentDeck][key]})
-		for i in deckArray.size():
-			if oldQuestion in deckArray[i]:
-				deckArray.remove_at(i)
-				deckArray.insert(i, {Question.text: Answer.text})
-				break
-		var newDeck = {}
-		for deck in deckArray:
-			for question in deck.keys():
-				newDeck[question] = deck[question]
-		StorageService.decks[StorageService.currentDeck] = newDeck
-	else:
-		StorageService.decks[StorageService.currentDeck][Question.text] = Answer.text
+	if Question.text.is_empty() or Answer.text.is_empty(): return
+	var currentDeck: DeckData = StorageService.currentDeck
+	for flashcard in currentDeck.flashcards:
+		if flashcard.question == Question.text:
+			print("Frage existiert bereits")
+			return
+	flashcard.question = Question.text
+	flashcard.answer = Answer.text
 	StorageService.saveFlashcards()
 	FlashcardCreated.emit()
 	queue_free()
 
-func Edit(flashcardData):
+func Edit(flashcardInterface):
+	flashcard = flashcardInterface.flashcard
 	BtnAddCard.hide()
 	BtnEditCard.show()
-	print("Deck ", StorageService.decks[StorageService.currentDeck].keys())
-	oldQuestion = flashcardData.Question.text
-	Question.text = flashcardData.Question.text
-	Answer.text = flashcardData.Answer.text
+	Question.text = flashcard.question
+	Answer.text = flashcard.answer

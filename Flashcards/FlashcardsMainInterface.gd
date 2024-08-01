@@ -13,6 +13,7 @@ extends Control
 @onready var SearchDeck = $Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck
 @onready var FlashcardsView = $FlashcardsView
 @onready var SearchFlashcard = $Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit
+@onready var Btn_ClearSearch = $Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit/Btn_Search_Clear
 
 
 
@@ -43,11 +44,11 @@ func _LoadDecks():
 		Deck.DeckSelected.connect(_On_DeckSelected.bind(deck))
 		Deck.DeckDeleted.connect(_LoadDecks)
 
-func _On_DeckSelected(deck):
+func _On_DeckSelected(deckData: DeckData):
 	MainView.hide()
-	var deckData: Dictionary = StorageService.decks[deck]
+	var deck: DeckData = StorageService.decks[StorageService.decks.find(deckData)]
 	StorageService.currentDeck = deck
-	if deckData.is_empty():
+	if deck.flashcards.is_empty():
 		DeckView.hide()
 		NoCardsView.show()
 	else:
@@ -56,17 +57,17 @@ func _On_DeckSelected(deck):
 				child.queue_free()
 		NoCardsView.hide()
 		DeckView.show()
-		DeckTitle.set_text(deck)
-		ProgressCards.set_text(str(deckData.size()))
-		FlashcardsCount.set_text("Karten(%s)" % (str(deckData.size())))
-		for question in deckData:
+		Btn_ClearSearch.hide()
+		DeckTitle.set_text(deck.name)
+		ProgressCards.set_text(str(deck.flashcards.size()))
+		FlashcardsCount.set_text("Karten(%s)" % (str(deck.flashcards.size())))
+		for flashcard: FlashcardData in deck.flashcards:
 			var Flashcard = FLASHCARD.instantiate()
 			Flashcard.FlashcardDeleted.connect(_On_DeckSelected.bind(StorageService.currentDeck))
 			Flashcard.FlashcardEditPressed.connect(_On_EditFlashcard)
 			Flashcard.FlashcardSelected.connect(_On_FlashcardSelect)
-			var answer = StorageService.decks[deck].get(question)
 			FlashcardsContainer.add_child(Flashcard)
-			Flashcard.init(question, answer)
+			Flashcard.init(flashcard)
 
 func _On_Btn_New_Folder_Pressed():
 	var CreateNewDeck = NEW_DECK.instantiate()
@@ -74,7 +75,7 @@ func _On_Btn_New_Folder_Pressed():
 	var Deck = DECK.instantiate()
 	await CreateNewDeck.DeckCreated
 	DeckContainer.add_child(Deck)
-	var deck = StorageService.decks.keys().back()
+	var deck: DeckData = StorageService.decks.back()
 	Deck.init(deck)
 	Deck.DeckSelected.connect(_On_DeckSelected.bind(deck))
 
@@ -102,13 +103,14 @@ func _On_Search_Deck_Text_Changed():
 			deck.hide()
 
 func _On_Search_Flashcard_Text_Changed():
+	if SearchFlashcard.text != "": Btn_ClearSearch.show()
 	for card in FlashcardsContainer.get_children():
 		if card.Question.text.to_lower().contains(SearchFlashcard.text.to_lower()) or card.Answer.text.to_lower().contains(SearchFlashcard.text.to_lower()) or SearchFlashcard.text.is_empty():
 			card.show()
 		else:
 			card.hide()
 
-func _On_FlashcardSelect(flashcard):
+func _On_FlashcardSelect(flashcard: FlashcardData):
 	FlashcardsView.init(flashcard)
 	$Panel.hide()
 	FlashcardsView.show()
@@ -117,3 +119,9 @@ func _On_FlashcardSelect(flashcard):
 func _On_BtnClose_Pressed():
 	FlashcardsView.hide()
 	$Panel.show()
+
+
+func _On_Btn_ClearSearch():
+	SearchFlashcard.text = ""
+	Btn_ClearSearch.hide()
+	_On_Search_Flashcard_Text_Changed()

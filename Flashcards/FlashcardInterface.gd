@@ -10,9 +10,12 @@ signal FlashcardDeleted
 signal FlashcardEditPressed
 signal FlashcardSelected
 
-func init(question, answer):
-	Question.set_text(question)
-	Answer.set_text(answer)
+var flashcard
+
+func init(flashcardData: FlashcardData):
+	flashcard = flashcardData
+	Question.set_text(flashcard.question)
+	Answer.set_text(flashcard.answer)
 
 
 func _On_BtnCardOptions_pressed():
@@ -28,7 +31,8 @@ func _On_BtnCardOptions_pressed():
 				#Options.hide()
 
 func _On_BtnDeleteCard_pressed():
-	StorageService.decks[StorageService.currentDeck].erase(Question.get_text())
+	#StorageService.decks[StorageService.currentDeck].erase(Question.get_text())
+	StorageService.currentDeck.flashcards.erase(flashcard)
 	StorageService.saveFlashcards()
 	FlashcardDeleted.emit()
 
@@ -56,4 +60,4 @@ func _On_Options_Mouse_Exited():
 
 
 func _On_Flashcard_Pressed():
-	FlashcardSelected.emit(self)
+	FlashcardSelected.emit(flashcard)
