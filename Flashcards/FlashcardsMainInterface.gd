@@ -21,6 +21,7 @@ const NEW_DECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
 const DECK = preload("res://Flashcards/DeckInterface.tscn")
 const CREATE_FLASHCARD = preload("res://Flashcards/CreateFlashcardInterface.tscn")
 const FLASHCARD = preload("res://Flashcards/FlashcardInterface.tscn")
+const LEARNDECK = preload("res://Flashcards/LearnFlashcardsView.tscn")
 
 func _ready():
 	$Panel.show()
@@ -125,3 +126,9 @@ func _On_Btn_ClearSearch():
 	SearchFlashcard.text = ""
 	Btn_ClearSearch.hide()
 	_On_Search_Flashcard_Text_Changed()
+
+
+func _On_BtnLearn_Pressed():
+	var LearnDeck = LEARNDECK.instantiate()
+	hide()
+	get_tree().get_root().add_child(LearnDeck)

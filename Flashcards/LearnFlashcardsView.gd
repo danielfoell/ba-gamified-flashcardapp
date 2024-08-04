@@ -5,11 +5,14 @@ extends Panel
 @onready var CardsCount = $Header/MarginContainer/HBoxContainer/Panel/MarginContainer/CardsCount
 @onready var Progress = $Header/MarginContainer/HBoxContainer/Progress
 
-# Called when the node enters the scene tree for the first time.
+var currentFlashcard: FlashcardData
+
 func _ready():
-	pass # Replace with function body.
+	var currentDeck: DeckData = StorageService.currentDeck
+	currentFlashcard = currentDeck.learningFlashcards.front()
+	CardsCount.text = "%s/%s" % [1, currentDeck.learningFlashcards.size()]
+	Progress.set_max(currentDeck.learningFlashcards.size())
+	Progress.set_value(0)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

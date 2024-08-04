@@ -399,7 +399,7 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Panel/DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
+[node name="BtnLearn" type="Button" parent="Panel/DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_dnsbm")
@@ -693,6 +693,7 @@ text = "x"
 
 [connection signal="text_changed" from="Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck" to="." method="_On_Search_Deck_Text_Changed"]
 [connection signal="pressed" from="Panel/MainView/HBoxContainer/FolderContainer/Btn_NewFolder" to="." method="_On_Btn_New_Folder_Pressed"]
+[connection signal="pressed" from="Panel/DeckView/HBoxContainer/Header/MarginContainer/HBoxContainer2/BtnLearn" to="." method="_On_BtnLearn_Pressed"]
 [connection signal="text_changed" from="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit" to="." method="_On_Search_Flashcard_Text_Changed"]
 [connection signal="pressed" from="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit/Btn_Search_Clear" to="." method="_On_Btn_ClearSearch"]
 [connection signal="pressed" from="Panel/DeckView/HBoxContainer/VBoxContainer/BtnAddCards" to="." method="_On_Btn_Create_New_Flashcards_pressed"]
