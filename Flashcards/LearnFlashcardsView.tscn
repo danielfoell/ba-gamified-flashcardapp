@@ -63,7 +63,7 @@ offset_right = 1296.0
 offset_bottom = 726.0
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="CardView" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,10 +75,10 @@ theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 35
 theme_override_constants/margin_bottom = 35
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CardView"]
 layout_mode = 2
 
-[node name="Question" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="Question" type="RichTextLabel" parent="CardView/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_pci26")
 theme_override_font_sizes/normal_font_size = 35
@@ -86,16 +86,49 @@ bbcode_enabled = true
 text = "Test"
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CardView/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Answer" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="Answer" type="RichTextLabel" parent="CardView/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_pci26")
 theme_override_font_sizes/normal_font_size = 35
 text = "Test"
 fit_content = true
+
+[node name="EndView" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndView"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="EndView/VBoxContainer"]
+layout_mode = 2
+text = "Es sind noch ein paar Karten offen, willst du direkt weitermachen?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EndView/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnContinue" type="Button" parent="EndView/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ja"
+
+[node name="BtnCancel" type="Button" parent="EndView/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Nein"
 
 [node name="Header" type="Control" parent="."]
 layout_mode = 1
@@ -151,7 +184,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_p6twe")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tdb10")
-step = 1.0
 
 [node name="BtnClose" type="Button" parent="Header/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(55.24, 0)
@@ -196,5 +228,7 @@ custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
 text = "Gut"
 
+[connection signal="pressed" from="EndView/VBoxContainer/HBoxContainer/BtnContinue" to="." method="_On_BtnContinue_Pressed"]
+[connection signal="pressed" from="Header/MarginContainer/HBoxContainer/BtnClose" to="." method="_On_BtnClose_Pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/BtnBad" to="." method="_On_BtnBad_Pressed"]
 [connection signal="pressed" from="Buttons/HBoxContainer/BtnGood" to="." method="_On_BtnGood_Pressed"]
