@@ -42,7 +42,8 @@ func saveFlashcards():
 			flashcardsConverted.append({
 				"question": flashcard.question,
 				"answer": flashcard.answer,
-				"answer_visible": flashcard.answer_visible
+				"answer_visible": flashcard.answer_visible,
+				"learned": flashcard.learned
 			})
 		var file = FileAccess.open(deck_save_path % deck.name, FileAccess.WRITE)
 		if file:
