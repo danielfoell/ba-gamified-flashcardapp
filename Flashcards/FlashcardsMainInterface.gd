@@ -29,6 +29,7 @@ func _ready():
 	DeckView.hide()
 	FlashcardsView.hide()
 	animation_player.play("Open")
+	GSignals.RefreshUI.connect(_RefreshUI)
 	_LoadDecks()
 
 func _On_BtnExit_Pressed():
@@ -60,7 +61,9 @@ func _On_DeckSelected(deckData: DeckData):
 		DeckView.show()
 		Btn_ClearSearch.hide()
 		DeckTitle.set_text(deck.name)
-		ProgressCards.set_text(str(deck.flashcards.size()))
+		Progress.set_max(deck.flashcards.size())
+		Progress.set_value(deck.GetLearnedFlashcards().size())
+		ProgressCards.set_text(str(deck.GetLearningFlashcards().size()))
 		FlashcardsCount.set_text("Karten(%s)" % (str(deck.flashcards.size())))
 		for flashcard: FlashcardData in deck.flashcards:
 			var Flashcard = FLASHCARD.instantiate()
@@ -132,3 +135,8 @@ func _On_BtnLearn_Pressed():
 	var LearnDeck = LEARNDECK.instantiate()
 	hide()
 	get_tree().get_root().add_child(LearnDeck)
+
+func _RefreshUI():
+	ProgressCards.set_text(str(StorageService.currentDeck.GetLearningFlashcards().size()))
+	Progress.set_max(StorageService.currentDeck.flashcards.size())
+	Progress.set_value(StorageService.currentDeck.GetLearnedFlashcards().size())

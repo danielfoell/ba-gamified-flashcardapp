@@ -44,6 +44,7 @@ func _On_BtnEditCard_Pressed():
 			return
 	flashcard.question = Question.text
 	flashcard.answer = Answer.text
+	GSignals.RefreshUI.emit()
 	StorageService.saveFlashcards()
 	FlashcardCreated.emit()
 	queue_free()

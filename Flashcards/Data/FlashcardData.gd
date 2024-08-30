@@ -5,6 +5,7 @@ class_name FlashcardData
 @export var answer: String
 @export var learned: bool = false
 @export var answer_visible: bool = false
+@export var last_learned: Dictionary
 #@export var files: Array
 #@export var interval: int = 1
 #@export var repetition: int = 0

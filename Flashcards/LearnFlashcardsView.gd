@@ -10,7 +10,6 @@ extends Panel
 @onready var BtnBad = $Buttons/HBoxContainer/BtnBad
 @onready var BtnGood = $Buttons/HBoxContainer/BtnGood
 
-
 var currentFlashcard: FlashcardData
 var currentDeck: DeckData
 var cardsLeft: Array[FlashcardData]
@@ -19,15 +18,17 @@ func _ready():
 	EndCardLeftView.hide()
 	EndFinishedView.hide()
 	currentDeck = StorageService.currentDeck
-	if currentDeck.learningFlashcards.is_empty():
+	if currentDeck.GetLearningFlashcards().is_empty():
 		currentDeck.learningFlashcards = currentDeck.flashcards
-	currentFlashcard = currentDeck.learningFlashcards.front()
-	CardsCount.text = "%s/%s" % [0, currentDeck.learningFlashcards.size()]
+		for card in currentDeck.learningFlashcards:
+			card.learned = false
+	currentFlashcard = currentDeck.GetLearningFlashcards().front()
+	CardsCount.text = "%s/%s" % [0, currentDeck.GetLearningFlashcards().size()]
 	Question.text = currentFlashcard.question
 	Answer.text = currentFlashcard.answer
 	Answer.visible = false
-	Progress.set_max(currentDeck.learningFlashcards.size())
-	Progress.set_value(0)
+	Progress.set_max(currentDeck.GetLearningFlashcards().size())
+	Progress.set_value(currentDeck.Ge)
 
 func _On_BtnBad_Pressed():
 	BtnBad.disabled = true
@@ -40,20 +41,21 @@ func _On_BtnGood_Pressed():
 	BtnBad.disabled = true
 	BtnGood.disabled = true
 	currentFlashcard.learned = true
+	currentFlashcard.last_learned = Time.get_datetime_dict_from_system()
 	SetNextFlashcard()
 
 func GetNextFlashcard():
-	if currentDeck.learningFlashcards.find(currentFlashcard) + 1 >= currentDeck.learningFlashcards.size(): 
-		return currentDeck.learningFlashcards.back()
+	if currentDeck.GetLearningFlashcards().find(currentFlashcard) + 1 >= currentDeck.GetLearningFlashcards().size(): 
+		return currentDeck.GetLearningFlashcards().back()
 	else:
-		return currentDeck.learningFlashcards[currentDeck.learningFlashcards.find(currentFlashcard) + 1]
+		return currentDeck.GetLearningFlashcards()[currentDeck.GetLearningFlashcards().find(currentFlashcard) + 1]
 
 func SetNextFlashcard():
 	StorageService.saveFlashcards()
 	var tween = get_tree().create_tween()
 	tween.tween_property(Progress, "value", Progress.get_value() + 1, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	if currentFlashcard == currentDeck.learningFlashcards.back():
-		CardsCount.text = "%s/%s" % [currentDeck.learningFlashcards.size(), currentDeck.learningFlashcards.size()]
+	if currentFlashcard == currentDeck.GetLearningFlashcards().back():
+		CardsCount.text = "%s/%s" % [currentDeck.GetLearningFlashcards().size(), currentDeck.GetLearningFlashcards().size()]
 		await tween.finished
 		CardView.hide()
 		if cardsLeft.is_empty():
@@ -62,7 +64,7 @@ func SetNextFlashcard():
 			EndCardLeftView.show()
 	else:
 		currentFlashcard = GetNextFlashcard()
-		CardsCount.text = "%s/%s" % [currentDeck.learningFlashcards.find(currentFlashcard), currentDeck.learningFlashcards.size()]
+		CardsCount.text = "%s/%s" % [currentDeck.GetLearningFlashcards().find(currentFlashcard), currentDeck.GetLearningFlashcards().size()]
 		Question.text = currentFlashcard.question
 		Answer.text = currentFlashcard.answer
 	Answer.visible = false
@@ -71,13 +73,15 @@ func SetNextFlashcard():
 	BtnGood.disabled = false
 	
 func _On_BtnClose_Pressed():
-	for card in currentDeck.learningFlashcards:
+	for card in currentDeck.GetLearningFlashcards():
 		if card.learned == false:
 			if !cardsLeft.has(card):
 				cardsLeft.append(card)
 	currentDeck.learningFlashcards = cardsLeft.duplicate()
+	StorageService.saveFlashcards()
+	GSignals.RefreshUI.emit()
 	queue_free()
-	get_tree().get_root().get_child(2).show()
+	get_tree().get_root().get_child(3).show()
 
 func _On_BtnContinue_Pressed():
 	Answer.visible = false
@@ -87,11 +91,11 @@ func _On_BtnContinue_Pressed():
 	cardsLeft.clear()
 	EndCardLeftView.hide()
 	CardView.show()
-	currentFlashcard = currentDeck.learningFlashcards.front()
-	CardsCount.text = "%s/%s" % [0, currentDeck.learningFlashcards.size()]
+	currentFlashcard = currentDeck.GetLearningFlashcards().front()
+	CardsCount.text = "%s/%s" % [0, currentDeck.GetLearningFlashcards().size()]
 	Question.text = currentFlashcard.question
 	Answer.text = currentFlashcard.answer
-	Progress.set_max(currentDeck.learningFlashcards.size())
+	Progress.set_max(currentDeck.GetLearningFlashcards().size())
 	Progress.set_value(0)
 
 func _input(event):

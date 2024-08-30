@@ -25,6 +25,7 @@ func loadFlashcards():
 				newFlashcard.question = flashcard["question"]
 				newFlashcard.answer = flashcard["answer"]
 				newFlashcard.answer_visible = flashcard["answer_visible"]
+				newFlashcard.last_learned = flashcard["last_learned"]
 				newDeck.flashcards.append(newFlashcard)
 			decks.append(newDeck)
 			file.close
@@ -43,7 +44,8 @@ func saveFlashcards():
 				"question": flashcard.question,
 				"answer": flashcard.answer,
 				"answer_visible": flashcard.answer_visible,
-				"learned": flashcard.learned
+				"learned": flashcard.learned,
+				"last_learned": flashcard.last_learned
 			})
 		var file = FileAccess.open(deck_save_path % deck.name, FileAccess.WRITE)
 		if file:
