@@ -22,13 +22,19 @@ func _ready():
 		currentDeck.learningFlashcards = currentDeck.flashcards
 		for card in currentDeck.learningFlashcards:
 			card.learned = false
+	#else:
+		#currentDeck.flashcards = currentDeck.flashcards.duplicate()
+		#currentDeck.learningFlashcards.clear()
+		#for card in currentDeck.flashcards:
+			#if card.learned == false: 
+				#currentDeck.learningFlashcards + [card]
 	currentFlashcard = currentDeck.GetLearningFlashcards().front()
 	CardsCount.text = "%s/%s" % [0, currentDeck.GetLearningFlashcards().size()]
 	Question.text = currentFlashcard.question
 	Answer.text = currentFlashcard.answer
 	Answer.visible = false
 	Progress.set_max(currentDeck.GetLearningFlashcards().size())
-	Progress.set_value(currentDeck.Ge)
+	Progress.set_value(0)
 
 func _On_BtnBad_Pressed():
 	BtnBad.disabled = true

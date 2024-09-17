@@ -25,8 +25,11 @@ func loadFlashcards():
 				newFlashcard.question = flashcard["question"]
 				newFlashcard.answer = flashcard["answer"]
 				newFlashcard.answer_visible = flashcard["answer_visible"]
+				newFlashcard.learned = flashcard["learned"]
 				newFlashcard.last_learned = flashcard["last_learned"]
 				newDeck.flashcards.append(newFlashcard)
+				if newFlashcard.learned == false:
+					newDeck.learningFlashcards.append(newFlashcard)
 			decks.append(newDeck)
 			file.close
 			print("Loaded")

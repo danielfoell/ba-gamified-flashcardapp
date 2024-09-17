@@ -6,8 +6,9 @@ extends Control
 @onready var DeckView = $Panel/DeckView
 @onready var NoCardsView = $Panel/NoCardsView
 @onready var DeckTitle = $Panel/DeckView/HBoxContainer/Header/HBoxContainer/DeckTitle
-@onready var Progress = $Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/Progress
-@onready var ProgressCards = $Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/Control/ProgressCards
+@onready var Progress = $Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/HBoxContainer/Control/Progress
+@onready var CardsLeft = $Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/HBoxContainer/Control/VBoxContainer/CardsLeft
+@onready var CardsLearned = $Panel/DeckView/HBoxContainer/Header/Panel/MarginContainer/HBoxContainer/HBoxContainer/Control/VBoxContainer/CardsLearned
 @onready var FlashcardsCount = $Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/FlashcardsCount
 @onready var FlashcardsContainer = $Panel/DeckView/HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/FlashcardsContainer
 @onready var SearchDeck = $Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer/TE_SearchDeck
@@ -61,9 +62,6 @@ func _On_DeckSelected(deckData: DeckData):
 		DeckView.show()
 		Btn_ClearSearch.hide()
 		DeckTitle.set_text(deck.name)
-		Progress.set_max(deck.flashcards.size())
-		Progress.set_value(deck.GetLearnedFlashcards().size())
-		ProgressCards.set_text(str(deck.GetLearningFlashcards().size()))
 		FlashcardsCount.set_text("Karten(%s)" % (str(deck.flashcards.size())))
 		for flashcard: FlashcardData in deck.flashcards:
 			var Flashcard = FLASHCARD.instantiate()
@@ -72,6 +70,20 @@ func _On_DeckSelected(deckData: DeckData):
 			Flashcard.FlashcardSelected.connect(_On_FlashcardSelect)
 			FlashcardsContainer.add_child(Flashcard)
 			Flashcard.init(flashcard)
+		#if deck.GetLearningFlashcards().is_empty():
+			#deck.learningFlashcards = deck.flashcards.duplicate()
+			#for card in deck.learningFlashcards:
+				#if card.learned == false: deck.learningFlashcards.append(card)
+		#else:
+			#deck.flashcards = deck.flashcards.duplicate()
+			#deck.learningFlashcards.clear()
+			#for card in deck.flashcards:
+				#if card.learned == false: 
+					#deck.learningFlashcards + [card]
+		Progress.set_max(deck.flashcards.size())
+		Progress.set_value(deck.GetLearnedFlashcards().size())
+		CardsLeft.set_text(str(deck.GetLearningFlashcards().size()))
+		CardsLearned.set_text(str(deck.GetLearnedFlashcards().size()))
 
 func _On_Btn_New_Folder_Pressed():
 	var CreateNewDeck = NEW_DECK.instantiate()
@@ -91,8 +103,11 @@ func _On_EditFlashcard(flashcard):
 
 func _On_Btn_Create_New_Flashcards_pressed():
 	var CreateFlashcard = CREATE_FLASHCARD.instantiate()
-	CreateFlashcard.FlashcardCreated.connect(_On_DeckSelected.bind(StorageService.currentDeck))
 	get_tree().get_root().add_child(CreateFlashcard)
+	CreateFlashcard.FlashcardCreated.connect(_On_DeckSelected.bind(StorageService.currentDeck))
+	#StorageService.currentDeck.learningFlashcards + [CreateFlashcard.flashcard]
+	await CreateFlashcard.FlashcardCreated
+	#ProgressCards.set_text(str(StorageService.currentDeck.GetLearningFlashcards().size()))
 
 func _On_BtnBack_Pressed():
 	DeckView.hide()
@@ -137,6 +152,7 @@ func _On_BtnLearn_Pressed():
 	get_tree().get_root().add_child(LearnDeck)
 
 func _RefreshUI():
-	ProgressCards.set_text(str(StorageService.currentDeck.GetLearningFlashcards().size()))
+	CardsLeft.set_text(str(StorageService.currentDeck.GetLearningFlashcards().size()))
+	CardsLearned.set_text(str(StorageService.currentDeck.GetLearnedFlashcards().size()))
 	Progress.set_max(StorageService.currentDeck.flashcards.size())
 	Progress.set_value(StorageService.currentDeck.GetLearnedFlashcards().size())

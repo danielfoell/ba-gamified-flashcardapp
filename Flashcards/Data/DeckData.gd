@@ -5,7 +5,7 @@ class_name DeckData
 @export var flashcards: Array[FlashcardData]
 #@export learningAlgorithm
 @export var isLearning: bool
-@export var learningFlashcards: Array[FlashcardData] = flashcards
+@export var learningFlashcards: Array[FlashcardData]
 
 func AllCardsLearned() -> bool :
 	return true if learningFlashcards.is_empty() and !flashcards.is_empty() and flashcards.front().learned == true else false

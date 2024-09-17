@@ -30,6 +30,8 @@ func _on_btn_add_card_pressed():
 	flashcard.question = Question.text
 	flashcard.answer = Answer.text
 	StorageService.currentDeck.flashcards.append(flashcard)
+	StorageService.currentDeck.learningFlashcards.append(flashcard)
+	GSignals.RefreshUI.emit()
 	StorageService.saveFlashcards()
 	FlashcardCreated.emit()
 	queue_free()
