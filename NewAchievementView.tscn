@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://2em24gqoycvo"]
+[gd_scene load_steps=3 format=3 uid="uid://2em24gqoycvo"]
 
 [ext_resource type="Script" path="res://NewAchievementView.gd" id="1_vo0q8"]
+[ext_resource type="AudioStream" uid="uid://b35lda6y68wvm" path="res://Assets/Audio/infographic-app-notification-bell.mp3" id="2_4v66d"]
 
 [node name="NewAchievement" type="Control"]
 layout_mode = 3
@@ -59,3 +60,7 @@ layout_mode = 2
 text = "+300"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4v66d")
+volume_db = -5.259

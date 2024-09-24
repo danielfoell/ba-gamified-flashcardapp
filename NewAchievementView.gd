@@ -2,13 +2,13 @@ extends Control
 
 @onready var Achievement = $Panel/MarginContainer/VBoxContainer/Achievement
 @onready var Exp = $Panel/MarginContainer/VBoxContainer/Exp
+@onready var AudioPlayer = $AudioStreamPlayer
 
 func _ready():
 	modulate.a = 0
+	AudioPlayer.play()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 1, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	#await tween.finished
-	#tween = get_tree().create_tween()
 	tween.tween_interval(3)
 	tween.tween_property(self, "modulate:a", 0, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished

@@ -9,6 +9,9 @@ extends Panel
 @onready var EndFinishedView = $EndFinishedView
 @onready var BtnBad = $Buttons/HBoxContainer/BtnBad
 @onready var BtnGood = $Buttons/HBoxContainer/BtnGood
+@onready var AudioPlayer = $AudioStreamPlayer
+@onready var Xp = $Xp
+
 
 var currentFlashcard: FlashcardData
 var currentDeck: DeckData
@@ -49,17 +52,18 @@ func _On_BtnGood_Pressed():
 	currentFlashcard.learned = true
 	currentFlashcard.last_learned = Time.get_datetime_dict_from_system()
 	GData.user.AddExp(GData.data.get("EXP")["CARD_SOLVED"])
-	var label = Label.new()
-	label.set_text("+25")
-	label.position = BtnGood.position
-	BtnGood.add_child(label)
+	AudioPlayer.play()
+	#var label = Label.new()
+	#label.set_text("+25")
+	Xp.show()
+	#BtnGood.add_child(label)
 	var tween = get_tree().create_tween()
-	tween.tween_property(label, "position:y", -80, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(Xp, "position:y", -2, 2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	tween.set_parallel()
-	tween.tween_property(label, "modulate:a", 0, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(Xp, "modulate:a", 0, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	SetNextFlashcard()
 	await tween.finished
-	label.queue_free()
+	#Xp.hide()
 
 func GetNextFlashcard():
 	if currentDeck.GetLearningFlashcards().find(currentFlashcard) + 1 >= currentDeck.GetLearningFlashcards().size(): 

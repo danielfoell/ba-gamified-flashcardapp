@@ -1,7 +1,11 @@
-[gd_scene load_steps=49 format=3 uid="uid://c2tsluxn2ccmm"]
+[gd_scene load_steps=53 format=3 uid="uid://c2tsluxn2ccmm"]
 
 [ext_resource type="Texture2D" uid="uid://nm50mor5wrj5" path="res://Assets/Models/Bed/furniturebits_texture.png" id="1_un02t"]
+[ext_resource type="Texture2D" uid="uid://mlx28oq7vnvg" path="res://Assets/Icons/book_clear.png" id="2_2yei5"]
+[ext_resource type="Texture2D" uid="uid://4mpc7lmkf3ao" path="res://Assets/Icons/book_fill.png" id="3_ibm2x"]
 [ext_resource type="PackedScene" uid="uid://cykek5i7anbb7" path="res://Assets/Models/Bed/cabinet_medium_decorated.gltf" id="3_wrhdb"]
+[ext_resource type="AudioStream" uid="uid://gcg0c6lnru2e" path="res://Assets/Audio/levelup.mp3" id="4_5c8ym"]
+[ext_resource type="Texture2D" uid="uid://bu0623f0eglg5" path="res://Assets/Icons/coins.png" id="4_53tvt"]
 [ext_resource type="Texture2D" uid="uid://dlktdxrryjl4u" path="res://Assets/4k_random_stars_colored_background.png" id="4_ubrq5"]
 [ext_resource type="Texture2D" uid="uid://g5p680wvg8bs" path="res://Assets/Models/gltf/furniturebits_texture.png" id="5_52ldy"]
 [ext_resource type="Shader" path="res://Shaders/Outline.gdshader" id="6_g5jt6"]
@@ -389,24 +393,22 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Exp"]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/Exp"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -315.0
-offset_bottom = 27.0
+offset_left = -138.0
+offset_top = 77.0
+offset_right = 36.0
+offset_bottom = 115.0
 grow_horizontal = 0
 theme_override_constants/separation = 15
 alignment = 1
-
-[node name="Level" type="Label" parent="UI/MarginContainer/Exp/HBoxContainer"]
-layout_mode = 2
-text = "Lv. 1"
-horizontal_alignment = 1
-vertical_alignment = 1
+metadata/_edit_group_ = true
 
 [node name="ExpBar" type="ProgressBar" parent="UI/MarginContainer/Exp/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -426,6 +428,49 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 text = "0/0"
 horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="UI/MarginContainer/Exp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="ExpProgress" type="TextureProgressBar" parent="UI/MarginContainer/Exp/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -286.0
+offset_right = 172.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.165, 0.165)
+pivot_offset = Vector2(250, 250)
+fill_mode = 3
+texture_under = ExtResource("2_2yei5")
+texture_progress = ExtResource("3_ibm2x")
+
+[node name="Level" type="Label" parent="UI/MarginContainer/Exp/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Lv. 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/Exp"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 163.0
+offset_right = 983.0
+offset_bottom = 1243.0
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("4_53tvt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("4_5c8ym")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e0wad")
@@ -509,7 +554,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_xsh4c")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Monitor"]
-transform = Transform3D(1, 0, 8.9407e-08, 3.64323e-09, -0.996521, -0.0833475, 8.9407e-08, 0.0833475, -0.996521, -0.00715339, 0.756763, -0.134631)
+transform = Transform3D(1, 0, 8.9407e-08, 3.64323e-09, -0.996521, -0.0833475, 5.96046e-08, 0.0833475, -0.996521, -0.00715351, 0.756763, -0.134631)
 light_color = Color(0.6, 0.8, 1, 1)
 light_energy = 1.902
 spot_range = 7.336

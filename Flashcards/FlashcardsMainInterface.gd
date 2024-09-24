@@ -15,7 +15,7 @@ extends Control
 @onready var FlashcardsView = $FlashcardsView
 @onready var SearchFlashcard = $Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit
 @onready var Btn_ClearSearch = $Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit/Btn_Search_Clear
-
+@onready var BtnBack = $Panel/BtnBack
 
 
 const NEW_DECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
@@ -24,8 +24,10 @@ const CREATE_FLASHCARD = preload("res://Flashcards/CreateFlashcardInterface.tscn
 const FLASHCARD = preload("res://Flashcards/FlashcardInterface.tscn")
 const LEARNDECK = preload("res://Flashcards/LearnFlashcardsView.tscn")
 
+
 func _ready():
 	$Panel.show()
+	BtnBack.hide()
 	MainView.show()
 	DeckView.hide()
 	FlashcardsView.hide()
@@ -54,12 +56,14 @@ func _On_DeckSelected(deckData: DeckData):
 	if deck.flashcards.is_empty():
 		DeckView.hide()
 		NoCardsView.show()
+		BtnBack.show()
 	else:
 		if FlashcardsContainer.get_child_count() > 0:
 			for child in FlashcardsContainer.get_children():
 				child.queue_free()
 		NoCardsView.hide()
 		DeckView.show()
+		BtnBack.show()
 		Btn_ClearSearch.hide()
 		DeckTitle.set_text(deck.name)
 		FlashcardsCount.set_text("Karten(%s)" % (str(deck.flashcards.size())))
@@ -113,6 +117,7 @@ func _On_BtnBack_Pressed():
 	DeckView.hide()
 	NoCardsView.hide()
 	MainView.show()
+	BtnBack.hide()
 
 func _On_Search_Deck_Text_Changed():
 	for deck in DeckContainer.get_children():

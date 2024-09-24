@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbnbtx8pn0mp6"]
+[gd_scene load_steps=11 format=3 uid="uid://cbnbtx8pn0mp6"]
 
 [ext_resource type="Script" path="res://Flashcards/LearnFlashcardsView.gd" id="1_in4p4"]
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_pci26"]
+[ext_resource type="AudioStream" uid="uid://cpt0ssx78wnm3" path="res://Assets/Audio/bubble-pop-ding.mp3" id="3_dpkjp"]
+[ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="4_bc4sd"]
+[ext_resource type="Texture2D" uid="uid://cepyto8sfde03" path="res://Assets/xpup.png" id="5_73l5b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy3md"]
 bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
@@ -256,6 +259,44 @@ text = "Schlecht"
 custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
 text = "Gut"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dpkjp")
+
+[node name="Xp" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 726.5
+offset_top = 749.0
+offset_right = 766.5
+offset_bottom = 789.0
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Xp"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Xp/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bc4sd")
+theme_override_font_sizes/font_size = 25
+text = "+25"
+
+[node name="Control" type="Control" parent="Xp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Xp/HBoxContainer/Control"]
+layout_mode = 1
+offset_left = 7.5
+offset_top = -8.0
+offset_right = 519.5
+offset_bottom = 504.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_73l5b")
+stretch_mode = 3
 
 [connection signal="pressed" from="EndCardLeftView/VBoxContainer/HBoxContainer/BtnContinue" to="." method="_On_BtnContinue_Pressed"]
 [connection signal="pressed" from="EndCardLeftView/VBoxContainer/HBoxContainer/BtnCancel" to="." method="_On_BtnClose_Pressed"]

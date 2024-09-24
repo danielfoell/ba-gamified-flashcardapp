@@ -41,6 +41,7 @@ func AddExp(newExp):
 		SetLevel(level + 1)
 		SetExp(exp - expNeededForNextLevel)
 		SetExpNeedForNextLevel()
+	StorageService.SaveUser()
 	GSignals.ExpChanged.emit()
 
 func GetExpNeededForNextLevel():

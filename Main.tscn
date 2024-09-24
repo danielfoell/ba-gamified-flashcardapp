@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c7x8ge2fi4wln"]
+[gd_scene load_steps=24 format=3 uid="uid://c7x8ge2fi4wln"]
 
 [ext_resource type="Script" path="res://Flashcards/FlashcardsMainInterface.gd" id="1_2sxhf"]
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_c5pjr"]
@@ -6,10 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://rt1ps7h7r2yp" path="res://Assets/Icons/other-x-icon-2048x2043-ueafpzlh-removebg-preview.png" id="4_vx7ms"]
 [ext_resource type="Texture2D" uid="uid://bb7bn1fy210so" path="res://Assets/circle.png" id="5_u42ga"]
 [ext_resource type="Texture2D" uid="uid://yl16riv2hnb" path="res://Assets/circle_filled.png" id="6_rsr5g"]
+[ext_resource type="Texture2D" uid="uid://bihlx0303v8m4" path="res://Assets/Icons/icon_back.png" id="7_bv7bu"]
 [ext_resource type="Script" path="res://Flashcards/FlashcardsView.gd" id="7_prmld"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m6bi"]
 bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
 border_blend = true
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -30,6 +36,14 @@ corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3jeu"]
+bg_color = Color(0.259294, 0.259294, 0.259294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agxp5"]
 bg_color = Color(0.760784, 0.745098, 0.729412, 1)
@@ -55,51 +69,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_345v2"]
-content_margin_left = 139.0
-content_margin_top = 60.0
-content_margin_right = 0.0
-content_margin_bottom = 60.0
-bg_color = Color(0.785903, 0.732844, 0.806968, 1)
-corner_radius_top_right = 180
-corner_radius_bottom_left = 180
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxejt"]
-content_margin_left = 184.0
-content_margin_top = 50.0
-content_margin_right = 0.0
-content_margin_bottom = 50.0
-bg_color = Color(0.705999, 0.639899, 0.732092, 1)
-corner_radius_top_right = 110
-corner_radius_bottom_left = 110
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6218"]
-content_margin_left = 184.0
-content_margin_top = 50.0
-content_margin_right = 0.0
-content_margin_bottom = 50.0
-bg_color = Color(0.785903, 0.732844, 0.806968, 1)
-corner_radius_top_right = 110
-corner_radius_bottom_left = 110
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxrxj"]
-content_margin_left = 184.0
-content_margin_top = 50.0
-content_margin_right = 0.0
-content_margin_bottom = 50.0
-bg_color = Color(0.785903, 0.732844, 0.806968, 1)
-corner_radius_top_right = 110
-corner_radius_bottom_left = 110
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qjc3"]
-content_margin_left = 184.0
-content_margin_top = 50.0
-content_margin_right = 0.0
-content_margin_bottom = 50.0
-bg_color = Color(0.785903, 0.732844, 0.806968, 1)
-corner_radius_top_right = 110
-corner_radius_bottom_left = 110
 
 [sub_resource type="Animation" id="Animation_3yrcd"]
 resource_name = "Open"
@@ -198,7 +167,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2m6bi")
 
 [node name="MainView" type="MarginContainer" parent="Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -249,9 +217,11 @@ layout_mode = 2
 columns = 4
 
 [node name="Btn_NewFolder" type="Button" parent="Panel/MainView/HBoxContainer/FolderContainer"]
+custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "+"
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_g3jeu")
+text = "Neues Deck hinzufügen"
 
 [node name="DeckView" type="MarginContainer" parent="Panel"]
 layout_mode = 1
@@ -538,33 +508,23 @@ theme_override_constants/margin_right = 650
 layout_mode = 2
 text = "Karten hinzufügen"
 
-[node name="BtnExit" type="Button" parent="Panel"]
+[node name="BtnExit" type="TextureButton" parent="Panel"]
 layout_mode = 0
 offset_left = 1268.0
 offset_right = 2152.0
 offset_bottom = 619.0
 scale = Vector2(0.105, 0.105)
-theme_override_styles/normal = SubResource("StyleBoxFlat_345v2")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jxejt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_c6218")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_dxrxj")
-theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
-icon = ExtResource("4_vx7ms")
-icon_alignment = 1
+texture_normal = ExtResource("4_vx7ms")
+stretch_mode = 3
 
-[node name="BtnBack" type="Button" parent="Panel"]
+[node name="BtnBack" type="TextureButton" parent="Panel"]
 layout_mode = 0
 offset_left = 1176.0
 offset_right = 2060.0
 offset_bottom = 619.0
 scale = Vector2(0.105, 0.105)
-theme_override_styles/normal = SubResource("StyleBoxFlat_345v2")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jxejt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_c6218")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_dxrxj")
-theme_override_styles/focus = SubResource("StyleBoxFlat_1qjc3")
-icon = ExtResource("4_vx7ms")
-icon_alignment = 1
+texture_normal = ExtResource("7_bv7bu")
+stretch_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
 libraries = {

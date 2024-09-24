@@ -1,9 +1,14 @@
 extends Panel
 
-@onready var Deckname = $MarginContainer/VBoxContainer/MarginContainer/TextEdit
+@onready var Deckname = $MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/TextEdit
+@onready var BtnColorPicker = $MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Control/BtnColorPicker
+
 const MAIN = preload("res://Main.tscn")
 
 signal DeckCreated
+
+func _ready():
+	BtnColorPicker.color = Color.AQUA
 
 func _on_button_pressed():
 	if Deckname.text.length() < 1:
@@ -23,3 +28,7 @@ func _on_button_pressed():
 			get_tree().get_root().add_child(MAIN.instantiate())
 		if !GData.user.HasAchievement(GData.ACHIEVEMENTS.keys()[GData.ACHIEVEMENTS.CREATED_FIRSTDECK]):
 			GData.user.UnlockAchievement(GData.ACHIEVEMENTS.keys()[GData.ACHIEVEMENTS.CREATED_FIRSTDECK])
+
+
+func _On_BtnClose_Pressed():
+	queue_free()
