@@ -1,0 +1,9 @@
+join Rob right [animation="Fade In Up"]
+Rob: Hey und willkommen in deiner neuen Wohnung! Ich bin Rob und werd' dir kurz alles zeigen. Wie heißt du?
+[text_input text="Wie heißt du?" var="Name"]
+Rob: Top, {Name}. Lass mich dir kurz deinen Raum zeigen.
+join Rob rightmost
+[wait time="5.0"]
+join Rob right
+Rob: Aktuell etwas leer, aber alles mit der Zeit. Ich hab dir schon mal paar Möbel bereitgestellt, sowie leere Karteikarten. Fang doch schon mal an dein erstes Deck zu erstellen - Ich meld mich später nochmal bei dir.
+leave Rob [animation="Slide Out Down"]

@@ -597,6 +597,7 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -2.77464, 
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.245436, -0.0805084, 0.40491)
 
 [node name="rug_rectangle_stripes_A" type="MeshInstance3D" parent="Rug"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000177622, 0)
 mesh = SubResource("ArrayMesh_v745m")
 skeleton = NodePath("")
 

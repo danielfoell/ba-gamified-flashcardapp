@@ -102,7 +102,7 @@ func _On_BtnClose_Pressed():
 	StorageService.SaveFlashcards()
 	GSignals.RefreshUI.emit()
 	queue_free()
-	get_tree().get_root().get_child(4).show()
+	get_tree().get_root().get_child(5).show()
 
 func _On_BtnContinue_Pressed():
 	Answer.visible = false
