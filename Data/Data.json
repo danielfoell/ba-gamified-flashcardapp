@@ -1,0 +1,22 @@
+{
+	"ACHIEVEMENTS": {
+		"CREATED_FIRSTDECK": {
+			"DESC": "Erstelle dein erstes Deck.",
+			"EXP": 300,
+		},
+		"CREATED_FIRSTCARD": {
+			"DESC": "Erstelle deine erste Lernkarte.",
+			"EXP": 300,
+		},
+		"CREATED_TENCARDS": {
+			"DESC": "Erstelle 10 Lernkarten.",
+			"EXP": 300,
+		},
+	},
+	"EXP": {
+		"CARD_SOLVED": 25,
+		"DECK_FIRSTTRY": 300,
+		"DECK_COMPLETED": 150,
+		"DECK_FIRSTOFTHEDAY": 500,
+	}
+}

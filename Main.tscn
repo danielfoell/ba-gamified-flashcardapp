@@ -246,7 +246,7 @@ horizontal_scroll_mode = 0
 
 [node name="DeckContainer" type="GridContainer" parent="Panel/MainView/HBoxContainer/FolderContainer/ScrollContainer"]
 layout_mode = 2
-columns = 5
+columns = 4
 
 [node name="Btn_NewFolder" type="Button" parent="Panel/MainView/HBoxContainer/FolderContainer"]
 layout_mode = 2

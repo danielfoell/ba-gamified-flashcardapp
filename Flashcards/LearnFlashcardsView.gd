@@ -48,7 +48,18 @@ func _On_BtnGood_Pressed():
 	BtnGood.disabled = true
 	currentFlashcard.learned = true
 	currentFlashcard.last_learned = Time.get_datetime_dict_from_system()
+	GData.user.AddExp(GData.data.get("EXP")["CARD_SOLVED"])
+	var label = Label.new()
+	label.set_text("+25")
+	label.position = BtnGood.position
+	BtnGood.add_child(label)
+	var tween = get_tree().create_tween()
+	tween.tween_property(label, "position:y", -80, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.set_parallel()
+	tween.tween_property(label, "modulate:a", 0, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	SetNextFlashcard()
+	await tween.finished
+	label.queue_free()
 
 func GetNextFlashcard():
 	if currentDeck.GetLearningFlashcards().find(currentFlashcard) + 1 >= currentDeck.GetLearningFlashcards().size(): 
@@ -57,7 +68,7 @@ func GetNextFlashcard():
 		return currentDeck.GetLearningFlashcards()[currentDeck.GetLearningFlashcards().find(currentFlashcard) + 1]
 
 func SetNextFlashcard():
-	StorageService.saveFlashcards()
+	StorageService.SaveFlashcards()
 	var tween = get_tree().create_tween()
 	tween.tween_property(Progress, "value", Progress.get_value() + 1, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	if currentFlashcard == currentDeck.GetLearningFlashcards().back():
@@ -84,10 +95,10 @@ func _On_BtnClose_Pressed():
 			if !cardsLeft.has(card):
 				cardsLeft.append(card)
 	currentDeck.learningFlashcards = cardsLeft.duplicate()
-	StorageService.saveFlashcards()
+	StorageService.SaveFlashcards()
 	GSignals.RefreshUI.emit()
 	queue_free()
-	get_tree().get_root().get_child(3).show()
+	get_tree().get_root().get_child(4).show()
 
 func _On_BtnContinue_Pressed():
 	Answer.visible = false
@@ -109,7 +120,7 @@ func _input(event):
 		if Input.is_action_just_pressed("LMB") and Rect2(Vector2(), get_global_rect().size).has_point(get_local_mouse_position()) or Input.is_action_just_pressed("SPACE"):
 			Answer.visible = !Answer.visible
 			currentFlashcard.answer_visible = !currentFlashcard.answer_visible
-			StorageService.saveFlashcards()
+			StorageService.SaveFlashcards()
 		elif Input.is_action_just_pressed("LEFT"):
 			_On_BtnBad_Pressed()
 		elif Input.is_action_just_pressed("RIGHT"):

@@ -9,6 +9,7 @@ signal DeckDeleted
 var deck
 
 func _ready():
+	#GData.UnlockAchievement(GData.ACHIEVEMENTS.CREATED_FIRSTCARD)
 	Options.hide()
 
 func init(deckData: DeckData):
@@ -22,11 +23,9 @@ func _On_BtnOptions_Mouse_Entered():
 	Options.show()
 
 func _On_BtnDeleteCard_Pressed():
-	print("Lol " , StorageService.decks)
 	StorageService.decks.erase(deck)
-	#StorageService.decks.erase(DeckTitle.text)
 	StorageService.DeleteDeck(deck)
-	StorageService.saveFlashcards()
+	StorageService.SaveFlashcards()
 	DeckDeleted.emit()
 
 func _On_BtnEditCard_Pressed():

@@ -33,7 +33,7 @@ func _On_BtnCardOptions_pressed():
 func _On_BtnDeleteCard_pressed():
 	StorageService.currentDeck.flashcards.erase(flashcard)
 	StorageService.currentDeck.learningFlashcards.erase(flashcard)
-	StorageService.saveFlashcards()
+	StorageService.SaveFlashcards()
 	GSignals.RefreshUI.emit()
 	FlashcardDeleted.emit()
 

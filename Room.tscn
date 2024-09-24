@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c2tsluxn2ccmm"]
+[gd_scene load_steps=49 format=3 uid="uid://c2tsluxn2ccmm"]
 
 [ext_resource type="Texture2D" uid="uid://nm50mor5wrj5" path="res://Assets/Models/Bed/furniturebits_texture.png" id="1_un02t"]
 [ext_resource type="PackedScene" uid="uid://cykek5i7anbb7" path="res://Assets/Models/Bed/cabinet_medium_decorated.gltf" id="3_wrhdb"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dlmwbg2aes4su" path="res://Assets/msedge_7cCRO71sRG.jpg" id="14_lyxlm"]
 [ext_resource type="Script" path="res://Interact.gd" id="15_l2mbs"]
 [ext_resource type="FontFile" uid="uid://bel83db0lco6m" path="res://Assets/Fonts/Roboto-Light.ttf" id="17_c0sbm"]
+[ext_resource type="Script" path="res://UI.gd" id="17_fnh0e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5tws3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -367,6 +368,64 @@ _data = {
 }
 
 [node name="Room" type="Node3D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("17_fnh0e")
+
+[node name="Exp" type="Control" parent="UI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/Exp"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -315.0
+offset_bottom = 27.0
+grow_horizontal = 0
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Level" type="Label" parent="UI/MarginContainer/Exp/HBoxContainer"]
+layout_mode = 2
+text = "Lv. 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExpBar" type="ProgressBar" parent="UI/MarginContainer/Exp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/Exp/HBoxContainer/ExpBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="ExpValue" type="Label" parent="UI/MarginContainer/Exp/HBoxContainer/ExpBar/MarginContainer"]
+layout_mode = 2
+text = "0/0"
+horizontal_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e0wad")

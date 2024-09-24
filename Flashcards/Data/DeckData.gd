@@ -22,3 +22,6 @@ func GetFlashcards():
 
 func GetLearningFlashcards():
 	return learningFlashcards
+
+func GetCardCount():
+	return flashcards.size()

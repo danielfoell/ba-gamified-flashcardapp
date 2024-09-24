@@ -21,7 +21,7 @@ func _input(event):
 		if Input.is_action_just_pressed("LMB") and Rect2(Vector2(), get_global_rect().size).has_point(get_local_mouse_position()) or Input.is_action_just_pressed("SPACE"):
 			Answer.visible = !Answer.visible
 			currentFlashcard.answer_visible = !currentFlashcard.answer_visible
-			StorageService.saveFlashcards()
+			StorageService.SaveFlashcards()
 		#elif Input.is_action_just_pressed("LMB") and not Rect2(Vector2(), $MouseArea.get_rect().size).has_point(get_local_mouse_position()):
 			#visible = false
 			#panel.show()

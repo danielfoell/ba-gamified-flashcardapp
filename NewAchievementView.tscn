@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://2em24gqoycvo"]
+
+[ext_resource type="Script" path="res://NewAchievementView.gd" id="1_vo0q8"]
+
+[node name="NewAchievement" type="Control"]
+layout_mode = 3
+anchor_left = 1.063
+anchor_top = 1.062
+anchor_right = 1.063
+anchor_bottom = 1.062
+offset_left = -120.96
+offset_top = -66.9601
+offset_right = -120.96
+offset_bottom = -66.9601
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("1_vo0q8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = -133.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Neues Achievement!"
+
+[node name="Achievement" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(205, 50)
+layout_mode = 2
+text = "Erstelle deine erste Lernkarte."
+autowrap_mode = 2
+
+[node name="Exp" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "+300"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

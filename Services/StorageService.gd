@@ -3,6 +3,8 @@ extends Node
 #var save_path = "user://flashcards.cards"
 var base_save_path = "user://Decks/"
 var deck_save_path = "user://Decks/%s.deck"
+var user_save_path = "user://User/user.ud"
+var base_user_save_path = "user://User/"
 
 var flashcards: Array = []
 #var decks: Dictionary = {}
@@ -11,7 +13,54 @@ var decks: Array[DeckData]
 
 var currentDeck
 
-func loadFlashcards():
+func _ready():
+	LoadUser()
+	LoadFlashcards()
+
+func LoadUser():
+	if not DirAccess.dir_exists_absolute(base_user_save_path): return
+	var dir = DirAccess.open(base_user_save_path)
+	var file = FileAccess.open(user_save_path, FileAccess.READ)
+	if file:
+		var userData: UserData = UserData.new()
+		var data = file.get_var()
+		userData.name = data.name
+		userData.level = data.level
+		userData.exp = data.exp
+		userData.expNeededForNextLevel = data.expNeededForNextLevel
+		userData.coins = data.coins
+		userData.dailyStreak = data.dailyStreak
+		userData.achievements = data.achievements
+		GData.user = userData
+		print("XD ", GData.user.exp)
+		print("User loaded")
+	else:
+		print("Failed loading user")
+
+func SaveUser():
+	if not DirAccess.dir_exists_absolute(base_user_save_path):
+		DirAccess.make_dir_absolute(base_user_save_path)
+	var userData: UserData = GData.user
+	var userConverted: Dictionary
+	userConverted = {
+		"name": userData.name,
+		"level": userData.level,
+		"exp": userData.exp,
+		"expNeededForNextLevel": userData.expNeededForNextLevel,
+		"coins": userData.coins,
+		"dailyStreak": userData.dailyStreak,
+		"achievements": userData.achievements
+	}
+	var file = FileAccess.open(user_save_path, FileAccess.WRITE)
+	if file:
+		file.store_var(userConverted)
+		file.close()
+		#print("Saved")
+	else:
+		pass
+		#print("Failed saving")
+
+func LoadFlashcards():
 	if not DirAccess.dir_exists_absolute(base_save_path): return
 	var dir = DirAccess.open(base_save_path)
 	for deck in dir.get_files():
@@ -32,11 +81,12 @@ func loadFlashcards():
 					newDeck.learningFlashcards.append(newFlashcard)
 			decks.append(newDeck)
 			file.close
-			print("Loaded")
+			#print("Loaded")
 		else:
-			print("Failed loading")
+			pass
+			#print("Failed loading")
 
-func saveFlashcards():
+func SaveFlashcards():
 	if not DirAccess.dir_exists_absolute(base_save_path):
 		DirAccess.make_dir_absolute(base_save_path)
 	for deck in decks:
@@ -54,9 +104,10 @@ func saveFlashcards():
 		if file:
 			file.store_var(flashcardsConverted)
 			file.close()
-			print("Saved")
+			#print("Saved")
 		else:
-			print("Failed saving")
+			pass
+			#print("Failed saving")
 
 func DeleteDeck(deck: DeckData):
 	DirAccess.remove_absolute(deck_save_path % deck.name)

@@ -87,7 +87,7 @@ func _On_DeckSelected(deckData: DeckData):
 
 func _On_Btn_New_Folder_Pressed():
 	var CreateNewDeck = NEW_DECK.instantiate()
-	get_tree().get_root().add_child(CreateNewDeck)
+	add_child(CreateNewDeck)
 	var Deck = DECK.instantiate()
 	await CreateNewDeck.DeckCreated
 	DeckContainer.add_child(Deck)
@@ -98,12 +98,12 @@ func _On_Btn_New_Folder_Pressed():
 func _On_EditFlashcard(flashcard):
 	var CreateFlashcard = CREATE_FLASHCARD.instantiate()
 	CreateFlashcard.FlashcardCreated.connect(_On_DeckSelected.bind(StorageService.currentDeck))
-	get_tree().get_root().add_child(CreateFlashcard)
+	add_child(CreateFlashcard)
 	CreateFlashcard.Edit(flashcard)
 
 func _On_Btn_Create_New_Flashcards_pressed():
 	var CreateFlashcard = CREATE_FLASHCARD.instantiate()
-	get_tree().get_root().add_child(CreateFlashcard)
+	add_child(CreateFlashcard)
 	CreateFlashcard.FlashcardCreated.connect(_On_DeckSelected.bind(StorageService.currentDeck))
 	#StorageService.currentDeck.learningFlashcards + [CreateFlashcard.flashcard]
 	await CreateFlashcard.FlashcardCreated

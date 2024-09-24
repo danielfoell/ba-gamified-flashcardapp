@@ -32,7 +32,12 @@ func _on_btn_add_card_pressed():
 	StorageService.currentDeck.flashcards.append(flashcard)
 	StorageService.currentDeck.learningFlashcards.append(flashcard)
 	GSignals.RefreshUI.emit()
-	StorageService.saveFlashcards()
+	StorageService.SaveFlashcards()
+	if !GData.user.HasAchievement(GData.ACHIEVEMENTS.keys()[GData.ACHIEVEMENTS.CREATED_FIRSTCARD]):
+			GData.user.UnlockAchievement(GData.ACHIEVEMENTS.keys()[GData.ACHIEVEMENTS.CREATED_FIRSTCARD])
+	if !GData.user.HasAchievement(GData.ACHIEVEMENTS.keys()[GData.ACHIEVEMENTS.CREATED_TENCARDS]):
+		if StorageService.decks.reduce(func(accum, deck): return accum + deck.GetCardCount(), 0) >= 10:
+			GData.user.UnlockAchievement(GData.ACHIEVEMENTS.keys()[GData.ACHIEVEMENTS.CREATED_TENCARDS])
 	FlashcardCreated.emit()
 	queue_free()
 
@@ -47,7 +52,7 @@ func _On_BtnEditCard_Pressed():
 	flashcard.question = Question.text
 	flashcard.answer = Answer.text
 	GSignals.RefreshUI.emit()
-	StorageService.saveFlashcards()
+	StorageService.SaveFlashcards()
 	FlashcardCreated.emit()
 	queue_free()
 
