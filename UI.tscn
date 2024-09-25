@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn5diggd0pjyy"]
+
+[ext_resource type="Script" path="res://UI.gd" id="1_ppdf2"]
+[ext_resource type="Texture2D" uid="uid://mlx28oq7vnvg" path="res://Assets/Icons/book_clear.png" id="2_ic60q"]
+[ext_resource type="Texture2D" uid="uid://4mpc7lmkf3ao" path="res://Assets/Icons/book_fill.png" id="3_l0p56"]
+[ext_resource type="Texture2D" uid="uid://bu0623f0eglg5" path="res://Assets/Icons/coins.png" id="4_cubnr"]
+[ext_resource type="AudioStream" uid="uid://gcg0c6lnru2e" path="res://Assets/Audio/levelup.mp3" id="5_oixoj"]
+
+[node name="UI" type="CanvasLayer"]
+layer = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+script = ExtResource("1_ppdf2")
+
+[node name="Exp" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/Exp"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_top = 77.0
+offset_right = 36.0
+offset_bottom = 115.0
+grow_horizontal = 0
+theme_override_constants/separation = 15
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="ExpBar" type="ProgressBar" parent="MarginContainer/Exp/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Exp/HBoxContainer/ExpBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="ExpValue" type="Label" parent="MarginContainer/Exp/HBoxContainer/ExpBar/MarginContainer"]
+layout_mode = 2
+text = "0/0"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/Exp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="ExpProgress" type="TextureProgressBar" parent="MarginContainer/Exp/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -286.0
+offset_right = 172.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.165, 0.165)
+pivot_offset = Vector2(250, 250)
+fill_mode = 3
+texture_under = ExtResource("2_ic60q")
+texture_progress = ExtResource("3_l0p56")
+
+[node name="Level" type="Label" parent="MarginContainer/Exp/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Lv. 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Exp"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 163.0
+offset_right = 983.0
+offset_bottom = 1243.0
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("4_cubnr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oixoj")

@@ -11,16 +11,17 @@ config_version=5
 [application]
 
 config/name="LearnApp"
-run/main_scene="res://Room.tscn"
+run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 StorageService="*res://Services/StorageService.gd"
 GData="*res://GData.gd"
 GSignals="*res://GSignals.gd"
-Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+TutorialService="*res://TutorialService.gd"
 
 [dialogic]
 
@@ -62,7 +63,6 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=2
 window/size/borderless=true
-window/size/always_on_top=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

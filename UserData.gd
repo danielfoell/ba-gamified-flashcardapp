@@ -6,8 +6,9 @@ class_name UserData
 @export var exp: int = 0
 @export var expNeededForNextLevel: int = 350
 @export var coins: int = 0
-@export var dailyStreak: int = 1
+@export var dailyStreak: int = 0
 @export var achievements: Array
+@export var tutorialStage: int = 0
 
 var expNeededMultiplier = 1.5
 

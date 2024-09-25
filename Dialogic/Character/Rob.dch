@@ -8,14 +8,14 @@
 "sound_moods": {},
 "style": ""
 },
-"default_portrait": "New portrait",
+"default_portrait": "Rob",
 "description": "",
 "display_name": "Rob",
 "mirror": false,
 "nicknames": [""],
 "offset": Vector2(0, 0),
 "portraits": {
-"New portrait": {
+"Rob": {
 "export_overrides": {
 "image": "\"res://Assets/Rob.png\""
 },

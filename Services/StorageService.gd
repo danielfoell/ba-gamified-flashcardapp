@@ -6,16 +6,20 @@ var deck_save_path = "user://Decks/%s.deck"
 var user_save_path = "user://User/user.ud"
 var base_user_save_path = "user://User/"
 
+const ROOM = preload("res://Room.tscn")
+
 var flashcards: Array = []
 #var decks: Dictionary = {}
-
+var roomData = ROOM
 var decks: Array[DeckData]
 
 var currentDeck
+var currentRoom
 
 func _ready():
 	LoadUser()
 	LoadFlashcards()
+	LoadRoom()
 
 func LoadUser():
 	if not DirAccess.dir_exists_absolute(base_user_save_path): return
@@ -31,8 +35,8 @@ func LoadUser():
 		userData.coins = data.coins
 		userData.dailyStreak = data.dailyStreak
 		userData.achievements = data.achievements
+		userData.tutorialStage = data.tutorialStage
 		GData.user = userData
-		print("XD ", GData.user.exp)
 		print("User loaded")
 	else:
 		print("Failed loading user")
@@ -49,7 +53,8 @@ func SaveUser():
 		"expNeededForNextLevel": userData.expNeededForNextLevel,
 		"coins": userData.coins,
 		"dailyStreak": userData.dailyStreak,
-		"achievements": userData.achievements
+		"achievements": userData.achievements,
+		"tutorialStage": userData.tutorialStage
 	}
 	var file = FileAccess.open(user_save_path, FileAccess.WRITE)
 	if file:
@@ -111,3 +116,15 @@ func SaveFlashcards():
 
 func DeleteDeck(deck: DeckData):
 	DirAccess.remove_absolute(deck_save_path % deck.name)
+
+func SaveRoom():
+	if not DirAccess.dir_exists_absolute("user://Room/"):
+		DirAccess.make_dir_absolute("user://Room/")
+	GSignals.GetCurrentRoom.emit()
+	await get_tree().create_timer(0.3).timeout
+	ResourceSaver.save(roomData, "user://Room/Room.tscn")
+
+func LoadRoom():
+	if not DirAccess.dir_exists_absolute("user://Room/"): return
+	if not ResourceLoader.exists("user://Room/Room.tscn"): return
+	roomData = ResourceLoader.load("user://Room/Room.tscn")
