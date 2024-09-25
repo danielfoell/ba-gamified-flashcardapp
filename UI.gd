@@ -39,6 +39,7 @@ func _RefreshProgress():
 		await tween.finished
 		tween = get_tree().create_tween()
 		ExpProgress.set_value(0)
+		ExpProgress.set_max(GData.user.expNeededForNextLevel)
 	Level.set_text("Lv. " + str(GData.user.level))
 	ExpValue.set_text(str(GData.user.exp) + "/" + str(GData.user.expNeededForNextLevel))
 	tween.tween_property(ExpProgress, "value", GData.user.exp, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
