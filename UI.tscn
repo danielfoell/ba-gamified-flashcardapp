@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn5diggd0pjyy"]
+[gd_scene load_steps=8 format=3 uid="uid://bn5diggd0pjyy"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_ppdf2"]
 [ext_resource type="Texture2D" uid="uid://mlx28oq7vnvg" path="res://Assets/Icons/book_clear.png" id="2_ic60q"]
@@ -6,8 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://bu0623f0eglg5" path="res://Assets/Icons/coins.png" id="4_cubnr"]
 [ext_resource type="AudioStream" uid="uid://gcg0c6lnru2e" path="res://Assets/Audio/levelup.mp3" id="5_oixoj"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dj0l6"]
+bg_color = Color(0, 0, 0, 0.541176)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0gmk"]
+bg_color = Color(0.6, 0.6, 0.584314, 1)
+border_width_right = 5
+border_width_bottom = 7
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [node name="UI" type="CanvasLayer"]
 layer = 0
+script = ExtResource("1_ppdf2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -19,7 +32,6 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
-script = ExtResource("1_ppdf2")
 
 [node name="Exp" type="Control" parent="MarginContainer"]
 layout_mode = 2
@@ -104,3 +116,72 @@ texture = ExtResource("4_cubnr")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_oixoj")
+
+[node name="EscMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.5
+offset_top = -80.0
+offset_right = 217.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="EscMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.03908
+anchor_top = -3.3375
+anchor_right = 3.09885
+anchor_bottom = 4.39375
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dj0l6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="EscMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = -66.0
+offset_right = 238.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b0gmk")
+
+[node name="MarginContainer" type="MarginContainer" parent="EscMenu/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EscMenu/Panel2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnSettings" type="Button" parent="EscMenu/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Einstellungen"
+
+[node name="BtnExit" type="Button" parent="EscMenu/Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Beenden"
+
+[connection signal="pressed" from="EscMenu/Panel2/MarginContainer/VBoxContainer/BtnExit" to="." method="_On_BtnExit_Pressed"]

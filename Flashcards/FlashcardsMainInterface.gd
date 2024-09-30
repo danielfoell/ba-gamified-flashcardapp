@@ -119,17 +119,16 @@ func _On_BtnBack_Pressed():
 	MainView.show()
 	BtnBack.hide()
 
-func _On_Search_Deck_Text_Changed():
+func _On_Search_Deck_Text_Changed(text):
 	for deck in DeckContainer.get_children():
-		if deck.DeckTitle.text.to_lower().contains(SearchDeck.text.to_lower()) or SearchDeck.text.is_empty():
+		if deck.DeckTitle.text.to_lower().contains(text.to_lower()) or text.is_empty():
 			deck.show()
 		else:
 			deck.hide()
 
-func _On_Search_Flashcard_Text_Changed():
-	if SearchFlashcard.text != "": Btn_ClearSearch.show()
+func _On_Search_Flashcard_Text_Changed(text):
 	for card in FlashcardsContainer.get_children():
-		if card.Question.text.to_lower().contains(SearchFlashcard.text.to_lower()) or card.Answer.text.to_lower().contains(SearchFlashcard.text.to_lower()) or SearchFlashcard.text.is_empty():
+		if card.Question.text.to_lower().contains(text.to_lower()) or card.Answer.text.to_lower().contains(text.to_lower()) or text.is_empty():
 			card.show()
 		else:
 			card.hide()
@@ -139,17 +138,9 @@ func _On_FlashcardSelect(flashcard: FlashcardData):
 	$Panel.hide()
 	FlashcardsView.show()
 
-
 func _On_BtnClose_Pressed():
 	FlashcardsView.hide()
 	$Panel.show()
-
-
-func _On_Btn_ClearSearch():
-	SearchFlashcard.text = ""
-	Btn_ClearSearch.hide()
-	_On_Search_Flashcard_Text_Changed()
-
 
 func _On_BtnLearn_Pressed():
 	var LearnDeck = LEARNDECK.instantiate()

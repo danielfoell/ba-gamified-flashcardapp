@@ -7,14 +7,18 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukomo"]
 bg_color = Color(0.65098, 0.8, 0.427451, 1)
-border_color = Color(0.966117, 0.909408, 0.872845, 1)
+border_width_right = 4
+border_width_bottom = 6
+border_color = Color(0.3654, 0.45, 0.2385, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+anti_aliasing = false
+anti_aliasing_size = 0.01
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hidsh"]
-bg_color = Color(0.290196, 0.439216, 0.0666667, 0.521569)
+bg_color = Color(0.5278, 0.65, 0.3445, 1)
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 expand_margin_top = 15.0
@@ -74,18 +78,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 15
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="TitleBG" type="Panel" parent="MarginContainer"]
 custom_minimum_size = Vector2(0, 47.195)
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hidsh")
 
-[node name="DeckTitle" type="Label" parent="MarginContainer/Panel"]
+[node name="DeckTitle" type="Label" parent="MarginContainer/TitleBG"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -105,7 +111,7 @@ text = "Anatomie"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel2" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel2" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = -9.0
@@ -114,7 +120,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel2"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel2"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -122,7 +128,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel3" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel3" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 23.0
 offset_top = -9.0
@@ -131,7 +137,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel3"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel3"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -139,7 +145,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel4" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel4" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 37.0
 offset_top = -9.0
@@ -148,7 +154,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel4"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel4"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -156,7 +162,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel5" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel5" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 52.0
 offset_top = -9.0
@@ -165,7 +171,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel5"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel5"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -173,7 +179,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel6" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel6" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 68.0
 offset_top = -9.0
@@ -182,7 +188,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel6"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel6"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -190,7 +196,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel7" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel7" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 83.0
 offset_top = -9.0
@@ -199,7 +205,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel7"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel7"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -207,7 +213,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel8" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel8" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 98.0
 offset_top = -9.0
@@ -216,7 +222,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel8"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel8"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -224,7 +230,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel9" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel9" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 113.0
 offset_top = -9.0
@@ -233,7 +239,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel9"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel9"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -241,7 +247,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel10" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel10" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 128.0
 offset_top = -9.0
@@ -250,7 +256,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel10"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel10"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -258,7 +264,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel11" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel11" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 143.0
 offset_top = -9.0
@@ -267,7 +273,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel11"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel11"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -275,7 +281,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel12" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel12" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 158.0
 offset_top = -9.0
@@ -284,7 +290,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel12"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel12"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -292,7 +298,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel13" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel13" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 173.0
 offset_top = -9.0
@@ -301,7 +307,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel13"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel13"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -309,7 +315,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel14" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel14" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 188.0
 offset_top = -9.0
@@ -318,7 +324,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel14"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel14"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0
@@ -326,7 +332,7 @@ offset_right = 7.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f1hrq")
 
-[node name="Panel15" type="Panel" parent="MarginContainer/Panel"]
+[node name="Panel15" type="Panel" parent="MarginContainer/TitleBG"]
 layout_mode = 0
 offset_left = 203.0
 offset_top = -9.0
@@ -335,7 +341,7 @@ offset_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7y2w2")
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="MarginContainer/Panel/Panel15"]
+[node name="Panel" type="Panel" parent="MarginContainer/TitleBG/Panel15"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -9.0

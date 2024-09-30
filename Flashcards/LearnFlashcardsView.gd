@@ -36,6 +36,12 @@ func _ready():
 	Question.text = currentFlashcard.question
 	Answer.text = currentFlashcard.answer
 	Answer.visible = false
+	if Answer.visible:
+		BtnGood.show()
+		BtnBad.show()
+	else:
+		BtnGood.hide()
+		BtnBad.hide()
 	Progress.set_max(currentDeck.GetLearningFlashcards().size())
 	Progress.set_value(0)
 
@@ -53,17 +59,16 @@ func _On_BtnGood_Pressed():
 	currentFlashcard.last_learned = Time.get_datetime_dict_from_system()
 	GData.user.AddExp(GData.data.get("EXP")["CARD_SOLVED"])
 	AudioPlayer.play()
-	#var label = Label.new()
-	#label.set_text("+25")
-	Xp.show()
-	#BtnGood.add_child(label)
+	var xpIcon = Xp.duplicate()
+	add_child(xpIcon)
+	xpIcon.show()
 	var tween = get_tree().create_tween()
-	tween.tween_property(Xp, "position:y", -2, 2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(xpIcon, "position:y", -2, 2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	tween.set_parallel()
-	tween.tween_property(Xp, "modulate:a", 0, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(xpIcon, "modulate:a", 0, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	SetNextFlashcard()
 	await tween.finished
-	#Xp.hide()
+	xpIcon.queue_free()
 
 func GetNextFlashcard():
 	if currentDeck.GetLearningFlashcards().find(currentFlashcard) + 1 >= currentDeck.GetLearningFlashcards().size(): 
@@ -92,6 +97,13 @@ func SetNextFlashcard():
 	await tween.finished
 	BtnBad.disabled = false
 	BtnGood.disabled = false
+	if Answer.visible:
+		BtnGood.show()
+		BtnBad.show()
+	else:
+		BtnGood.hide()
+		BtnBad.hide()
+	
 	
 func _On_BtnClose_Pressed():
 	for card in currentDeck.GetLearningFlashcards():
@@ -124,6 +136,12 @@ func _input(event):
 		if Input.is_action_just_pressed("LMB") and Rect2(Vector2(), get_global_rect().size).has_point(get_local_mouse_position()) or Input.is_action_just_pressed("SPACE"):
 			Answer.visible = !Answer.visible
 			currentFlashcard.answer_visible = !currentFlashcard.answer_visible
+			if Answer.visible:
+				BtnGood.show()
+				BtnBad.show()
+			else:
+				BtnGood.hide()
+				BtnBad.hide()
 			StorageService.SaveFlashcards()
 		elif Input.is_action_just_pressed("LEFT"):
 			_On_BtnBad_Pressed()

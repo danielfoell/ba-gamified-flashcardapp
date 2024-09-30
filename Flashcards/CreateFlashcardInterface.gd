@@ -45,8 +45,8 @@ func _on_btn_add_card_pressed():
 func _On_BtnEditCard_Pressed():
 	if Question.text.is_empty() or Answer.text.is_empty(): return
 	var currentDeck: DeckData = StorageService.currentDeck
-	for flashcard in currentDeck.flashcards:
-		if flashcard.question == Question.text:
+	for card in currentDeck.flashcards:
+		if card.question == Question.text and card != flashcard:
 			print("Frage existiert bereits")
 			return
 	flashcard.question = Question.text

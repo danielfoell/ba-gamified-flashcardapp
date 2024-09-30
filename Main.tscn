@@ -36,6 +36,8 @@ corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
+anti_aliasing = false
+anti_aliasing_size = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3jeu"]
 bg_color = Color(0.259294, 0.259294, 0.259294, 1)
@@ -196,13 +198,16 @@ label_settings = SubResource("LabelSettings_xv5cf")
 vertical_alignment = 1
 justification_flags = 0
 
-[node name="TE_SearchDeck" type="TextEdit" parent="Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer"]
+[node name="TE_SearchDeck" type="LineEdit" parent="Panel/MainView/HBoxContainer/FolderContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_5vi50")
 placeholder_text = "Suchen..."
+context_menu_enabled = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
 caret_blink = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainView/HBoxContainer/FolderContainer"]
@@ -432,13 +437,16 @@ theme_override_fonts/font = ExtResource("4_dnsbm")
 theme_override_font_sizes/font_size = 46
 text = "Karten(1)"
 
-[node name="TextEdit" type="TextEdit" parent="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TextEdit" type="LineEdit" parent="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c5pjr")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_5vi50")
 placeholder_text = "Suchen..."
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+clear_button_enabled = true
 caret_blink = true
 
 [node name="Btn_Search_Clear" type="Button" parent="Panel/DeckView/HBoxContainer/VBoxContainer/HBoxContainer/TextEdit"]

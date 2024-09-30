@@ -20,6 +20,7 @@ func _on_button_pressed():
 	else:
 		var deck = DeckData.new()
 		deck.name = Deckname.text
+		deck.SetColor(BtnColorPicker.color)
 		StorageService.decks.append(deck)
 		StorageService.SaveFlashcards()
 		queue_free()

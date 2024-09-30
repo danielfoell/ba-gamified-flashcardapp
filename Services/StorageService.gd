@@ -73,8 +73,8 @@ func LoadFlashcards():
 		if file:
 			var newDeck = DeckData.new()
 			newDeck.name = deck.get_basename()
-			var flashcards = file.get_var()
-			for flashcard in flashcards:
+			var deckData = file.get_var()
+			for flashcard in deckData["flashcards"]:
 				var newFlashcard = FlashcardData.new()
 				newFlashcard.question = flashcard["question"]
 				newFlashcard.answer = flashcard["answer"]
@@ -84,6 +84,8 @@ func LoadFlashcards():
 				newDeck.flashcards.append(newFlashcard)
 				if newFlashcard.learned == false:
 					newDeck.learningFlashcards.append(newFlashcard)
+			print(deckData)
+			newDeck.SetColor(deckData["deckcolor"])
 			decks.append(newDeck)
 			file.close
 			#print("Loaded")
@@ -95,6 +97,7 @@ func SaveFlashcards():
 	if not DirAccess.dir_exists_absolute(base_save_path):
 		DirAccess.make_dir_absolute(base_save_path)
 	for deck in decks:
+		var deckConverted: Dictionary
 		var flashcards = deck.flashcards
 		var flashcardsConverted: Array
 		for flashcard in flashcards:
@@ -105,9 +108,12 @@ func SaveFlashcards():
 				"learned": flashcard.learned,
 				"last_learned": flashcard.last_learned
 			})
+		deckConverted["name"] = deck.name
+		deckConverted["deckcolor"] = deck.GetColor()
+		deckConverted["flashcards"] = flashcardsConverted
 		var file = FileAccess.open(deck_save_path % deck.name, FileAccess.WRITE)
 		if file:
-			file.store_var(flashcardsConverted)
+			file.store_var(deckConverted)
 			file.close()
 			#print("Saved")
 		else:

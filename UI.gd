@@ -1,10 +1,11 @@
-extends MarginContainer
+extends CanvasLayer
 
-@onready var Level = $Exp/HBoxContainer/Level
-@onready var ExpBar = $Exp/HBoxContainer/ExpBar
-@onready var ExpValue = $Exp/HBoxContainer/ExpBar/MarginContainer/ExpValue
-@onready var ExpProgress = $Exp/HBoxContainer/Control/ExpProgress
-@onready var AudioPlayer = $"../AudioStreamPlayer"
+@onready var Level = $MarginContainer/Exp/HBoxContainer/Level
+@onready var ExpBar = $MarginContainer/Exp/HBoxContainer/ExpBar
+@onready var ExpValue = $MarginContainer/Exp/HBoxContainer/ExpBar/MarginContainer/ExpValue
+@onready var ExpProgress = $MarginContainer/Exp/HBoxContainer/Control/ExpProgress
+@onready var AudioPlayer = $AudioStreamPlayer
+@onready var EscMenu = $EscMenu
 
 
 const NEW_ACHIEVEMENT_VIEW = preload("res://NewAchievementView.tscn")
@@ -43,3 +44,16 @@ func _RefreshProgress():
 	Level.set_text("Lv. " + str(GData.user.level))
 	ExpValue.set_text(str(GData.user.exp) + "/" + str(GData.user.expNeededForNextLevel))
 	tween.tween_property(ExpProgress, "value", GData.user.exp, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+
+func _unhandled_key_input(event):
+	if event.keycode == KEY_ESCAPE and event.is_pressed():
+		EscMenu.visible = !EscMenu.visible
+		if EscMenu.visible:
+			layer = 1
+		else:
+			layer = 0
+
+
+func _On_BtnExit_Pressed():
+	print("Tet")
+	get_tree().quit()
