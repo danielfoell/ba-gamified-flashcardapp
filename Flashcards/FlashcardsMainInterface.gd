@@ -36,6 +36,8 @@ func _ready():
 	_LoadDecks()
 
 func _On_BtnExit_Pressed():
+	if GData.user.tutorialStage == TutorialService.TUTORIALSTAGE.FIRSTLEVELUP and has_user_signal("closed"):
+		emit_signal("closed")
 	queue_free()
 
 func _LoadDecks():

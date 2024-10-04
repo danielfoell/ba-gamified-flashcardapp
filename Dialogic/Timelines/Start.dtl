@@ -1,12 +1,13 @@
 join Rob right [animation="Fade In Up"]
-Rob: Hey und willkommen! Ich bin Rob und werd' dir fürs Erste erstmal behilflich sein. 
+[sound path="res://Assets/Audio/sci-fi-robot-gibberish.mp3" volume="0.0"]
+Rob: Hey und willkommen! Ich bin Rob und werd' dir fürs Erste erstmal behilflich sein.
 Rob: Lass mich dir erstmal kurz deinen Raum zeigen.
 update Rob rightmost [move_time="0.5"]
-do TutorialService.BuildRoom()
+[signal arg="ST1_BuildRoom"]
 [wait time="5.5"]
 update Rob right [move_time="0.5"]
 Rob: Aktuell etwas leer, aber alles mit der Zeit. Ich hab dir schon mal paar Möbel bereitgestellt, sowie leere Karteikarten. Fang doch schon mal an dein erstes Deck zu erstellen - Ich schau mal, ob ich in der Zwischenzeit noch einen PC für dich finde.
-leave Rob [animation="Slide Out Down" wait="true"]
+leave Rob [animation="Slide Out Down"]
 do StorageService.SaveRoom()
 do TutorialService.SetStage("1")
 do StorageService.SaveUser()

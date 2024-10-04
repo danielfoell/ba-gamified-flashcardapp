@@ -1,0 +1,5 @@
+join Rob right [animation="Fade In Up"]
+Rob: Hi nochmal! Ich sehe du hast schon bisschen in die Karteikarten reingeschaut und hast auch schon das nächste Level erreicht. Ich konnte dir in der Zwischenzeit einen PC auftreiben - Dort kannst du unter anderem auch neue Möbel für dein Zimmer bestellen, damit es nicht mehr so leer aussieht.
+Rob: Das war's dann auch erstmal von mir. Solltest du zwischendurch mal Fragen hab kannst du mich jederzeit anklicken.
+leave Rob [animation="Fade Out Down"]
+[signal arg="ST2_UNLOCKPC"]

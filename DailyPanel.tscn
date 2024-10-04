@@ -1,0 +1,944 @@
+[gd_scene load_steps=77 format=3 uid="uid://bmgvn6fytg4jj"]
+
+[ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="1_tcyyq"]
+[ext_resource type="Script" path="res://DailyReward.gd" id="1_v4uwy"]
+[ext_resource type="Texture2D" uid="uid://bu0623f0eglg5" path="res://Assets/Icons/coins.png" id="2_g5yub"]
+[ext_resource type="Texture2D" uid="uid://cepyto8sfde03" path="res://Assets/xpup.png" id="3_eu3ym"]
+[ext_resource type="Texture2D" uid="uid://bts4c1misr0di" path="res://Assets/Icons/unlock.png" id="4_f25ec"]
+[ext_resource type="Texture2D" uid="uid://cp40hxm4a4h05" path="res://Assets/Icons/avocado.png" id="6_cxv88"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60jy7"]
+bg_color = Color(0.404511, 0.404511, 0.404511, 1)
+border_width_right = 7
+border_width_bottom = 10
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 25
+shadow_offset = Vector2(18.595, 25.12)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ta7g"]
+bg_color = Color(0.576471, 0.698039, 0.956863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.576471, 0.698039, 0.956863, 1)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrcxw"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxknf"]
+bg_color = Color(0, 0, 0, 0.580392)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tcna"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(2560, 3840, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0nju"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1920, 3840, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egtek"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1280, 3840, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obu0s"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(640, 3840, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86dms"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(0, 3840, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy3up"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5760, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5jdg"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5120, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gaf7"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(4480, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lxo1"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3840, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_413jx"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3200, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o67x"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(2560, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxfun"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1920, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dw7u"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1280, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbp4v"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(640, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k75g4"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(0, 3200, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuvbh"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5760, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gktcf"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5120, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v56my"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(4480, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfso7"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3840, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxjf2"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3200, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mula"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(2560, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbgp3"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1920, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yumuv"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1280, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tir1"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(640, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g81oa"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(0, 2560, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvlll"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5760, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpj6m"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5120, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h6ci"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(4480, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf7ud"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3840, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00vb8"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3200, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfyxb"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(2560, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qydnk"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1920, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf0lw"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1280, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0eox"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(640, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvro5"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(0, 1920, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8usg"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5760, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2n7x"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5120, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq8ec"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(4480, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb5jn"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3840, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2a5l"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3200, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iish"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(2560, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5c4g"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1920, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loy0f"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1280, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hshuc"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(640, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byvfc"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(0, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhhyl"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5760, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oql0f"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5120, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3tso"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(4480, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiyhi"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3840, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swq6w"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3200, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4noug"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(2560, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2ghp"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1920, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7lyi"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1280, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe7r8"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(640, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75w7s"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(0, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cfyv"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5760, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvj8t"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(5120, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh164"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(4480, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asri8"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3840, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m24vx"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(3200, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqhy0"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olhja"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mrr4"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeiq1"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkuml"]
+atlas = ExtResource("4_f25ec")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utlv3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tcna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0nju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egtek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obu0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86dms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy3up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5jdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gaf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lxo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_413jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o67x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxfun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dw7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbp4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k75g4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuvbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gktcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v56my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfso7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxjf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mula")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbgp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yumuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tir1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g81oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvlll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpj6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h6ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf7ud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00vb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfyxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qydnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf0lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0eox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvro5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8usg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2n7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq8ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb5jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2a5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iish")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5c4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loy0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hshuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byvfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhhyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oql0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3tso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiyhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swq6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4noug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2ghp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7lyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe7r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75w7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cfyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvj8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh164")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asri8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m24vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqhy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olhja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mrr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeiq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkuml")
+}],
+"loop": false,
+"name": &"unlock",
+"speed": 50.0
+}]
+
+[node name="DailyReward" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v4uwy")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -547.0
+offset_top = -288.0
+offset_right = 547.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60jy7")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tcyyq")
+theme_override_font_sizes/font_size = 30
+text = "Tägliche Belohnung"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tcyyq")
+theme_override_font_sizes/font_size = 20
+text = "Lerne täglich mindestens eine Karteikarte und schalte weitere Belohnungen frei!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_7ta7g")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 17
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DayOne" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -62.5
+offset_right = 62.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_g5yub")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_tcyyq")
+text = "+15 Coins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxknf")
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayOne/Unlock"]
+scale = Vector2(0.279091, 0.279091)
+sprite_frames = SubResource("SpriteFrames_utlv3")
+animation = &"unlock"
+
+[node name="DayTwo" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -62.5
+offset_right = 62.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eu3ym")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_tcyyq")
+text = "+250 EXP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo/Unlock"]
+scale = Vector2(0.279091, 0.279091)
+sprite_frames = SubResource("SpriteFrames_utlv3")
+animation = &"unlock"
+
+[node name="DayTwo2" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -62.5
+offset_right = 62.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eu3ym")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_tcyyq")
+text = "+250 EXP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/Unlock"]
+scale = Vector2(0.279091, 0.279091)
+sprite_frames = SubResource("SpriteFrames_utlv3")
+animation = &"unlock"
+
+[node name="DayTwo3" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -62.5
+offset_right = 62.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eu3ym")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_tcyyq")
+text = "+250 EXP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/Unlock"]
+scale = Vector2(0.279091, 0.279091)
+sprite_frames = SubResource("SpriteFrames_utlv3")
+animation = &"unlock"
+
+[node name="DayTwo4" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -62.5
+offset_right = 62.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eu3ym")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_tcyyq")
+text = "+250 EXP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/Unlock"]
+scale = Vector2(0.279091, 0.279091)
+sprite_frames = SubResource("SpriteFrames_utlv3")
+animation = &"unlock"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tcyyq")
+theme_override_font_sizes/font_size = 20
+text = "Du lernst bereits seit X Tagen täglich! Weiter so "
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -58.0
+offset_right = 121.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_cxv88")
+expand_mode = 3
+stretch_mode = 5

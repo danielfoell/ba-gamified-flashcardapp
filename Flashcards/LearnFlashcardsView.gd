@@ -57,6 +57,10 @@ func _On_BtnGood_Pressed():
 	BtnGood.disabled = true
 	currentFlashcard.learned = true
 	currentFlashcard.last_learned = Time.get_datetime_dict_from_system()
+	GData.user.learnedLastTime = Time.get_datetime_dict_from_system()
+	print(GData.user.learnedLastTime)
+	GData.user.AddDailyStreak()
+	print(GData.user.GetDailyStreak())
 	GData.user.AddExp(GData.data.get("EXP")["CARD_SOLVED"])
 	AudioPlayer.play()
 	var xpIcon = Xp.duplicate()
@@ -86,6 +90,9 @@ func SetNextFlashcard():
 		CardView.hide()
 		if cardsLeft.is_empty():
 			EndFinishedView.show()
+			if GData.user.learnedFirstDeckOfTheDay == false:
+				GData.user.learnedFirstDeckOfTheDay = true
+				GData.user.AddExp(GData.data.get("EXP").get("DECK_FIRSTOFTHEDAY"))
 		else:
 			EndCardLeftView.show()
 	else:

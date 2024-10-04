@@ -14,7 +14,7 @@ var roomData = ROOM
 var decks: Array[DeckData]
 
 var currentDeck
-var currentRoom
+var currentRoom: Node3D
 
 func _ready():
 	LoadUser()
@@ -34,8 +34,10 @@ func LoadUser():
 		userData.expNeededForNextLevel = data.expNeededForNextLevel
 		userData.coins = data.coins
 		userData.dailyStreak = data.dailyStreak
+		userData.addedDailyStreak = data.addedDailyStreak
 		userData.achievements = data.achievements
 		userData.tutorialStage = data.tutorialStage
+		userData.learnedLastTime = data.learnedLastTime
 		GData.user = userData
 		print("User loaded")
 	else:
@@ -53,8 +55,10 @@ func SaveUser():
 		"expNeededForNextLevel": userData.expNeededForNextLevel,
 		"coins": userData.coins,
 		"dailyStreak": userData.dailyStreak,
+		"addedDailyStreak": userData.addedDailyStreak,
 		"achievements": userData.achievements,
-		"tutorialStage": userData.tutorialStage
+		"tutorialStage": userData.tutorialStage,
+		"learnedLastTime": userData.learnedLastTime,
 	}
 	var file = FileAccess.open(user_save_path, FileAccess.WRITE)
 	if file:
@@ -84,7 +88,6 @@ func LoadFlashcards():
 				newDeck.flashcards.append(newFlashcard)
 				if newFlashcard.learned == false:
 					newDeck.learningFlashcards.append(newFlashcard)
-			print(deckData)
 			newDeck.SetColor(deckData["deckcolor"])
 			decks.append(newDeck)
 			file.close

@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var ExpBar = $MarginContainer/Exp/HBoxContainer/ExpBar
 @onready var ExpValue = $MarginContainer/Exp/HBoxContainer/ExpBar/MarginContainer/ExpValue
 @onready var ExpProgress = $MarginContainer/Exp/HBoxContainer/Control/ExpProgress
+@onready var ExpLabel = $MarginContainer/Exp/CurrentExp/MarginContainer/Label
+@onready var CurrentExp = $MarginContainer/Exp/CurrentExp
 @onready var AudioPlayer = $AudioStreamPlayer
 @onready var EscMenu = $EscMenu
 
@@ -21,6 +23,8 @@ func _ready():
 	ExpProgress.set_value(GData.user.exp)
 	ExpBar.set_max(GData.user.expNeededForNextLevel)
 	ExpBar.set_value(GData.user.exp)
+	CurrentExp.hide()
+	ExpLabel.set_text(str(GData.user.exp) + "/" + str(GData.user.expNeededForNextLevel))
 
 func _AchievementUnlocked(achievement):
 	var achievementView = NEW_ACHIEVEMENT_VIEW.instantiate()
@@ -53,7 +57,12 @@ func _unhandled_key_input(event):
 		else:
 			layer = 0
 
-
 func _On_BtnExit_Pressed():
-	print("Tet")
 	get_tree().quit()
+
+func _On_Exp_Mouse_Entered():
+	ExpLabel.set_text(str(GData.user.exp) + "/" + str(GData.user.expNeededForNextLevel))
+	CurrentExp.show()
+
+func _On_Exp_Mouse_Exited():
+	CurrentExp.hide()

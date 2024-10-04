@@ -18,10 +18,9 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 
 
 func _on_mouse_entered():
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	animation_player.play("Pulse")
-
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
 func _on_mouse_exited():
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	animation_player.play("RESET")

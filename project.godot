@@ -13,7 +13,10 @@ config_version=5
 config/name="LearnApp"
 run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+config/icon="res://Assets/Icons/flashcards.png"
 
 [autoload]
 
@@ -29,6 +32,7 @@ directories/dch_directory={
 "Rob": "res://Dialogic/Character/Rob.dch"
 }
 directories/dtl_directory={
+"FirstLevelup": "res://Dialogic/Timelines/FirstLevelup.dtl",
 "Start": "res://Dialogic/Timelines/Start.dtl"
 }
 glossary/default_case_sensitive=true
@@ -61,10 +65,12 @@ text/autopauses={}
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=2
+window/size/initial_position_type=2
 window/size/borderless=true
+window/size/transparent=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
 
 [dotnet]
 

@@ -1,11 +1,10 @@
 extends Node3D
 
 @onready var AnimPlayer = $AnimationPlayer
+@onready var Computer = $Computer
+
 
 func _ready():
-	if GData.user.tutorialStage == 0:
+	if GData.user.tutorialStage == TutorialService.TUTORIALSTAGE.START:
 		$Background.no_depth_test = true
 
-func Setup():
-	$Background.no_depth_test = false
-	AnimPlayer.play("FIRSTBUILDUP")
