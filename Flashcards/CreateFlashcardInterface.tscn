@@ -8,10 +8,10 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xje4l"]
 bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
 border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mxgpa"]
 
@@ -26,10 +26,12 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lldi3"]
 bg_color = Color(0.24807, 0.694112, 0.499273, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+border_width_left = 150
+border_width_right = 150
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="CreateFlashcardInterface" type="Control"]
 layout_mode = 3
@@ -90,6 +92,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_font_sizes/font_size = 25
 text = "Vorderseite"
+horizontal_alignment = 1
 
 [node name="Question" type="TextEdit" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -176,6 +179,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_font_sizes/font_size = 25
 text = "Rückseite"
+horizontal_alignment = 1
 
 [node name="Answer" type="TextEdit" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -194,12 +198,14 @@ file_mode = 1
 filters = PackedStringArray(".png")
 
 [node name="Btn_AddCard" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lldi3")
 text = "Hinzufügen"
 
 [node name="Btn_EditCard" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d1sd6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lldi3")

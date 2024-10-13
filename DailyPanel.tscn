@@ -527,6 +527,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_force_pass_scroll_events = false
 script = ExtResource("1_v4uwy")
 
 [node name="Panel" type="Panel" parent="."]
@@ -584,7 +585,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_7ta7g")
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_bottom = 77
+theme_override_constants/margin_bottom = 7
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -965,6 +966,16 @@ scale = Vector2(0.279091, 0.279091)
 sprite_frames = SubResource("SpriteFrames_utlv3")
 animation = &"unlock"
 
+[node name="Footer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/Footer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Schließen"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -999,3 +1010,5 @@ grow_vertical = 2
 texture = ExtResource("6_cxv88")
 expand_mode = 3
 stretch_mode = 5
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Footer/Button" to="." method="_On_BtnClose_Pressed"]

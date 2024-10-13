@@ -58,9 +58,7 @@ func _On_BtnGood_Pressed():
 	currentFlashcard.learned = true
 	currentFlashcard.last_learned = Time.get_datetime_dict_from_system()
 	GData.user.learnedLastTime = Time.get_datetime_dict_from_system()
-	print(GData.user.learnedLastTime)
 	GData.user.AddDailyStreak()
-	print(GData.user.GetDailyStreak())
 	GData.user.AddExp(GData.data.get("EXP")["CARD_SOLVED"])
 	AudioPlayer.play()
 	var xpIcon = Xp.duplicate()
@@ -90,11 +88,15 @@ func SetNextFlashcard():
 		CardView.hide()
 		if cardsLeft.is_empty():
 			EndFinishedView.show()
+			BtnBad.hide()
+			BtnGood.hide()
 			if GData.user.learnedFirstDeckOfTheDay == false:
 				GData.user.learnedFirstDeckOfTheDay = true
 				GData.user.AddExp(GData.data.get("EXP").get("DECK_FIRSTOFTHEDAY"))
 		else:
 			EndCardLeftView.show()
+			BtnBad.hide()
+			BtnGood.hide()
 	else:
 		currentFlashcard = GetNextFlashcard()
 		CardsCount.text = "%s/%s" % [currentDeck.GetLearningFlashcards().find(currentFlashcard), currentDeck.GetLearningFlashcards().size()]
@@ -138,17 +140,20 @@ func _On_BtnContinue_Pressed():
 	Progress.set_max(currentDeck.GetLearningFlashcards().size())
 	Progress.set_value(0)
 
-func _input(event):
+func _unhandled_input(event):
 	if visible:
 		if Input.is_action_just_pressed("LMB") and Rect2(Vector2(), get_global_rect().size).has_point(get_local_mouse_position()) or Input.is_action_just_pressed("SPACE"):
 			Answer.visible = !Answer.visible
 			currentFlashcard.answer_visible = !currentFlashcard.answer_visible
-			if Answer.visible:
-				BtnGood.show()
-				BtnBad.show()
-			else:
+			if CardView.visible:
 				BtnGood.hide()
 				BtnBad.hide()
+				if Answer.visible:
+					BtnGood.show()
+					BtnBad.show()
+				else:
+					BtnGood.hide()
+					BtnBad.hide()
 			StorageService.SaveFlashcards()
 		elif Input.is_action_just_pressed("LEFT"):
 			_On_BtnBad_Pressed()

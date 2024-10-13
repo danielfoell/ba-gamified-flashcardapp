@@ -10,6 +10,7 @@ extends CanvasLayer
 @onready var EscMenu = $EscMenu
 
 
+
 const NEW_ACHIEVEMENT_VIEW = preload("res://NewAchievementView.tscn")
 var curLevel
 
@@ -65,4 +66,5 @@ func _On_Exp_Mouse_Entered():
 	CurrentExp.show()
 
 func _On_Exp_Mouse_Exited():
+	CurrentExp.hide()
 	CurrentExp.hide()

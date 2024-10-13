@@ -16,7 +16,7 @@ func init(flashcard: FlashcardData):
 	CardsCount.text = "%s/%s" % [currentDeck.flashcards.find(currentFlashcard) + 1, currentDeck.flashcards.size()]
 	Answer.visible = currentFlashcard.answer_visible
 
-func _input(event):
+func _unhandled_input(event):
 	if visible:
 		if Input.is_action_just_pressed("LMB") and Rect2(Vector2(), get_global_rect().size).has_point(get_local_mouse_position()) or Input.is_action_just_pressed("SPACE"):
 			Answer.visible = !Answer.visible

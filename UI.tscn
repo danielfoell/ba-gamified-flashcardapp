@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn5diggd0pjyy"]
+[gd_scene load_steps=11 format=3 uid="uid://bn5diggd0pjyy"]
 
 [ext_resource type="Script" path="res://UI.gd" id="1_ppdf2"]
 [ext_resource type="Texture2D" uid="uid://mlx28oq7vnvg" path="res://Assets/Icons/book_clear.png" id="2_ic60q"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bu0623f0eglg5" path="res://Assets/Icons/coins.png" id="4_cubnr"]
 [ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="5_oiois"]
 [ext_resource type="AudioStream" uid="uid://gcg0c6lnru2e" path="res://Assets/Audio/levelup.mp3" id="5_oixoj"]
+[ext_resource type="PackedScene" uid="uid://bmgvn6fytg4jj" path="res://DailyPanel.tscn" id="7_410nr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tdrn8"]
 corner_radius_top_left = 15
@@ -221,6 +222,9 @@ text = "Einstellungen"
 [node name="BtnExit" type="Button" parent="EscMenu/Panel2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Beenden"
+
+[node name="DailyReward" parent="." instance=ExtResource("7_410nr")]
+visible = false
 
 [connection signal="mouse_entered" from="MarginContainer/Exp" to="." method="_On_Exp_Mouse_Entered"]
 [connection signal="mouse_exited" from="MarginContainer/Exp" to="." method="_On_Exp_Mouse_Exited"]

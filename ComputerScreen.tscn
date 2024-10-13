@@ -1,0 +1,185 @@
+[gd_scene load_steps=7 format=3 uid="uid://yqodanke2rg5"]
+
+[ext_resource type="Script" path="res://Computer.gd" id="1_mgq5k"]
+[ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="2_361b0"]
+[ext_resource type="Texture2D" uid="uid://d0d50t37ywxrf" path="res://Assets/Icons/cabineticon.png" id="3_xlwq4"]
+[ext_resource type="Texture2D" uid="uid://rj0sjsir77as" path="res://Assets/Icons/coins (1).png" id="4_5m6mi"]
+[ext_resource type="Texture2D" uid="uid://rt1ps7h7r2yp" path="res://Assets/Icons/other-x-icon-2048x2043-ueafpzlh-removebg-preview.png" id="5_oi4bh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwubd"]
+bg_color = Color(0.831373, 0.831373, 0.831373, 0.956863)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="ComputerScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mgq5k")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -485.5
+offset_top = -285.0
+offset_right = 485.5
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwubd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_361b0")
+theme_override_font_sizes/font_size = 50
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Kommode"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Icon" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = -74.0
+offset_right = 74.5
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xlwq4")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Price" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_361b0")
+theme_override_font_sizes/font_size = 30
+text = "30"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_5m6mi")
+expand_mode = 2
+
+[node name="BtnBuy" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Kaufen"
+
+[node name="TextureButton" type="TextureButton" parent="Panel/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="BtnExit" type="TextureButton" parent="."]
+offset_left = 1356.0
+offset_top = 259.0
+offset_right = 2240.0
+offset_bottom = 878.0
+scale = Vector2(0.105, 0.105)
+texture_normal = ExtResource("5_oi4bh")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 491.0
+offset_top = 266.0
+offset_right = 565.0
+offset_bottom = 302.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Price" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_361b0")
+theme_override_font_sizes/font_size = 30
+text = "30"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_5m6mi")
+expand_mode = 2
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/GridContainer/Button/Panel/MarginContainer/VBoxContainer/BtnBuy" to="." method="_On_BtnBuy_Pressed"]
+[connection signal="pressed" from="BtnExit" to="." method="_On_BtnExit_Pressed"]

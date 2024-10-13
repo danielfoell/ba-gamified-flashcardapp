@@ -55,6 +55,7 @@ offset_right = 613.5
 offset_bottom = 361.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_dy3md")
 script = ExtResource("1_in4p4")
 
@@ -168,6 +169,7 @@ anchors_preset = 0
 offset_top = -52.0
 offset_right = 1217.0
 offset_bottom = -2.0
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Header"]
 layout_mode = 1
@@ -235,6 +237,7 @@ anchor_bottom = 1.0
 offset_bottom = 91.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
 layout_mode = 1
@@ -270,6 +273,7 @@ offset_left = 726.5
 offset_top = 749.0
 offset_right = 766.5
 offset_bottom = 789.0
+mouse_filter = 1
 metadata/_edit_group_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Xp"]

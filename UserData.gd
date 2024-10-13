@@ -22,6 +22,8 @@ func SetDailyStreak(val):
 	dailyStreak = val
 
 func AddDailyStreak():
+	if dailyStreak == -1: return
+	#GSignals.AddedDailyStreak.emit()
 	var currentDateTime = Time.get_datetime_dict_from_system()
 	var timeDiff = Time.get_unix_time_from_datetime_dict(currentDateTime) - Time.get_unix_time_from_datetime_dict(learnedLastTime)
 	if learnedLastTime["day"] != currentDateTime["day"] or learnedLastTime["month"] != currentDateTime["month"] or learnedLastTime["year"] != currentDateTime["year"]:
@@ -32,14 +34,16 @@ func AddDailyStreak():
 				dailyStreak = 0
 			dailyStreak += 1
 			addedDailyStreak = true
+			GSignals.AddedDailyStreak.emit()
 	elif learnedLastTime["day"] == currentDateTime["day"] or learnedLastTime["month"] == currentDateTime["month"] or learnedLastTime["year"] == currentDateTime["year"]:
 		if addedDailyStreak == false:
 			if timeDiff >= 86000:
 				GData.user.SetDailyStreak(0)
-			if dailyStreak > 7:
-				dailyStreak = 0
+			if dailyStreak > 5:
+				dailyStreak = -1
 			dailyStreak += 1
 			addedDailyStreak = true
+			GSignals.AddedDailyStreak.emit()
 
 func SetName(uname):
 	name = uname
@@ -66,6 +70,16 @@ func AddExp(newExp):
 		SetExpNeedForNextLevel()
 	StorageService.SaveUser()
 	GSignals.ExpChanged.emit()
+
+func GetCoins():
+	return coins
+
+func SetCoins(newCoins):
+	coins = newCoins
+
+func AddCoins(newCoins):
+	coins += newCoins
+	StorageService.SaveUser()
 
 func GetExpNeededForNextLevel():
 	return expNeededForNextLevel
