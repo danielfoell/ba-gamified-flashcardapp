@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bmgvn6fytg4jj"]
+[gd_scene load_steps=78 format=3 uid="uid://bmgvn6fytg4jj"]
 
 [ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="1_tcyyq"]
 [ext_resource type="Script" path="res://DailyReward.gd" id="1_v4uwy"]
@@ -507,6 +507,19 @@ animations = [{
 "speed": 50.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpwc1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.831373, 0.686275, 0.215686, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
 [node name="DailyReward" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -541,7 +554,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
@@ -551,14 +564,16 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_tcyyq")
 theme_override_font_sizes/font_size = 30
-text = "Tägliche Belohnung"
+text = "Lernkarte des Tages"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_tcyyq")
 theme_override_font_sizes/font_size = 20
-text = "Lerne täglich mindestens eine Karteikarte und schalte weitere Belohnungen frei!"
+text = "Lerne jeden Tag mindestens eine Karteikarte 
+und sichere dir Belohnungen! 
+Aber Vorsicht: Verpasst du einen Tag, startest du wieder von vorne."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -569,7 +584,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_7ta7g")
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_bottom = 17
+theme_override_constants/margin_bottom = 77
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -717,12 +732,12 @@ scale = Vector2(0.279091, 0.279091)
 sprite_frames = SubResource("SpriteFrames_utlv3")
 animation = &"unlock"
 
-[node name="DayTwo2" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="DayThree" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gpwc1")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -734,15 +749,17 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer/VBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree/MarginContainer/VBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -755,18 +772,30 @@ offset_right = 62.5
 offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_eu3ym")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_g5yub")
 expand_mode = 5
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_tcyyq")
-text = "+250 EXP"
+text = "+50 Coins
++400 Exp"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2"]
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxknf")
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -776,17 +805,17 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo2/Unlock"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayThree/Unlock"]
 scale = Vector2(0.279091, 0.279091)
 sprite_frames = SubResource("SpriteFrames_utlv3")
 animation = &"unlock"
 
-[node name="DayTwo3" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="DayFour" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -798,15 +827,15 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour/MarginContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer/VBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour/MarginContainer/VBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -819,18 +848,28 @@ offset_right = 62.5
 offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_eu3ym")
+texture = ExtResource("2_g5yub")
 expand_mode = 5
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_tcyyq")
-text = "+250 EXP"
+text = "+30 Coins"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3"]
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxknf")
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -840,17 +879,17 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo3/Unlock"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFour/Unlock"]
 scale = Vector2(0.279091, 0.279091)
 sprite_frames = SubResource("SpriteFrames_utlv3")
 animation = &"unlock"
 
-[node name="DayTwo4" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
+[node name="DayFive" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_qrcxw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gpwc1")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -862,15 +901,17 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer/VBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive/MarginContainer/VBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -883,18 +924,33 @@ offset_right = 62.5
 offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_eu3ym")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_g5yub")
 expand_mode = 5
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_tcyyq")
-text = "+250 EXP"
+text = "+250 Coins
++1500 Exp
++ 1 Möbelstück (Nicht vorhanden in der Demo)"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4"]
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxknf")
+
+[node name="Unlock" type="Control" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -904,12 +960,13 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayTwo4/Unlock"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/HBoxContainer/DayFive/Unlock"]
 scale = Vector2(0.279091, 0.279091)
 sprite_frames = SubResource("SpriteFrames_utlv3")
 animation = &"unlock"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
