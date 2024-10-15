@@ -153,6 +153,7 @@ visible = false
 layout_mode = 2
 
 [node name="BtnExit" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1356.0
 offset_top = 259.0
 offset_right = 2240.0
