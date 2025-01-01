@@ -2262,7 +2262,7 @@ mesh = SubResource("ArrayMesh_bkdlv")
 skeleton = NodePath("")
 
 [node name="Hand origin_002" type="Node3D" parent="Rob/Sketchfab_model/a45b6f53b9cc462a82863bb5898bf730_fbx/Object_2/RootNode/Robot Origin"]
-transform = Transform3D(-1, 1.50996e-07, -1.89258e-15, -1.50996e-07, -1, 1.25339e-08, -1.37643e-20, 1.25339e-08, 1, -0.723106, -2.76451e-08, 2.01455)
+transform = Transform3D(-1, 1.50996e-07, -1.89258e-15, -1.50996e-07, -1, 1.25339e-08, -1.60936e-20, 1.25339e-08, 1, -0.723106, -2.76451e-08, 2.01455)
 
 [node name="hANDS_002" type="Node3D" parent="Rob/Sketchfab_model/a45b6f53b9cc462a82863bb5898bf730_fbx/Object_2/RootNode/Robot Origin/Hand origin_002"]
 transform = Transform3D(1, 5.55111e-17, -4.62501e-18, -5.55111e-17, 1, -4.44089e-16, 4.62501e-18, 4.44089e-16, 1, -0.723105, 2.76451e-08, -1.96338)
