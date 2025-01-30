@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://dvidct22eftg2"]
+[gd_scene load_steps=102 format=3 uid="uid://dvidct22eftg2"]
 
 [ext_resource type="Script" path="res://Room.gd" id="1_2awll"]
 [ext_resource type="Texture2D" uid="uid://nm50mor5wrj5" path="res://Assets/Models/Bed/furniturebits_texture.png" id="1_un02t"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Interact.gd" id="15_l2mbs"]
 [ext_resource type="FontFile" uid="uid://bel83db0lco6m" path="res://Assets/Fonts/Roboto-Light.ttf" id="17_c0sbm"]
 [ext_resource type="AudioStream" uid="uid://cyxl63dwcao6i" path="res://Assets/Audio/pop-up-bubble.mp3" id="18_sxmnb"]
+[ext_resource type="AudioStream" uid="uid://b3epwvwa5bmct" path="res://Assets/Audio/ui-bubble-click.mp3" id="19_yvc0p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5tws3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -2262,7 +2263,7 @@ mesh = SubResource("ArrayMesh_bkdlv")
 skeleton = NodePath("")
 
 [node name="Hand origin_002" type="Node3D" parent="Rob/Sketchfab_model/a45b6f53b9cc462a82863bb5898bf730_fbx/Object_2/RootNode/Robot Origin"]
-transform = Transform3D(-1, 1.50996e-07, -1.89258e-15, -1.50996e-07, -1, 1.25339e-08, -1.60936e-20, 1.25339e-08, 1, -0.723106, -2.76451e-08, 2.01455)
+transform = Transform3D(-1, 1.50996e-07, -1.89258e-15, -1.50996e-07, -1, 1.25339e-08, -1.8423e-20, 1.25339e-08, 1, -0.723106, -2.76451e-08, 2.01455)
 
 [node name="hANDS_002" type="Node3D" parent="Rob/Sketchfab_model/a45b6f53b9cc462a82863bb5898bf730_fbx/Object_2/RootNode/Robot Origin/Hand origin_002"]
 transform = Transform3D(1, 5.55111e-17, -4.62501e-18, -5.55111e-17, 1, -4.44089e-16, 4.62501e-18, 4.44089e-16, 1, -0.723105, 2.76451e-08, -1.96338)
@@ -2338,6 +2339,9 @@ font = ExtResource("17_c0sbm")
 font_size = 60
 outline_size = 0
 text_direction = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Flashcards"]
+stream = ExtResource("19_yvc0p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

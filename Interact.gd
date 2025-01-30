@@ -1,6 +1,8 @@
 extends StaticBody3D
 
 @onready var animation_player = $AnimationPlayer
+@onready var audio_stream_player = $AudioStreamPlayer
+
 
 const NEWDECK = preload("res://Flashcards/CreateNewDeckInterface.tscn")
 const MAIN = preload("res://Main.tscn")
@@ -18,6 +20,7 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 
 
 func _on_mouse_entered():
+	audio_stream_player.play()
 	animation_player.play("Pulse")
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
