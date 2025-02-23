@@ -15,6 +15,7 @@ const NEW_ACHIEVEMENT_VIEW = preload("res://NewAchievementView.tscn")
 var curLevel
 
 func _ready():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	GSignals.ExpChanged.connect(_RefreshProgress)
 	GSignals.AchievementUnlocked.connect(_AchievementUnlocked)
 	curLevel = GData.user.level
@@ -51,6 +52,10 @@ func _RefreshProgress():
 	tween.tween_property(ExpProgress, "value", GData.user.exp, 1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
 func _unhandled_key_input(event):
+	if event.keycode == KEY_F11 and event.is_pressed():
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	if event.keycode == KEY_F12 and event.is_pressed():
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	if event.keycode == KEY_ESCAPE and event.is_pressed():
 		EscMenu.visible = !EscMenu.visible
 		if EscMenu.visible:

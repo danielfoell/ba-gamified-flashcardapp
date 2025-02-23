@@ -2146,6 +2146,9 @@ libraries = {
 }
 autoplay = "Pulse"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Computer"]
+stream = ExtResource("19_yvc0p")
+
 [node name="lamp_desk_headphones2" parent="." instance=ExtResource("11_vmmem")]
 transform = Transform3D(-0.485191, 0, 0.874408, 0, 1, 0, -0.874408, 0, -0.485191, -2.86864, 0.907479, 1.55657)
 visible = false
@@ -2263,7 +2266,7 @@ mesh = SubResource("ArrayMesh_bkdlv")
 skeleton = NodePath("")
 
 [node name="Hand origin_002" type="Node3D" parent="Rob/Sketchfab_model/a45b6f53b9cc462a82863bb5898bf730_fbx/Object_2/RootNode/Robot Origin"]
-transform = Transform3D(-1, 1.50996e-07, -1.89258e-15, -1.50996e-07, -1, 1.25339e-08, -1.8423e-20, 1.25339e-08, 1, -0.723106, -2.76451e-08, 2.01455)
+transform = Transform3D(-1, 1.50996e-07, -1.8926e-15, -1.50996e-07, -1, 1.25339e-08, -3.00697e-20, 1.25339e-08, 1, -0.723106, -2.76451e-08, 2.01455)
 
 [node name="hANDS_002" type="Node3D" parent="Rob/Sketchfab_model/a45b6f53b9cc462a82863bb5898bf730_fbx/Object_2/RootNode/Robot Origin/Hand origin_002"]
 transform = Transform3D(1, 5.55111e-17, -4.62501e-18, -5.55111e-17, 1, -4.44089e-16, 4.62501e-18, 4.44089e-16, 1, -0.723105, 2.76451e-08, -1.96338)
@@ -2287,6 +2290,9 @@ libraries = {
 "": SubResource("AnimationLibrary_j1yhu")
 }
 autoplay = "Pulse"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Rob"]
+stream = ExtResource("19_yvc0p")
 
 [node name="Rug" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.245436, -0.0805084, 0.40491)
@@ -2334,7 +2340,7 @@ visible = false
 billboard = 2
 alpha_antialiasing_edge = 1.0
 outline_modulate = Color(0, 0, 0, 0)
-text = "Study"
+text = "Lernen"
 font = ExtResource("17_c0sbm")
 font_size = 60
 outline_size = 0

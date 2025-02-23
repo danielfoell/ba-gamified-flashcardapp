@@ -26,6 +26,7 @@ const LEARNDECK = preload("res://Flashcards/LearnFlashcardsView.tscn")
 
 
 func _ready():
+	GData.canInteract = false
 	$Panel.show()
 	BtnBack.hide()
 	MainView.show()
@@ -39,6 +40,7 @@ func _On_BtnExit_Pressed():
 	if GData.user.tutorialStage == TutorialService.TUTORIALSTAGE.FIRSTLEVELUP and has_user_signal("closed"):
 		emit_signal("closed")
 	queue_free()
+	GData.canInteract = true
 
 func _LoadDecks():
 	if DeckContainer.get_child_count() > 0:

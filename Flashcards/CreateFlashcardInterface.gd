@@ -4,6 +4,7 @@ extends Control
 @onready var Answer = $Panel/MarginContainer/VBoxContainer/Answer
 @onready var BtnAddCard = $Panel/MarginContainer/VBoxContainer/Btn_AddCard
 @onready var BtnEditCard = $Panel/MarginContainer/VBoxContainer/Btn_EditCard
+@onready var StatusText = $Panel/MarginContainer/VBoxContainer/StatusText
 
 signal FlashcardCreated
 
@@ -12,6 +13,7 @@ var flashcard: FlashcardData
 func _ready():
 	BtnAddCard.show()
 	BtnEditCard.hide()
+	StatusText.hide()
 
 #func _on_button_pressed():
 	#file_dialog.show()
@@ -39,7 +41,13 @@ func _on_btn_add_card_pressed():
 		if StorageService.decks.reduce(func(accum, deck): return accum + deck.GetCardCount(), 0) >= 10:
 			GData.user.UnlockAchievement(GData.ACHIEVEMENTS.keys()[GData.ACHIEVEMENTS.CREATED_TENCARDS])
 	FlashcardCreated.emit()
-	queue_free()
+	var tween = get_tree().create_tween()
+	tween.tween_property($Toast, "position:y", 330, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_interval(1)
+	tween.tween_property($Toast, "position:y", 250, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	Question.text = ""
+	Answer.text = ""
+	#queue_free()
 
 
 func _On_BtnEditCard_Pressed():
@@ -62,3 +70,24 @@ func Edit(flashcardInterface):
 	BtnEditCard.show()
 	Question.text = flashcard.question
 	Answer.text = flashcard.answer
+
+
+func _on_question_text_changed():
+	var currentDeck: DeckData = StorageService.currentDeck
+	var cardExists = false
+	for card in currentDeck.flashcards:
+		if card.question == Question.text:
+			cardExists = true
+	if cardExists:
+		StatusText.show()
+		BtnAddCard.hide()
+		BtnEditCard.hide()
+		print("Frage existiert bereits")
+	else:
+		StatusText.hide()
+		BtnAddCard.show()
+		#BtnEditCard.show()
+
+
+func _on_btn_close_pressed():
+	queue_free()

@@ -3,6 +3,7 @@ extends Node
 var user: UserData = UserData.new()
 var file = FileAccess.open("res://Data/Data.json", FileAccess.READ)
 var data = JSON.parse_string(file.get_as_text())
+var canInteract = true
 
 enum EXP{
 	CARD_SOLVED,

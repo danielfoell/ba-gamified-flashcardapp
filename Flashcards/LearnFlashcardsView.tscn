@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbnbtx8pn0mp6"]
+[gd_scene load_steps=15 format=3 uid="uid://cbnbtx8pn0mp6"]
 
 [ext_resource type="Script" path="res://Flashcards/LearnFlashcardsView.gd" id="1_in4p4"]
 [ext_resource type="FontFile" uid="uid://bv5k012hvoy82" path="res://Assets/Fonts/Roboto-Regular.ttf" id="2_pci26"]
+[ext_resource type="Texture2D" uid="uid://q01g8dm61kup" path="res://Assets/Icons/negative-vote.png" id="3_d56bl"]
 [ext_resource type="AudioStream" uid="uid://cpt0ssx78wnm3" path="res://Assets/Audio/bubble-pop-ding.mp3" id="3_dpkjp"]
+[ext_resource type="Texture2D" uid="uid://c3tyupinhm1sy" path="res://Assets/Icons/positive-vote.png" id="4_85j5e"]
 [ext_resource type="FontFile" uid="uid://bev2oa7b13423" path="res://Assets/Fonts/Roboto-Medium.ttf" id="4_bc4sd"]
 [ext_resource type="Texture2D" uid="uid://cepyto8sfde03" path="res://Assets/xpup.png" id="5_73l5b"]
 
@@ -42,6 +44,28 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8800"]
+bg_color = Color(0.999999, 0.398805, 0.403426, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_squrb"]
+bg_color = Color(0.4, 0.705882, 0.396078, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [node name="LearnFlashcardsView" type="Panel"]
 anchors_preset = 8
@@ -84,8 +108,9 @@ layout_mode = 2
 
 [node name="Question" type="RichTextLabel" parent="CardView/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/default_color = Color(0.172833, 0.172833, 0.172833, 1)
 theme_override_fonts/normal_font = ExtResource("2_pci26")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "Test"
 fit_content = true
@@ -96,8 +121,9 @@ theme_override_constants/separation = 50
 
 [node name="Answer" type="RichTextLabel" parent="CardView/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/default_color = Color(0.172833, 0.172833, 0.172833, 1)
 theme_override_fonts/normal_font = ExtResource("2_pci26")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 40
 text = "Test"
 fit_content = true
 
@@ -252,16 +278,23 @@ offset_right = 102.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
 [node name="BtnBad" type="Button" parent="Buttons/HBoxContainer"]
 custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
-text = "Schlecht"
+theme_override_styles/normal = SubResource("StyleBoxFlat_t8800")
+icon = ExtResource("3_d56bl")
+icon_alignment = 1
+expand_icon = true
 
 [node name="BtnGood" type="Button" parent="Buttons/HBoxContainer"]
 custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
-text = "Gut"
+theme_override_styles/normal = SubResource("StyleBoxFlat_squrb")
+icon = ExtResource("4_85j5e")
+icon_alignment = 1
+expand_icon = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_dpkjp")

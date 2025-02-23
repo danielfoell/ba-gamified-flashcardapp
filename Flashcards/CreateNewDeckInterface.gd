@@ -8,6 +8,7 @@ const MAIN = preload("res://Main.tscn")
 signal DeckCreated
 
 func _ready():
+	GData.canInteract = false
 	BtnColorPicker.color = Color.AQUA
 
 func _on_button_pressed():
@@ -33,3 +34,4 @@ func _on_button_pressed():
 
 func _On_BtnClose_Pressed():
 	queue_free()
+	GData.canInteract = true
